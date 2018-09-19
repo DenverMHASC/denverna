@@ -1,0 +1,101 @@
+body {margin:0px; padding:0px; background-color:#FFFFFF;font: normal 11px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;}
+
+#navigazioneSx {padding-top:25px; padding-left:10px}
+
+#navigazioneSx a {color:#999999; text-decoration:underline; font-size:10px}
+
+#navigazioneSx a:hover {color:#FF6600; text-decoration:underline; font-size:10px}
+
+.testo9gr {color: #999999; font: normal 9px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;} 
+
+.testo9gr A:link {color: #999999; text-decoration: underline;} 
+
+.testo9gr A:visited {color: #3399cc; text-decoration: underline;} 
+
+.testo9gr A:hover {color: #FF6600; text-decoration: underline;} 
+
+.testo9gr A:active{color: #cccccc; text-decoration: none;}
+
+
+
+.testo10gr {color: #575758; font: normal 10px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;} 
+
+.testo10gr A:link {color: #575758; text-decoration: underline;} 
+
+.testo10gr A:visited {color: #3399cc; text-decoration: underline;} 
+
+.testo10gr A:hover {color: #FF6600; text-decoration: underline;} 
+
+.testo10gr A:active{color: #cccccc; text-decoration: none;} 
+
+
+
+.testo11gr {color: #575758; font: normal 11px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;} 
+
+.testo11gr A:link {color: #575758; text-decoration: underline;} 
+
+.testo11gr A:visited {color: #3399cc; text-decoration: underline;} 
+
+.testo11gr A:hover {color: #FF6600; text-decoration: underline;} 
+
+.testo11gr A:active{color: #cccccc; text-decoration: none;} 
+
+
+
+.testo12gr {color: #575758; font: normal 12px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;} 
+
+.testo12gr A:link {color: #575758; text-decoration: underline;} 
+
+.testo12gr A:visited {color: #3399cc; text-decoration: underline;} 
+
+.testo12gr A:hover {color: #FF6600; text-decoration: underline;} 
+
+.testo12gr A:active{color: #cccccc; text-decoration: none;} 
+
+
+
+.titolo14gr {color: #575758; font: bold 14px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;} 
+
+.titolo14gr A:link {color: #575758; text-decoration: underline;} 
+
+.titolo14gr A:visited {color: #3399cc; text-decoration: underline;} 
+
+.titolo14gr A:hover {color: #FF6600; text-decoration: underline;} 
+
+.titolo14gr A:active{color: #cccccc; text-decoration: none;} 
+
+
+
+.titolo16gr {color: #575758; font: bold 16px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;} 
+
+.titolo16gr A:link {color: #575758; text-decoration: underline;} 
+
+.titolo16gr A:visited {color: #3399cc; text-decoration: underline;} 
+
+.titolo16gr A:hover {color: #FF6600; text-decoration: underline;} 
+
+.titolo16gr A:active{color: #cccccc; text-decoration: none;} 
+
+
+
+.titolo18gr {color: #575758; font: bold 18px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;} 
+
+.titolo18gr A:link {color: #575758; text-decoration: underline;} 
+
+.titolo18gr A:visited {color: #3399cc; text-decoration: underline;} 
+
+.titolo18gr A:hover {color: #FF6600; text-decoration: underline;} 
+
+.titolo18gr A:active{color: #cccccc; text-decoration: none;}
+
+
+
+.titolo24az {color: #3399cc; font: bold 24px Trebuchet MS, Geneva, Arial, Helvetica, sans-serif;} 
+
+.titolo24az A:link {color: #3399cc; text-decoration: underline;} 
+
+.titolo24az A:visited {color: #3399cc; text-decoration: underline;} 
+
+.titolo24az A:hover {color: #FF6600; text-decoration: underline;} 
+
+.titolo24az A:active{color: #cccccc; text-decoration: none;}
