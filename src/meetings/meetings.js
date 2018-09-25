@@ -1,7 +1,7 @@
 
 import React from "react"
 import ReactDOM from "react-dom"
-import meetings from './meetingListData'
+import meetings, { key } from './meetingListData'
 import { capitalize, map } from 'lodash'
 import { Table } from 'react-bootstrap'
 
@@ -10,6 +10,21 @@ const MeetingList = () => {
         <div style={{ width: '90%', margin: '0 auto' }}>
             <DayAnchors days={Object.keys(meetings)} />
             {map(meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
+            <MeetingListKey />
+            <div>
+                <p>
+                    "NA has no opinion on outside issues; hence the NA name ought never be drawn into public controversy."
+                    <br />
+                    Tradition 10
+                    <br />
+                    <br />
+                    Narcotics Anonymous is NOT affiliated with any outside organizations or
+                    enterprises, and has no connection whatsoever to the locations where
+                    N.A. meetings are held including but not limited to: religious or
+                    political organizations, hospitals, institutions, treatment programs,
+                    correctional facilities,private clubs and/or individual enterprises.
+                </p>
+            </div>
         </div>
     )
 };
@@ -72,7 +87,24 @@ const MeetingListTable = ({ day, meetings }) => {
 }
 
 const MeetingListKey = () => {
-
+    return (
+        <Table style={{ width: '50%' }}>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {map(key, (v, k) => (
+                    <tr key={k}>
+                        <td>{k}</td>
+                        <td>{v}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+    )
 }
 
 export const renderMeetingList = () => ReactDOM.render(<MeetingList />, document.getElementById("newMeetingList"));

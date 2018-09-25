@@ -19,7 +19,7 @@ export default {
                 unit: '',
                 city: 'Denver',
                 zip: '80223',
-                notes: 'treatment facility'
+                notes: 'treatment center'
             },
         },
         {
@@ -49,7 +49,7 @@ export default {
                 unit: '',
                 city: 'Denver',
                 zip: '80223',
-                notes: 'Clubhouse'
+                notes: 'clubhouse'
             },
         },
         {
@@ -57,11 +57,11 @@ export default {
             name: 'Guiding Principles Book Study',
             format: ['O', 'TS', '90 min'],
             address: {
-                street: '3315 Gilpin St',
+                street: '3315 N Gilpin St',
                 unit: '',
                 city: 'Denver',
                 zip: '80205',
-                notes: ''
+                notes: 'treatment center, side Entrance'
             },
         },
         {
@@ -73,7 +73,7 @@ export default {
                 unit: '',
                 city: 'Arvada',
                 zip: '80002',
-                notes: 'Rising Church, Back door in basement'
+                notes: 'Rising Church,back door in basement'
             },
         },
         {
@@ -103,7 +103,7 @@ export default {
                 unit: '',
                 city: 'Steamboat Springs',
                 zip: '80487',
-                notes: 'Upstairs'
+                notes: 'upstairs'
             },
         },
         {
@@ -133,7 +133,7 @@ export default {
         {
             time: '7:00 pm',
             name: 'Clean & Serene',
-            format: ['O', 'D', 'WA', 'CC', 'Spiritual Principals', '90 min'],
+            format: ['O', 'D', 'WA', 'CC', 'SPPR', '90 min'],
             address: {
                 street: '2100 N Wadsworth Blvd',
                 unit: '',
@@ -151,7 +151,7 @@ export default {
                 unit: '',
                 city: 'Littleton',
                 zip: '80121',
-                notes: 'Enter South/East Corner, Treatment Center'
+                notes: 'enter South/East corner, treatment center'
             },
         },
         {
@@ -178,7 +178,7 @@ export default {
             ...glenAyrClubHouse,
             time: '10:00 am',
             name: 'No Matter What',
-            format: ['O', 'Writing and Meditation', '75 min'],
+            format: ['O', 'WR', 'ME', '75 min'],
         },
         {
             time: '12:00 pm',
@@ -237,7 +237,7 @@ export default {
                 unit: '',
                 city: 'Steamboat Springs',
                 zip: '80487',
-                notes: 'Upstairs'
+                notes: 'upstairs'
             },
         },
         {
@@ -249,7 +249,7 @@ export default {
                 unit: '',
                 city: 'Denver',
                 zip: '80210',
-                notes: 'Church, Basement entrance on Illif Ave'
+                notes: 'church, basement entrance on Illif Ave'
             },
         },
         {
@@ -345,7 +345,7 @@ export default {
                 unit: '',
                 city: 'Denver',
                 zip: '80205',
-                notes: 'Treatment Facility, Side Entrance'
+                notes: 'treatment center, side Entrance'
             },
         },
         {
@@ -425,7 +425,7 @@ export default {
                 unit: '',
                 city: 'Steamboat Springs',
                 zip: '80487',
-                notes: 'Upstairs'
+                notes: 'upstairs'
             },
         },
         {
@@ -443,7 +443,7 @@ export default {
         {
             time: '6:30 pm',
             name: 'Humble Lights',
-            format: ['O', 'D', 'WA', 'Child Care', 'Candlelight', '75 min'],
+            format: ['O', 'D', 'WA', 'CC', 'CL', '75 min'],
             address: {
                 street: '3000 S. Wadsworth',
                 unit: '',
@@ -491,7 +491,7 @@ export default {
         {
             time: '8:00 pm',
             name: 'Ain\'t Dead Yet!',
-            format: ['O', 'D', 'Beg'],
+            format: ['O', 'D', 'BEG'],
             address: {
                 street: '8085 E Hampden Ave',
                 unit: '',
@@ -511,13 +511,13 @@ export default {
         {
             time: '10:30 am',
             name: 'Together We Can',
-            format: ['Beg', 'LS'],
+            format: ['BEG', 'LS'],
             address: {
                 street: '437 Oak St',
                 unit: '',
                 city: 'Steamboat Springs',
                 zip: '80487',
-                notes: 'Upstairs'
+                notes: 'upstairs'
             },
         },
         {
@@ -571,7 +571,7 @@ export default {
         {
             time: '6:30 pm',
             name: 'Aurora Southside Survivors',
-            format: ['O', 'D', 'WA', 'Candlelight'],
+            format: ['O', 'D', 'WA', 'CL'],
             address: {
                 street: '4210 S Chambers Rd',
                 unit: '',
@@ -595,7 +595,7 @@ export default {
         {
             time: '6:45 pm',
             name: 'Writing To Freedom',
-            format: ['O', 'D', 'Writing', '90 min'],
+            format: ['O', 'D', 'WR', '90 min'],
             address: {
                 street: '3500 S Logan St',
                 unit: '',
@@ -631,7 +631,7 @@ export default {
                 unit: '',
                 city: 'Denver',
                 zip: '80205',
-                notes: 'Treatment Facility, Side Entrance'
+                notes: 'treatment center, side Entrance'
             },
         },
         {
@@ -717,7 +717,7 @@ export default {
         {
             time: '6:30 pm',
             name: 'Less Talk, More Action',
-            format: ['C', 'D', 'Writing'],
+            format: ['C', 'D', 'WR'],
             address: {
                 street: '126 W 2nd Ave',
                 unit: '',
@@ -747,7 +747,7 @@ export default {
                 unit: '',
                 city: 'Steamboat Springs',
                 zip: '80487',
-                notes: 'Upstairs'
+                notes: 'upstairs'
             },
         },
         {
@@ -801,7 +801,7 @@ export default {
         {
             time: '7:30 pm',
             name: 'Young At Heart',
-            format: ['O', 'D', 'WA', 'Youth', '75 min'],
+            format: ['O', 'D', 'WA', 'YP', '75 min'],
             address: {
                 street: '1630 E 14th Ave',
                 unit: '',
@@ -849,7 +849,7 @@ export default {
         {
             time: '8:00 pm',
             name: 'Ain\'t Dead Yet!',
-            format: ['O', 'D', 'WA', 'LS', 'Spiritual Principles'],
+            format: ['O', 'D', 'WA', 'LS', 'SPPR'],
             address: {
                 street: '8085 E Hampden Ave',
                 unit: '',
@@ -923,7 +923,7 @@ export default {
                 unit: '',
                 city: 'Steamboat Springs',
                 zip: '80487',
-                notes: 'Upstairs'
+                notes: 'upstairs'
             },
         },
         {
@@ -1013,7 +1013,7 @@ export default {
         {
             time: '7:30 pm',
             name: 'Finding The Way',
-            format: ['O', 'D', 'Beg', 'WA'],
+            format: ['O', 'D', 'BEG', 'WA'],
             address: {
                 street: '3400 N Lutheran Pkwy',
                 unit: '',
@@ -1055,13 +1055,13 @@ export default {
                 unit: '',
                 city: 'Denver',
                 zip: '80205',
-                notes: 'Treatment Facility, Side Entrance'
+                notes: 'treatment center, side Entrance'
             },
         },
         {
             time: '8:00 pm',
             name: 'NAFL',
-            format: ['O', 'D', 'Candlelight'],
+            format: ['O', 'D', 'CL'],
             address: {
                 street: '3500 S Logan St',
                 unit: '',
@@ -1073,7 +1073,7 @@ export default {
         {
             time: '8:00 pm',
             name: '5th Tradition Group',
-            format: ['O', 'WA', 'Beg'],
+            format: ['O', 'WA', 'BEG'],
             address: {
                 street: '2162 Lawrence St',
                 unit: '',
@@ -1117,7 +1117,7 @@ export default {
         {
             time: '12:30 pm',
             name: 'Room to Breathe',
-            format: ['O', 'Meditation', '90 min'],
+            format: ['O', 'ME', '90 min'],
             address: {
                 street: '126 W 2nd Ave',
                 unit: '',
@@ -1147,7 +1147,7 @@ export default {
                 unit: '',
                 city: 'Steamboat Springs',
                 zip: '80487',
-                notes: 'Upstairs'
+                notes: 'upstairs'
             },
         },
         {
@@ -1177,13 +1177,13 @@ export default {
                 unit: '',
                 city: 'Denver',
                 zip: '80205',
-                notes: 'Treatment Facility, Side Entrance'
+                notes: 'treatment center, side Entrance'
             },
         },
         {
             time: '7:30 pm',
             name: 'Saturday Night Live',
-            format: ['O', 'D', 'WA', 'Candlelight', '90 min'],
+            format: ['O', 'D', 'WA', 'CL', '90 min'],
             address: {
                 street: '3500 S Logan St',
                 unit: '',
@@ -1223,4 +1223,28 @@ export default {
             },
         },
     ],
+}
+
+
+export const key = {
+    'BEG': 'Beginners Meeting',
+    'BK': 'Book Study',
+    'C': 'Closed Meeting for Addicts Only',
+    'CC': 'Child Care',
+    'CL': 'Candlelight',
+    'CS': '12 Concepts Study',
+    'D': 'Discussion',
+    'H & I': 'Hospitals & Institutions',
+    'LS': 'Literature Study',
+    'ME': 'Meditation',
+    'O': 'Open Meeting',
+    'SP': 'Speaker Meeting',
+    'SPPR': 'Spiritual Principles',
+    'ST': 'Step Study',
+    'SWG': 'Step Working Guide',
+    'TR': 'Tradition Study',
+    'TS': 'Text Study',
+    'WA': 'Wheelchair Accessible',
+    'WR': 'Writing',
+    'YP': 'Young People'
 }
