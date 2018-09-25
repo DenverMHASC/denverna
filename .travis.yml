@@ -17,7 +17,7 @@ install:
   - npm run build
 
 script:
-  - ./scripts/deploy.sh
+  - ./deploy.sh
 
 notifications:
   email: false
