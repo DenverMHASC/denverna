@@ -1,4 +1,0 @@
-Directory Created to Contain New online Ordering system for MHASC Lit
-Project Initiated April 20 2012 by George W
-
-To be developed using PHP, HTML, CSS, JS, MYSql, Images

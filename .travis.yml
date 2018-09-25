@@ -1,0 +1,16 @@
+sudo: false
+dist: trusty
+
+branches:
+ only:
+ - master
+
+install:
+  - npm i
+  - npm run build
+
+script:
+  - ./scripts/deploy.sh
+
+notifications:
+  email: false
