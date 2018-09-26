@@ -1,5 +1,12 @@
+language: node_js
+node_js:
+  - "node"
 sudo: false
 dist: trusty
+
+cache:
+  directories:
+    - "node_modules"
 
 branches:
  only:
@@ -10,7 +17,7 @@ install:
   - npm run build
 
 script:
-  - ./scripts/deploy.sh
+  - ./deploy.sh
 
 notifications:
   email: false

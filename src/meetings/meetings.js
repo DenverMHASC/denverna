@@ -7,7 +7,7 @@ import { Table } from 'react-bootstrap'
 
 const MeetingList = () => {
     return (
-        <div style={{ width: '90%', margin: '0 auto' }}>
+        <div className="container">
             <DayAnchors days={Object.keys(meetings)} />
             {map(meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
             <MeetingListKey />
@@ -69,7 +69,7 @@ const MeetingListTable = ({ day, meetings }) => {
     return (
         <div>
             <DayLabel day={day} />
-            <Table bordered striped style={{ width: '100%', marginTop: '10px' }}>
+            <Table bordered striped style={{ marginTop: '10px' }}>
                 <thead>
                     <tr>
                         <th width="8%">Time</th>
@@ -88,7 +88,7 @@ const MeetingListTable = ({ day, meetings }) => {
 
 const MeetingListKey = () => {
     return (
-        <Table style={{ width: '50%' }}>
+        <Table style={{ width: '260px' }}>
             <thead>
                 <tr>
                     <th>Key</th>

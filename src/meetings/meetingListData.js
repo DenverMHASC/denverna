@@ -477,6 +477,18 @@ export default {
             },
         },
         {
+            time: '7:30 pm',
+            name: 'Free At Last',
+            format: ['O', 'D'],
+            address: {
+                street: '3585 W 76th Ave',
+                unit: '',
+                city: 'Westminster',
+                zip: '80030',
+                notes: 'church, 76th & Lowell'
+            },
+        },
+        {
             time: '8:00 pm',
             name: '9th and Emerson',
             format: ['O', 'D', 'LS', 'WA'],
