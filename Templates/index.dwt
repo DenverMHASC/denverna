@@ -167,14 +167,12 @@ a:visited {
 			<img src="../img/events.gif" alt="Events" name="events" width="200" height="24" border="0" id="events"><br>
 
             </a><a href="../meetinglist.html" onMouseOver="MM_swapImage('meetinglist','','../img/meetinglist_on.gif',0)" onMouseOut="MM_swapImgRestore()">
-            
+
 <!--            </a><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('outreach_','','../img/outreach_on.gif',1)">
 
 			<img src="../img/outreach.gif" alt="Outreach button" name="outreach_" width="200" height="24" border="0"></a><br>
 -->
               <a href="../professionals.html" onMouseOver="MM_swapImage('professionals','','../img/professionals_on.gif',0)" onMouseOut="MM_swapImgRestore()"><img src="../img/professionals.gif" alt="Information for Professionals" name="professionals" width="200" height="24" border="0" id="professionals"></a><br>
-
-              <a href="../hi.html" onMouseOver="MM_swapImage('hospitalsinstitutions','','../img/hospitalsinstitutions_on.gif',0)" onMouseOut="MM_swapImgRestore()"><img src="../img/hospitalsinstitutions.gif" alt="Information for hospitalsinstitutions" name="hospitalsinstitutions" width="200" height="24" border="0" id="hospitalsinstitutions"></a><br>
 
               <a href="../trustedservants.html" onMouseOver="MM_swapImage('trustedservants','','../img/trustedservants_on.gif',0)" onMouseOut="MM_swapImgRestore()"><img src="../img/trustedservants.gif" alt="Information for Trusted Servants" name="trustedservant" width="200" height="24" border="0" id="trustedservants"></a><a href="../events.html" onMouseOver="MM_swapImage('events','','../img/events_on.gif',0)" onMouseOut="MM_swapImgRestore()"></a><br>
 
@@ -237,9 +235,7 @@ a:visited {
 <!--              <a href="../outreach.html"> outreach </a><br>
 -->
               <a href="../professionals.html">for professionals</a><br>
-              
-              <a href="../hi.html">for hospitals &amp; institutions</a><br>
-              
+
               <a href="../trustedservants.html">for trusted servants</a><br>
 
               <a href="../literature.html">literature </a><br>
@@ -248,7 +244,7 @@ a:visited {
 
               </a>nadenver.com - <br>
 
-              denverna.com<br>              
+              denverna.com<br>
 
               <a href="http://www.nacolorado.org/crcna" target="_blank">crcna</a><br>
 
@@ -313,7 +309,7 @@ a:visited {
 
               <!-- End Email Cloaking -->
 
-              <br>            
+              <br>
 
               <br>
 
@@ -425,9 +421,9 @@ a:visited {
 
               </noscript>
 
-              
 
-              <!-- End Email Cloaking --> 
+
+              <!-- End Email Cloaking -->
 
               <br>
 
@@ -441,7 +437,7 @@ a:visited {
 
               <br>
 
-              		
+
 
 	          <!-- Begin Email Cloaking -->
 
