@@ -4,29 +4,47 @@ import ReactDOM from "react-dom"
 import meetings, { key } from './meetingListData'
 import { capitalize, map } from 'lodash'
 import { Table } from 'react-bootstrap'
+import axios from 'axios-jsonp-pro'
+import { bmltResponseToMeetingData } from './bmltToMeetingListData'
 
-const MeetingList = () => {
-    return (
-        <div className="container">
-            <DayAnchors days={Object.keys(meetings)} />
-            {map(meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
-            <MeetingListKey />
-            <div>
-                <p>
-                    "NA has no opinion on outside issues; hence the NA name ought never be drawn into public controversy."
-                    <br />
-                    Tradition 10
-                    <br />
-                    <br />
-                    Narcotics Anonymous is NOT affiliated with any outside organizations or
-                    enterprises, and has no connection whatsoever to the locations where
-                    N.A. meetings are held including but not limited to: religious or
-                    political organizations, hospitals, institutions, treatment programs,
-                    correctional facilities,private clubs and/or individual enterprises.
-                </p>
+class MeetingList extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            meetings
+        }
+    }
+
+    componentWillMount() {
+        // Waiting for the bmlt root server version to be updated.
+        // axios.jsonp('https://nacolorado.org/meetingList/main_server/client_interface/json/?services[]=2&switcher=GetSearchResults')
+        //     .then(r => bmltResponseToMeetingData(r))
+        //     .then(meetingListData => this.setState({ meetings: meetingListData }))
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <DayAnchors days={Object.keys(meetings)} />
+                {map(this.state.meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
+                <MeetingListKey />
+                <div>
+                    <p>
+                        "NA has no opinion on outside issues; hence the NA name ought never be drawn into public controversy."
+                        <br />
+                        Tradition 10
+                        <br />
+                        <br />
+                        Narcotics Anonymous is NOT affiliated with any outside organizations or
+                        enterprises, and has no connection whatsoever to the locations where
+                        N.A. meetings are held including but not limited to: religious or
+                        political organizations, hospitals, institutions, treatment programs,
+                        correctional facilities,private clubs and/or individual enterprises.
+                    </p>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 };
 
 
