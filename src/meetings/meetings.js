@@ -25,6 +25,7 @@ class MeetingList extends React.Component {
     render() {
         return (
             <div className="container">
+                <Header />
                 <DayAnchors days={Object.keys(meetings)} />
                 {map(this.state.meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
                 <MeetingListKey />
@@ -46,6 +47,22 @@ class MeetingList extends React.Component {
         )
     }
 };
+
+const Header = () => (
+    <table>
+
+        <tbody>
+            <tr>
+                <td rowSpan="3" style={{ paddingTop: '22px' }} bgcolor="#575758">
+                    <a href="index.html">
+                        <img src="img/nalogo.gif" alt="NA" />
+                    </a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+)
 
 
 const Address = ({ street, unit, city, zip, notes }) => {
