@@ -728,6 +728,18 @@ export default {
         },
         {
             time: '6:30 pm',
+            name: 'Down To Change',
+            format: ['O', 'Chair\'s Choice'],
+            address: {
+                street: '5400 S Yosemite',
+                unit: '',
+                city: 'Englewood',
+                zip: '80111',
+                notes: 'Church'
+            },
+        },
+        {
+            time: '6:30 pm',
             name: 'Less Talk, More Action',
             format: ['C', 'D', 'WR'],
             address: {
