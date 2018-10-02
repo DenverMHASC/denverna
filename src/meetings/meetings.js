@@ -28,6 +28,7 @@ class MeetingList extends React.Component {
                 <Header />
                 <DayAnchors days={Object.keys(meetings)} />
                 {map(this.state.meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
+                <RequestChangeFormLink />
                 <MeetingListKey />
                 <div>
                     <p>
@@ -50,7 +51,6 @@ class MeetingList extends React.Component {
 
 const Header = () => (
     <table>
-
         <tbody>
             <tr>
                 <td rowSpan="3" style={{ paddingTop: '22px' }} bgcolor="#575758">
@@ -59,7 +59,6 @@ const Header = () => (
                     </a>
                 </td>
             </tr>
-
         </tbody>
     </table>
 )
@@ -141,5 +140,11 @@ const MeetingListKey = () => {
         </Table>
     )
 }
+
+const RequestChangeFormLink = () => (
+    <div className="pull-right">
+        <a target="_blank" href="https://goo.gl/forms/l39LqMIAczxXDXWj1">Request Meeting List Updates</a>
+    </div>
+)
 
 export const renderMeetingList = () => ReactDOM.render(<MeetingList />, document.getElementById("newMeetingList"));
