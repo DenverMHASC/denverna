@@ -728,7 +728,7 @@ export default {
         },
         {
             time: '6:30 pm',
-            name: 'Down To Change',
+            name: 'DTC - Down To Change',
             format: ['O', 'Chair\'s Choice'],
             address: {
                 street: '5400 S Yosemite',
