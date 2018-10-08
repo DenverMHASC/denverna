@@ -728,7 +728,7 @@ export default {
         },
         {
             time: '6:30 pm',
-            name: 'DTC - Down To Change',
+            name: 'DTC, Down To Change',
             format: ['O', 'Chair\'s Choice'],
             address: {
                 street: '5400 S Yosemite',
@@ -1092,18 +1092,6 @@ export default {
                 city: 'Englewood',
                 zip: '80113',
                 notes: 'use East entrance'
-            },
-        },
-        {
-            time: '8:00 pm',
-            name: '5th Tradition Group',
-            format: ['O', 'WA', 'BEG'],
-            address: {
-                street: '2162 Lawrence St',
-                unit: '',
-                city: 'Denver',
-                zip: '80205',
-                notes: 'treatment center'
             },
         },
         {
