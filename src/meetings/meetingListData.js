@@ -1023,6 +1023,18 @@ export default {
             },
         },
         {
+            time: '7:00 pm',
+            name: 'Miracles on the Fax',
+            format: ['SP', 'Rotating Format', '90 min'],
+            address: {
+                street: '9360 E Colfax Ave',
+                unit: '',
+                city: 'Aurora',
+                zip: '80010',
+                notes: ''
+            },
+        },
+        {
             time: '7:30 pm',
             name: 'Clean and Crazy in Castle Rock',
             format: ['O', 'D', 'WA'],
