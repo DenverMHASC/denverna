@@ -1025,9 +1025,9 @@ export default {
         {
             time: '7:00 pm',
             name: 'Miracles on the Fax',
-            format: ['SP', '90 min', 'Rotating Format'],
+            format: ['SP', 'Rotating Format', '90 min'],
             address: {
-                street: '9360 East Colfax Avenue',
+                street: '9360 E Colfax Ave',
                 unit: '',
                 city: 'Aurora',
                 zip: '80010',
