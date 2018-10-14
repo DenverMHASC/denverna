@@ -19,9 +19,9 @@ const Header = (props) => {
           <Typography className={classes.grow} variant="h5" color="inherit">
             Mile High Area of Narcotics Anonymous
         </Typography>
-          <Button onClick={history.push('/')} color="inherit">Home</Button>
-          <Button onClick={history.push('/meetings')} color="inherit">Meeting List</Button>
-          <Button onClick={history.push('/events')} color="inherit">Events</Button>
+          <Button onClick={() => history.push('/')} color="inherit">Home</Button>
+          <Button onClick={() => history.push('/meetings')} color="inherit">Meeting List</Button>
+          <Button onClick={() => history.push('/events')} color="inherit">Events</Button>
         </Toolbar>
       </AppBar>
     </div>
