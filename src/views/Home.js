@@ -1,6 +1,6 @@
 import React from 'react'
-import { Typography, Grid, Button, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
-import { LocalPhone, Email, MarkunreadMailbox } from '@material-ui/icons'
+import { Typography, Grid, Button, } from '@material-ui/core'
+import ContactList from '../components/ContactList'
 
 const Home = (props) => {
   const { history } = props
@@ -19,26 +19,7 @@ const Home = (props) => {
         <Typography>
           Speak to a recovering addict
         </Typography>
-        <List component="nav">
-          <ListItem>
-            <ListItemIcon>
-              <LocalPhone />
-            </ListItemIcon>
-            <ListItemText primary="(303)-832-3784" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <Email />
-            </ListItemIcon>
-            <ListItemText primary="PhoneLine.mhasc@gmail.com" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <MarkunreadMailbox />
-            </ListItemIcon>
-            <ListItemText primary={<span>MHASC <br />   PO Box 140100 <br />Edgewater, CO 80214-0100 </span>} />
-          </ListItem>
-        </List>
+        <ContactList />
       </Grid>
       <Grid item md={2} />
     </Grid >
