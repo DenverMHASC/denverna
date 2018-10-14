@@ -1,8 +1,8 @@
 
 import React from "react"
 import ReactDOM from "react-dom"
-import meetings, { key } from './meetingListData'
-import { capitalize, map } from 'lodash'
+import { key } from './meetingListData'
+import { capitalize, map, sortBy, mapValues } from 'lodash'
 import { Table } from 'react-bootstrap'
 import axios from 'axios-jsonp-pro'
 import { bmltResponseToMeetingData } from './bmltToMeetingListData'
@@ -11,22 +11,28 @@ class MeetingList extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			meetings
+			meetings: {}
 		}
 	}
 
 	componentWillMount() {
 		// Waiting for the bmlt root server version to be updated.
-		// axios.jsonp('https://nacolorado.org/meetingList/main_server/client_interface/json/?services[]=2&switcher=GetSearchResults')
-		//     .then(r => bmltResponseToMeetingData(r))
-		//     .then(meetingListData => this.setState({ meetings: meetingListData }))
+		axios.jsonp('https://nacolorado.org/meetingList/main_server/client_interface/jsonp/?services[]=2&switcher=GetSearchResults')
+			.then(r => bmltResponseToMeetingData(r))
+			.then(meetingListData => mapValues(meetingListData, (meetingsByDay, k) => {
+				return sortBy(meetingsByDay, ['sortStartTime', 'name'])
+			}))
+			.then(meetingListData => this.setState({ meetings: meetingListData }))
 	}
 
 	render() {
+		if (!Object.keys(this.state.meetings).length) {
+			return <h4>Loading...</h4>
+		}
 		return (
 			<div className="container">
 				<Header />
-				<DayAnchors days={Object.keys(meetings)} />
+				<DayAnchors days={Object.keys(this.state.meetings)} />
 				{map(this.state.meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
 				<RequestChangeFormLink />
 				<MeetingListKey />
@@ -93,6 +99,7 @@ const MeetingRow = ({ time, name, format, address }) => {
 const DayLabel = ({ day }) => {
 	return <div style={{ marginTop: '10px' }}><a name={day} /> <strong style={{ fontSize: '16px', color: '#575758' }}>{capitalize(day)}</strong></div>
 }
+
 const DayAnchors = ({ days }) => {
 	return (
 		<span style={{ fontSize: '20px', marginTop: '10px' }}>{days.map((d, ix) => <span key={ix}> {ix ? "|" : ''} <a href={`#${d}`}> {capitalize(d)}</a></span>)}</span>

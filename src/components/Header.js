@@ -39,4 +39,4 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(withRouter(Header)
+export default withStyles(styles)(withRouter(Header))
