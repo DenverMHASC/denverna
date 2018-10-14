@@ -10,14 +10,12 @@ const Header = (props) => {
   const { classes } = props
   return (
     <div className={classes.root}>
-
       <AppBar
-
         position='static'
         color="default"
       >
         <Toolbar>
-          <Typography className={classes.grow} variant="title" color="inherit">
+          <Typography className={classes.grow} variant="h5" color="inherit">
             Mile High Area of Narcotics Anonymous
         </Typography>
           <Button color="inherit">Home</Button>
@@ -37,8 +35,6 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-
 };
-
 
 export default withStyles(styles)(Header)
