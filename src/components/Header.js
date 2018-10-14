@@ -4,10 +4,11 @@ import {
   AppBar, Toolbar, Typography, Button
 } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom'
 
 
 const Header = (props) => {
-  const { classes } = props
+  const { classes, history } = props
   return (
     <div className={classes.root}>
       <AppBar
@@ -18,9 +19,9 @@ const Header = (props) => {
           <Typography className={classes.grow} variant="h5" color="inherit">
             Mile High Area of Narcotics Anonymous
         </Typography>
-          <Button color="inherit">Home</Button>
-          <Button color="inherit">Meeting List</Button>
-          <Button color="inherit">Events</Button>
+          <Button onClick={history.push('/')} color="inherit">Home</Button>
+          <Button onClick={history.push('/meetings')} color="inherit">Meeting List</Button>
+          <Button onClick={history.push('/events')} color="inherit">Events</Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -38,4 +39,4 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(Header)
+export default withStyles(styles)(withRouter(Header)
