@@ -1,4 +1,5 @@
-import { renderMeetingList } from './meetings/meetings.js';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 
-
-renderMeetingList()
+ReactDOM.render(<App />, document.getElementById("root"))
