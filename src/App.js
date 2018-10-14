@@ -23,14 +23,14 @@ const App = (props) => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <React.Fragment>
+        <div>
           <Header />
           <Switch>
-            <Route path='/' component={Home} />
+            <Route exact={true} path='/' component={Home} />
             <Route path='/meetings' component={Meetings} />
             <Route path='/events' component={Events} />
           </Switch>
-        </React.Fragment>
+        </div>
       </BrowserRouter>
     </MuiThemeProvider>
   )

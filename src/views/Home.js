@@ -39,9 +39,6 @@ const Home = (props) => {
             <ListItemText primary={<span>MHASC <br />   PO Box 140100 <br />Edgewater, CO 80214-0100 </span>} />
           </ListItem>
         </List>
-
-
-
       </Grid>
       <Grid item md={2} />
     </Grid >
