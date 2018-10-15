@@ -98,7 +98,7 @@ const MeetingRow = ({ time, name, format, address }) => {
 }
 
 const DayLabel = ({ day }) => {
-	return <Typography variant='subtitle2'><a name={day} />{capitalize(day)}</Typography>
+	return <Typography variant='h6' style={{ margin: '4px' }}><a name={day} />{capitalize(day)}</Typography>
 }
 
 const DayAnchors = ({ days }) => {
