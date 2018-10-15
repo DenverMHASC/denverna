@@ -1,8 +1,9 @@
 import React from 'react'
+import MeetingList from '../components/MeetingList'
 
 const Meetings = (props) => {
   return (
-    <p>Meetings Bitch</p>
+    <MeetingList />
   )
 }
 
