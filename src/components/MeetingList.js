@@ -1,10 +1,12 @@
 
 import React from "react"
-import ReactDOM from "react-dom"
 import { capitalize, map, sortBy, mapValues } from 'lodash'
-import { Table } from 'react-bootstrap'
 import axios from 'axios-jsonp-pro'
 import { bmltResponseToMeetingData } from '../bmltToMeetingListData'
+
+import {
+	Table, TableHead, TableRow, TableCell, TableBody, Typography
+} from '@material-ui/core'
 
 class MeetingList extends React.Component {
 	constructor(props) {
@@ -84,19 +86,19 @@ const generateGoogleMapsLinkFromAddress = ({ street, city, zip }) => {
 
 const MeetingRow = ({ time, name, format, address }) => {
 	return (
-		<tr>
-			<td>{time}</td>
-			<td>{name}</td>
-			<td>
+		<TableRow>
+			<TableCell>{time}</TableCell>
+			<TableCell>{name}</TableCell>
+			<TableCell>
 				<a target="_new" href={generateGoogleMapsLinkFromAddress(address)}><Address {...address} /></a>
-			</td>
-			<td><span>{format.join(', ')}</span></td>
-		</tr>
+			</TableCell>
+			<TableCell><span>{format.join(', ')}</span></TableCell>
+		</TableRow>
 	)
 }
 
 const DayLabel = ({ day }) => {
-	return <div style={{ marginTop: '10px' }}><a name={day} /> <strong style={{ fontSize: '16px', color: '#575758' }}>{capitalize(day)}</strong></div>
+	return <Typography variant='subtitle2'><a name={day} />{capitalize(day)}</Typography>
 }
 
 const DayAnchors = ({ days }) => {
@@ -109,22 +111,23 @@ const MeetingListTable = ({ day, meetings }) => {
 	return (
 		<div>
 			<DayLabel day={day} />
-			<Table bordered striped style={{ marginTop: '10px' }}>
-				<thead>
-					<tr>
-						<th width="8%">Time</th>
-						<th width="20%">Name</th>
-						<th width="50%">Address</th>
-						<th width="22%">Type</th>
-					</tr>
-				</thead>
-				<tbody>
+			<Table >
+				<TableHead>
+					<TableRow>
+						<TableCell>Time</TableCell>
+						<TableCell>Name</TableCell>
+						<TableCell>Address</TableCell>
+						<TableCell>Type</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
 					{meetings.map((m, ix) => <MeetingRow key={ix} {...m} />)}
-				</tbody>
+				</TableBody>
 			</Table >
 		</div>
 	)
 }
+
 
 const MeetingListKey = () => {
 	const key = {
