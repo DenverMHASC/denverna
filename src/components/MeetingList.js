@@ -1,55 +1,40 @@
-
 import React from "react"
-import { capitalize, map, sortBy, mapValues } from 'lodash'
-import axios from 'axios-jsonp-pro'
-import { bmltResponseToMeetingData } from '../bmltToMeetingListData'
-
+import { capitalize, map } from 'lodash'
 import {
-	Table, TableHead, TableRow, TableCell, TableBody, Typography
+	Table, TableHead, TableRow, TableCell, TableBody, Typography, Paper
 } from '@material-ui/core'
 
+import bmltInject from '../bmltInject'
 class MeetingList extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			meetings: {}
-		}
+
 	}
 
-	componentWillMount() {
-		// Waiting for the bmlt root server version to be updated.
-		axios.jsonp('https://nacolorado.org/meetingList/main_server/client_interface/jsonp/?services[]=2&switcher=GetSearchResults')
-			.then(r => bmltResponseToMeetingData(r))
-			.then(meetingListData => mapValues(meetingListData, (meetingsByDay, k) => {
-				return sortBy(meetingsByDay, ['sortStartTime', 'name'])
-			}))
-			.then(meetingListData => this.setState({ meetings: meetingListData }))
-	}
 
 	render() {
-		if (!Object.keys(this.state.meetings).length) {
+		if (!Object.keys(this.props.meetings).length) {
 			return <h4>Loading...</h4>
 		}
 		return (
 			<div className="container">
-				<Header />
-				<DayAnchors days={Object.keys(this.state.meetings)} />
-				{map(this.state.meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
+				<DayAnchors days={Object.keys(this.props.meetings)} />
+				{map(this.props.meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
 				<RequestChangeFormLink />
 				<MeetingListKey />
 				<div>
 					<p>
 						"NA has no opinion on outside issues; hence the NA name ought never be drawn into public controversy."
-                        <br />
+            <br />
 						Tradition 10
-                        <br />
+            <br />
 						<br />
 						Narcotics Anonymous is NOT affiliated with any outside organizations or
 						enterprises, and has no connection whatsoever to the locations where
 						N.A. meetings are held including but not limited to: religious or
 						political organizations, hospitals, institutions, treatment programs,
 						correctional facilities,private clubs and/or individual enterprises.
-                    </p>
+         	</p>
 				</div>
 			</div>
 		)
@@ -177,4 +162,4 @@ const RequestChangeFormLink = () => (
 	</div>
 )
 
-export default MeetingList
+export default bmltInject(MeetingList)

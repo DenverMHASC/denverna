@@ -32,7 +32,7 @@ const Header = (props) => {
 const styles = {
   root: {
     flexGrow: 1,
-    marginBottom: '100px'
+    marginBottom: '50px'
   },
   grow: {
     flexGrow: 1,
