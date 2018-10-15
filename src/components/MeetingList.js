@@ -4,57 +4,38 @@ import {
 	Table, TableHead, TableRow, TableCell, TableBody, Typography, Paper
 } from '@material-ui/core'
 
+import MeetingListKey from '../components/MeetingListKey'
+
 import bmltInject from '../bmltInject'
-class MeetingList extends React.Component {
-	constructor(props) {
-		super(props)
 
+const MeetingList = (props) => {
+	const { meetings } = props
+	if (!Object.keys(meetings).length) {
+		return <h4>Loading...</h4>
 	}
-
-
-	render() {
-		if (!Object.keys(this.props.meetings).length) {
-			return <h4>Loading...</h4>
-		}
-		return (
-			<div className="container">
-				<DayAnchors days={Object.keys(this.props.meetings)} />
-				{map(this.props.meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
-				<RequestChangeFormLink />
-				<MeetingListKey />
-				<div>
-					<p>
-						"NA has no opinion on outside issues; hence the NA name ought never be drawn into public controversy."
+	return (
+		<div className="container">
+			<DayAnchors days={Object.keys(meetings)} />
+			{map(meetings, (meetings, day) => <MeetingListTable key={day} day={day} meetings={meetings} />)}
+			<RequestChangeFormLink />
+			<MeetingListKey />
+			<div>
+				<p>
+					"NA has no opinion on outside issues; hence the NA name ought never be drawn into public controversy."
             <br />
-						Tradition 10
+					Tradition 10
             <br />
-						<br />
-						Narcotics Anonymous is NOT affiliated with any outside organizations or
-						enterprises, and has no connection whatsoever to the locations where
-						N.A. meetings are held including but not limited to: religious or
-						political organizations, hospitals, institutions, treatment programs,
-						correctional facilities,private clubs and/or individual enterprises.
+					<br />
+					Narcotics Anonymous is NOT affiliated with any outside organizations or
+					enterprises, and has no connection whatsoever to the locations where
+					N.A. meetings are held including but not limited to: religious or
+					political organizations, hospitals, institutions, treatment programs,
+					correctional facilities,private clubs and/or individual enterprises.
          	</p>
-				</div>
 			</div>
-		)
-	}
-};
-
-const Header = () => (
-	<table>
-		<tbody>
-			<tr>
-				<td rowSpan="3" style={{ paddingTop: '22px' }} bgcolor="#575758">
-					<a href="index.html">
-						<img src="img/nalogo.gif" alt="NA" />
-					</a>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-)
-
+		</div>
+	)
+}
 
 const Address = ({ street, unit, city, zip, notes }) => {
 	notes = notes && `(${notes})`
@@ -114,47 +95,7 @@ const MeetingListTable = ({ day, meetings }) => {
 }
 
 
-const MeetingListKey = () => {
-	const key = {
-		'B': 'Beginners Meeting',
-		'BK': 'Book Study',
-		'C': 'Closed Meeting for Addicts Only',
-		'CL': 'Candlelight',
-		'CW': 'Children Welcome/Child Care',
-		'D': 'Discussion',
-		'ME': 'Meditation',
-		'O': 'Open Meeting all are welcome',
-		'RF': 'Rotating Format',
-		'SD': 'Speaker/Discussion',
-		'SG': 'Step Working Guide',
-		'So': 'Speaker Only',
-		'St': 'Step',
-		'SW': 'Step Writing',
-		'Tr': 'Tradition',
-		'W': 'Women only',
-		'WC': 'Wheelchair Accessible',
-		'YP': 'Young People',
-	}
 
-	return (
-		<Table style={{ width: '260px' }}>
-			<thead>
-				<tr>
-					<th>Key</th>
-					<th>Description</th>
-				</tr>
-			</thead>
-			<tbody>
-				{map(key, (v, k) => (
-					<tr key={k}>
-						<td>{k}</td>
-						<td>{v}</td>
-					</tr>
-				))}
-			</tbody>
-		</Table>
-	)
-}
 
 const RequestChangeFormLink = () => (
 	<div className="pull-right">
