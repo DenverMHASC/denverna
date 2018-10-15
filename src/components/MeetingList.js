@@ -1,9 +1,6 @@
 import React from "react"
 import { capitalize, map } from 'lodash'
-import {
-	Table, TableHead, TableRow, TableCell,
-	TableBody, Typography, Paper, Button
-} from '@material-ui/core'
+import { Paper, Tabs, Tab, AppBar } from '@material-ui/core'
 import MeetingListKey from '../components/MeetingListKey'
 import bmltInject from '../bmltInject'
 import MeetingListTable from './MeetingListTable'
@@ -39,7 +36,17 @@ const MeetingList = (props) => {
 
 const DayAnchors = ({ days }) => {
 	return (
-		<span style={{ fontSize: '20px', marginTop: '10px' }}>{days.map((d, ix) => <span key={ix}> {ix ? "|" : ''} <a href={`#${d}`}> {capitalize(d)}</a></span>)}</span>
+		<AppBar position='static' >
+			<Tabs
+				indicatorColor="primary" gs
+			>
+				{
+					days.map((d, ix) =>
+						<Tab key={ix} href={`#${d}`} label={capitalize(d)} />)
+				}
+			</Tabs>
+		</AppBar>
+
 	)
 }
 

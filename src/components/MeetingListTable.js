@@ -51,7 +51,14 @@ const MeetingRow = ({ time, name, format, address }) => {
 }
 
 const DayLabel = ({ day }) => {
-  return <Typography variant='h6' style={{ margin: '4px' }}><a name={day} />{capitalize(day)}</Typography>
+  return (
+    <Typography
+      variant='h6'
+      style={{ margin: '25px 4px 4px' }}>
+      <a name={day} />
+      {capitalize(day)}
+    </Typography>
+  )
 }
 
 const Address = ({ street, unit, city, zip, notes }) => {
