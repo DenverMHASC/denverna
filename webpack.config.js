@@ -11,7 +11,8 @@ module.exports = {
 		]
 	},
 	devServer: {
-		publicPath: '/dist/'
+		publicPath: '/dist/',
+		historyApiFallback: true,
 	},
 	devtool: 'source-map'
 };
