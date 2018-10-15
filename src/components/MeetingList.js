@@ -1,12 +1,12 @@
 import React from "react"
 import { capitalize, map } from 'lodash'
 import {
-	Table, TableHead, TableRow, TableCell, TableBody, Typography, Paper
+	Table, TableHead, TableRow, TableCell,
+	TableBody, Typography, Paper, Button
 } from '@material-ui/core'
-
 import MeetingListKey from '../components/MeetingListKey'
-
 import bmltInject from '../bmltInject'
+import MeetingListTable from './MeetingListTable'
 
 const MeetingList = (props) => {
 	const { meetings } = props
@@ -37,70 +37,17 @@ const MeetingList = (props) => {
 	)
 }
 
-const Address = ({ street, unit, city, zip, notes }) => {
-	notes = notes && `(${notes})`
-	street = unit ? street : `${street},`
-	unit = unit && `${unit},`
-	return (
-		<span>{street} {unit} {city} {zip} {notes}</span>
-	)
-}
-
-const generateGoogleMapsLinkFromAddress = ({ street, city, zip }) => {
-	return `https://www.google.com/maps/place/${street.replace(/\W/g, '+')},+${city},+CO+${zip}`
-}
-
-const MeetingRow = ({ time, name, format, address }) => {
-	return (
-		<TableRow>
-			<TableCell>{time}</TableCell>
-			<TableCell>{name}</TableCell>
-			<TableCell>
-				<a target="_new" href={generateGoogleMapsLinkFromAddress(address)}><Address {...address} /></a>
-			</TableCell>
-			<TableCell><span>{format.join(', ')}</span></TableCell>
-		</TableRow>
-	)
-}
-
-const DayLabel = ({ day }) => {
-	return <Typography variant='h6' style={{ margin: '4px' }}><a name={day} />{capitalize(day)}</Typography>
-}
-
 const DayAnchors = ({ days }) => {
 	return (
 		<span style={{ fontSize: '20px', marginTop: '10px' }}>{days.map((d, ix) => <span key={ix}> {ix ? "|" : ''} <a href={`#${d}`}> {capitalize(d)}</a></span>)}</span>
 	)
 }
 
-const MeetingListTable = ({ day, meetings }) => {
-	return (
-		<div>
-			<DayLabel day={day} />
-			<Table >
-				<TableHead>
-					<TableRow>
-						<TableCell>Time</TableCell>
-						<TableCell>Name</TableCell>
-						<TableCell>Address</TableCell>
-						<TableCell>Type</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{meetings.map((m, ix) => <MeetingRow key={ix} {...m} />)}
-				</TableBody>
-			</Table >
-		</div>
-	)
-}
-
-
-
-
 const RequestChangeFormLink = () => (
 	<div className="pull-right">
 		<a target="_blank" href="https://goo.gl/forms/l39LqMIAczxXDXWj1">Request Meeting List Updates</a>
 	</div>
 )
+
 
 export default bmltInject(MeetingList)
