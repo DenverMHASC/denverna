@@ -38,11 +38,12 @@ const DayAnchors = ({ days }) => {
 	return (
 		<AppBar position='static' >
 			<Tabs
-				indicatorColor="primary" gs
+				indicatorColor="primary"
 			>
 				{
-					days.map((d, ix) =>
-						<Tab key={ix} href={`#${d}`} label={capitalize(d)} />)
+					days.map((day, idx) => (<Tab key={idx} href={`#${day}`} label={capitalize(day)} />))
+
+
 				}
 			</Tabs>
 		</AppBar>

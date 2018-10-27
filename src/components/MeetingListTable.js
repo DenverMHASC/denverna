@@ -2,16 +2,23 @@ import React from 'react'
 import {
   Table, Paper, TableHead,
   TableRow, TableBody, TableCell, Typography,
-  Button
+  Button,
 } from '@material-ui/core'
 import { capitalize } from 'lodash'
 
-const MeetingListTable = ({ day, meetings }) => {
+const meetingListTableStyles = {
+  time: {},
+  name: {},
+  address: {},
+  type: {}
+}
+
+const MeetingListTable = withStyles()(({ day, meetings }) => {
   return (
     <React.Fragment>
       <DayLabel day={day} />
       <Paper>
-        <Table>
+        <Table padding='dense'>
           <TableHead>
             <TableRow>
               <TableCell>Time</TableCell>
@@ -27,7 +34,7 @@ const MeetingListTable = ({ day, meetings }) => {
       </Paper>
     </React.Fragment>
   )
-}
+})
 
 const MeetingRow = ({ time, name, format, address }) => {
   return (
