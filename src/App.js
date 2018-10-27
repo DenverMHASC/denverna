@@ -1,18 +1,13 @@
 import React from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles'
+import { MuiThemeProvider, withStyles } from '@material-ui/core/styles'
 
 import Header from './components/Header'
 import Meetings from './views/Meetings'
 import Events from './views/Events'
 import Home from './views/home'
-
-const theme = createMuiTheme({
-  typography: {
-    useNextVariants: true,
-  },
-})
+import theme from './theme'
 
 const App = (props) => {
   const { classes } = props

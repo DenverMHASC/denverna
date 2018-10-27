@@ -2,18 +2,20 @@ import React from 'react'
 import {
   Table, Paper, TableHead,
   TableRow, TableBody, TableCell, Typography,
-  Button,
+  Button, withStyles
 } from '@material-ui/core'
 import { capitalize } from 'lodash'
 
+import A from './A'
+
 const meetingListTableStyles = {
-  time: {},
-  name: {},
-  address: {},
-  type: {}
+  time: { width: '12%' },
+  name: { width: '19%' },
+  address: { width: '48%' },
+  type: { width: '21%' }
 }
 
-const MeetingListTable = withStyles()(({ day, meetings }) => {
+const MeetingListTable = withStyles(meetingListTableStyles)(({ day, meetings, classes }) => {
   return (
     <React.Fragment>
       <DayLabel day={day} />
@@ -21,10 +23,10 @@ const MeetingListTable = withStyles()(({ day, meetings }) => {
         <Table padding='dense'>
           <TableHead>
             <TableRow>
-              <TableCell>Time</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Address</TableCell>
-              <TableCell>Type</TableCell>
+              <TableCell className={classes.time}>Time</TableCell>
+              <TableCell className={classes.name}>Name</TableCell>
+              <TableCell className={classes.address}>Address</TableCell>
+              <TableCell className={classes.type}>Type</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -42,15 +44,12 @@ const MeetingRow = ({ time, name, format, address }) => {
       <TableCell>{time}</TableCell>
       <TableCell>{name}</TableCell>
       <TableCell>
-        <Button
-          size='small'
-          color='primary'
-          target="_new"
+        <A
           href={generateGoogleMapsLinkFromAddress(address)}
         >
           <Address {...address}
           />
-        </Button>
+        </A>
       </TableCell>
       <TableCell><span>{format.join(', ')}</span></TableCell>
     </TableRow>
