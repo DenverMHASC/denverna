@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, Typography } from '@material-ui/core'
+import { Paper, Typography, withStyles } from '@material-ui/core'
 import { map } from 'lodash'
 
 import DayLabel from './DayLabel'
@@ -20,9 +20,16 @@ const CardGroup = ({ meetings, day }) => {
   )
 }
 
-const MeetingCard = ({ time, name, format, address }) => {
+const MeetingCardStyles = {
+  root: {
+    padding: '10px',
+    margin: '10px 0'
+  }
+}
+
+const MeetingCard = withStyles(MeetingCardStyles)(({ time, name, format, address, classes }) => {
   return (
-    <Paper>
+    <Paper className={classes.root}>
       <Typography>Name: {name}</Typography>
       <Typography>Time: {time}</Typography>
       <Typography>
@@ -37,6 +44,6 @@ const MeetingCard = ({ time, name, format, address }) => {
 
     </Paper>
   )
-}
+})
 
 export default MeetingListSm
