@@ -1,12 +1,19 @@
 import React from 'react'
-import { withWidth } from '@material-ui/core'
+import { withWidth, Tabs, Tab, AppBar } from '@material-ui/core'
+import { capitalize } from 'lodash'
+
 import MeetingList from '../components/MeetingList'
 import MeetingListKey from '../components/MeetingListKey'
+import bmltInject from '../bmltInject'
 
-const Meetings = ({ width }) => {
+const Meetings = ({ width, meetings }) => {
+  if (!Object.keys(meetings).length) {
+    return <h4>Loading...</h4>
+  }
   return (
     <React.Fragment>
-      <MeetingList />
+      <DayAnchors days={Object.keys(meetings)} />
+      <MeetingList meetings={meetings} />
       <MeetingListKey />
       <div>
         <p>
@@ -26,4 +33,19 @@ const Meetings = ({ width }) => {
   )
 }
 
-export default withWidth()(Meetings)
+const DayAnchors = ({ days }) => {
+  return (
+    <AppBar position='static' >
+      <Tabs
+        indicatorColor="primary"
+      >
+        {
+          days.map((day, idx) => (<Tab key={idx} href={`#${day}`} label={capitalize(day)} />))
+        }
+      </Tabs>
+    </AppBar>
+
+  )
+}
+
+export default withWidth()(bmltInject(Meetings))

@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Table, Paper, TableHead,
   TableRow, TableBody, TableCell, Typography,
-  Button, withStyles
+  withStyles
 } from '@material-ui/core'
 import { capitalize } from 'lodash'
 
