@@ -2,7 +2,8 @@ import React from 'react'
 import { withWidth, Tabs, Tab, AppBar } from '@material-ui/core'
 import { capitalize } from 'lodash'
 
-import MeetingList from '../components/MeetingList'
+import MeetingListLg from '../components/MeetingListLg'
+import MeetingListSm from '../components/MeetingListSm'
 import MeetingListKey from '../components/MeetingListKey'
 import bmltInject from '../bmltInject'
 
@@ -13,9 +14,10 @@ const Meetings = ({ width, meetings }) => {
   return (
     <React.Fragment>
       <DayAnchors days={Object.keys(meetings)} />
-      <MeetingList meetings={meetings} />
+      {renderMeetingList(width, meetings)}
       <MeetingListKey />
       <div>
+        <RequestChangeFormLink />
         <p>
           "NA has no opinion on outside issues; hence the NA name ought never be drawn into public controversy."
             <br />
@@ -33,6 +35,10 @@ const Meetings = ({ width, meetings }) => {
   )
 }
 
+const renderMeetingList = (width, meetings) => (
+  width === 'xs' ? <MeetingListSm meetings={meetings} /> : <MeetingListLg meetings={meetings} />
+)
+
 const DayAnchors = ({ days }) => {
   return (
     <AppBar position='static' >
@@ -48,4 +54,11 @@ const DayAnchors = ({ days }) => {
   )
 }
 
-export default withWidth()(bmltInject(Meetings))
+const RequestChangeFormLink = () => (
+  <div className="pull-right">
+    <a target="_blank" href="https://goo.gl/forms/l39LqMIAczxXDXWj1">Request Meeting List Updates</a>
+  </div>
+)
+
+
+export default bmltInject(withWidth()(Meetings))
