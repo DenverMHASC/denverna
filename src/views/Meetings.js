@@ -1,5 +1,5 @@
 import React from 'react'
-import { withWidth, Tabs, Tab, AppBar } from '@material-ui/core'
+import { withWidth, Button, AppBar, withStyles } from '@material-ui/core'
 import { capitalize } from 'lodash'
 
 import MeetingListLg from '../components/MeetingListLg'
@@ -39,16 +39,19 @@ const renderMeetingList = (width, meetings) => (
   width === 'xs' ? <MeetingListSm meetings={meetings} /> : <MeetingListLg meetings={meetings} />
 )
 
+const dayAnchorStyles = {
+  button: {
+    display: 'inline-block',
+    margin: '0 px',
+    width: 'fit-content',
+  }
+}
 const DayAnchors = ({ days }) => {
   return (
-    <AppBar position='static' >
-      <Tabs
-        indicatorColor="primary"
-      >
-        {
-          days.map((day, idx) => (<Tab key={idx} href={`#${day}`} label={capitalize(day)} />))
-        }
-      </Tabs>
+    <AppBar position='static' color='default' >
+      {
+        days.map((day, idx) => (<Button variant='outlined' color='secondary' key={idx} href={`#${day}`}>{capitalize(day)}</Button>))
+      }
     </AppBar>
 
   )
