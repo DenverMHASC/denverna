@@ -13,24 +13,10 @@ const Meetings = ({ width, meetings }) => {
   }
   return (
     <React.Fragment>
+      {/* TODO Refactor with dropdown */}
       <DayAnchors days={Object.keys(meetings)} />
       {renderMeetingList(width, meetings)}
       <MeetingListKey />
-      <div>
-        <RequestChangeFormLink />
-        <p>
-          "NA has no opinion on outside issues; hence the NA name ought never be drawn into public controversy."
-            <br />
-          Tradition 10
-            <br />
-          <br />
-          Narcotics Anonymous is NOT affiliated with any outside organizations or
-					enterprises, and has no connection whatsoever to the locations where
-					N.A. meetings are held including but not limited to: religious or
-					political organizations, hospitals, institutions, treatment programs,
-					correctional facilities,private clubs and/or individual enterprises.
-         	</p>
-      </div>
     </React.Fragment>
   )
 }
@@ -56,12 +42,5 @@ const DayAnchors = ({ days }) => {
 
   )
 }
-
-const RequestChangeFormLink = () => (
-  <div className="pull-right">
-    <a target="_blank" href="https://goo.gl/forms/l39LqMIAczxXDXWj1">Request Meeting List Updates</a>
-  </div>
-)
-
 
 export default bmltInject(withWidth()(Meetings))

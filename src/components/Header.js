@@ -6,7 +6,7 @@ import {
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom'
 
-
+// TODO: Add Hamburgler menu.
 const Header = (props) => {
   const { classes, history } = props
   return (

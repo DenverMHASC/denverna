@@ -2,7 +2,7 @@ import React from 'react'
 
 const Events = (props) => {
   return (
-    <p>Events Bitch</p>
+    <p>Events Calendar</p>
   )
 }
 

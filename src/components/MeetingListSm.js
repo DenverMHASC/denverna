@@ -40,7 +40,7 @@ const MeetingCard = withStyles(MeetingCardStyles)(({ time, name, format, address
           />
         </A>
       </Typography>
-      <Typography>Format: {format}</Typography>
+      <Typography>Format: {format.join(', ')}</Typography>
 
     </Paper>
   )
