@@ -1,25 +1,118 @@
 import React from 'react'
-import { withWidth, Button, AppBar, withStyles } from '@material-ui/core'
-import { capitalize } from 'lodash'
+import {
+  withWidth, Button, AppBar, withStyles, InputLabel, LinearProgress, FormControl,
+  Select, MenuItem, NativeSelect
+} from '@material-ui/core'
+import { capitalize, pick } from 'lodash'
 
 import MeetingListLg from '../components/MeetingListLg'
 import MeetingListSm from '../components/MeetingListSm'
 import MeetingListKey from '../components/MeetingListKey'
 import bmltInject from '../bmltInject'
 
-const Meetings = ({ width, meetings, formats }) => {
-  if (!Object.keys(meetings).length) {
-    return <h4>Loading...</h4>
-  }
-  return (
-    <React.Fragment>
-      {/* TODO Refactor with dropdown */}
-      <DayAnchors days={Object.keys(meetings)} />
-      {renderMeetingList(width, meetings)}
-      <MeetingListKey formats={formats} />
-    </React.Fragment>
-  )
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    minWidth: 140,
+  },
 }
+
+class Meetings extends React.Component {
+  constructor(props) {
+    super()
+    this.state = {
+      allMeetings: props.meetings,
+      meetings: {},
+      day: 'any'
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.renderDropdown = this.renderDropdown.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      allMeetings: nextProps.meetings,
+      meetings: nextProps.meetings,
+    })
+  }
+
+  handleChange(e) {
+    e.preventDefault()
+    if (e.target.value === 'any') {
+      this.setState({
+        day: 'any',
+        meetings: this.state.allMeetings
+      })
+    } else {
+      this.setState({ day: e.target.value, meetings: pick(this.state.allMeetings, e.target.value) })
+    }
+  }
+
+  renderDropdown() {
+    const { width, formats, classes } = this.props
+    const { allMeetings, day } = this.state
+
+    if (width === 'xs') {
+      return (
+        <FormControl className={classes.formControl} >
+
+          <NativeSelect
+            value={day}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'day',
+              id: 'day-of-week',
+            }}
+          >
+            <option value="any">Any Day</option>
+            {Object.keys(allMeetings).map((day, idx) => (<option value={day} key={idx}>{capitalize(day)}</option>))}
+          </NativeSelect>
+        </FormControl >
+      )
+    }
+    return (
+      <FormControl className={classes.formControl} >
+        <Select
+          value={day}
+          onChange={this.handleChange}
+          inputProps={{
+            name: 'day',
+            id: 'day-of-week',
+          }}
+        >
+          <MenuItem value="any">
+            <em>Any Day</em>
+          </MenuItem>
+          {Object.keys(allMeetings).map((day, idx) => (<MenuItem value={day} key={idx}>{capitalize(day)}</MenuItem>))}
+        </Select>
+      </FormControl>
+    )
+  }
+
+  render() {
+    const { width, formats } = this.props
+    const { meetings, allMeetings } = this.state
+
+    if (!Object.keys(allMeetings).length) {
+      // TODO this should load directly under the nav without any margin
+      // https://material.io/design/components/progress-indicators.html#
+      return <LinearProgress />
+    }
+
+    return (
+      <React.Fragment>
+        {this.renderDropdown()}
+        {renderMeetingList(width, meetings || allMeetings)}
+        <MeetingListKey formats={formats} />
+      </React.Fragment>
+    )
+  }
+}
+
+
 
 const renderMeetingList = (width, meetings) => (
   width === 'xs' ? <MeetingListSm meetings={meetings} /> : <MeetingListLg meetings={meetings} />
@@ -32,15 +125,6 @@ const dayAnchorStyles = {
     width: 'fit-content',
   }
 }
-const DayAnchors = ({ days }) => {
-  return (
-    <AppBar position='static' color='default' >
-      {
-        days.map((day, idx) => (<Button variant='outlined' color='secondary' key={idx} href={`#${day}`}>{capitalize(day)}</Button>))
-      }
-    </AppBar>
 
-  )
-}
 
-export default bmltInject(withWidth()(Meetings))
+export default bmltInject(withStyles(styles)(withWidth()(Meetings)))

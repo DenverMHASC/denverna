@@ -30,9 +30,7 @@ const bmltInject = (Component) => {
         }))
     }
 
-
     render() {
-      console.log(this.state)
       return <Component meetings={this.state.meetings} formats={this.state.allFormats} />
     }
   }
