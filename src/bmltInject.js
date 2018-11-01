@@ -1,7 +1,7 @@
 import React from 'react'
 import { bmltResponseToMeetingData } from './bmltToMeetingListData'
 import axios from 'axios-jsonp-pro'
-import { sortBy, mapValues } from 'lodash'
+import { sortBy, mapValues, flatMap, map, flatten, uniq, reduce } from 'lodash'
 
 
 const bmltInject = (Component) => {
@@ -9,23 +9,31 @@ const bmltInject = (Component) => {
     constructor(props) {
       super(props)
       this.state = {
-        meetings: testData
+        meetings: [],
+        allFormats: [],
       }
     }
 
-    // componentWillMount() {
-    //   // Waiting for the bmlt root server version to be updated.
-    //   axios.jsonp('https://nacolorado.org/meetingList/main_server/client_interface/jsonp/?services[]=2&switcher=GetSearchResults')
-    //     .then(r => bmltResponseToMeetingData(r))
-    //     .then(meetingListData => mapValues(meetingListData, (meetingsByDay, k) => {
-    //       return sortBy(meetingsByDay, ['sortStartTime', 'name'])
-    //     }))
-    //     .then(meetingListData => this.setState({ meetings: meetingListData }))
-    // }
+    componentWillMount() {
+      // Waiting for the bmlt root server version to be updated.
+      axios.jsonp('https://nacolorado.org/meetingList/main_server/client_interface/jsonp/?services[]=2&switcher=GetSearchResults')
+        .then(r => bmltResponseToMeetingData(r))
+        .then(meetingListData => mapValues(meetingListData, (meetingsByDay, k) => {
+          return sortBy(meetingsByDay, ['sortStartTime', 'name'])
+        }))
+        .then(meetingListData => this.setState({
+          meetings: meetingListData,
+          allFormats: reduce(meetingListData, (acc, d) => {
+            acc.push(flatMap(d, m => m.format))
+            return uniq(flatten(acc))
+          }, []),
+        }))
+    }
 
 
     render() {
-      return <Component meetings={this.state.meetings} />
+      console.log(this.state)
+      return <Component meetings={this.state.meetings} formats={this.state.allFormats} />
     }
   }
 }

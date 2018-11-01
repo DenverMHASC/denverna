@@ -7,7 +7,7 @@ import MeetingListSm from '../components/MeetingListSm'
 import MeetingListKey from '../components/MeetingListKey'
 import bmltInject from '../bmltInject'
 
-const Meetings = ({ width, meetings }) => {
+const Meetings = ({ width, meetings, formats }) => {
   if (!Object.keys(meetings).length) {
     return <h4>Loading...</h4>
   }
@@ -16,7 +16,7 @@ const Meetings = ({ width, meetings }) => {
       {/* TODO Refactor with dropdown */}
       <DayAnchors days={Object.keys(meetings)} />
       {renderMeetingList(width, meetings)}
-      <MeetingListKey />
+      <MeetingListKey formats={formats} />
     </React.Fragment>
   )
 }

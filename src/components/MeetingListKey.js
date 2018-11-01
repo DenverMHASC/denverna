@@ -1,32 +1,14 @@
 import React from 'react'
-import { capitalize, map } from 'lodash'
+import { sortBy, map } from 'lodash'
+import MeetingListKeyData from './MeetingListKeyData'
 
 import {
   Table, TableHead, TableRow, TableCell, TableBody, Typography, Paper
 } from '@material-ui/core'
 
-// TODO: Expand this with all the BMLT keys
-const MeetingListKey = () => {
-  const key = {
-    'B': 'Beginners Meeting',
-    'BK': 'Book Study',
-    'C': 'Closed Meeting for Addicts Only',
-    'CL': 'Candlelight',
-    'CW': 'Children Welcome/Child Care',
-    'D': 'Discussion',
-    'ME': 'Meditation',
-    'O': 'Open Meeting all are welcome',
-    'RF': 'Rotating Format',
-    'SD': 'Speaker/Discussion',
-    'SG': 'Step Working Guide',
-    'So': 'Speaker Only',
-    'St': 'Step',
-    'SW': 'Step Writing',
-    'Tr': 'Tradition',
-    'W': 'Women only',
-    'WC': 'Wheelchair Accessible',
-    'YP': 'Young People',
-  }
+
+const MeetingListKey = ({ formats }) => {
+  const filteredFormats = MeetingListKeyData.filter(f => formats.includes(f.key))
 
   return (
     <Table style={{ width: '260px' }}>
@@ -37,10 +19,10 @@ const MeetingListKey = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {map(key, (v, k) => (
-          <TableRow key={k}>
-            <TableCell>{k}</TableCell>
-            <TableCell>{v}</TableCell>
+        {map(sortBy(filteredFormats, 'key'), (v) => (
+          <TableRow key={v.id}>
+            <TableCell>{v.key}</TableCell>
+            <TableCell>{v.name}</TableCell>
           </TableRow>
         ))}
       </TableBody>
