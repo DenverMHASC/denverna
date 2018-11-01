@@ -8,19 +8,21 @@ import Meetings from './views/Meetings'
 import Events from './views/Events'
 import Home from './views/home'
 import theme from './theme'
+import bmltInject from './bmltInject'
 
 const App = (props) => {
-  const { classes } = props
+  const { classes, meetings, formats } = props
+  const isLoading = Object.keys(meetings).length < 1
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
         <React.Fragment>
-          <Header />
+          <Header isLoading={isLoading} />
           <div className={classes.appContainer}>
             <Switch>
               <Route exact={true} path='/' component={Home} />
-              <Route path='/meetings' component={Meetings} />
+              <Route path='/meetings' render={(props) => <Meetings {...props} meetings={meetings} formats={formats} isLoading={isLoading} />} />
               <Route path='/events' component={Events} />
             </Switch>
           </div>
@@ -32,9 +34,9 @@ const App = (props) => {
 
 const styles = {
   appContainer: {
-    padding: '0 15px'
+    padding: '0 15px',
+    marginTop: '50px'
   }
 }
 
-
-export default withStyles(styles)(App)
+export default bmltInject(withStyles(styles)(App))

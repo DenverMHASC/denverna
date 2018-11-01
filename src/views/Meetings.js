@@ -26,10 +26,18 @@ class Meetings extends React.Component {
     this.state = {
       allMeetings: props.meetings,
       meetings: {},
-      day: 'any'
+      day: 'any',
+      isLoading: false,
     }
     this.handleChange = this.handleChange.bind(this)
     this.renderDropdown = this.renderDropdown.bind(this)
+  }
+  componentDidMount() {
+    this.setState({
+      allMeetings: this.props.meetings,
+      meetings: this.props.meetings,
+      isLoading: this.props.isLoading,
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,11 +45,11 @@ class Meetings extends React.Component {
     this.setState({
       allMeetings: nextProps.meetings,
       meetings: nextProps.meetings,
+      isLoading: nextProps.isLoading,
     })
   }
 
   handleChange(e) {
-    e.preventDefault()
     if (e.target.value === 'any') {
       this.setState({
         day: 'any',
@@ -53,13 +61,12 @@ class Meetings extends React.Component {
   }
 
   renderDropdown() {
-    const { width, formats, classes } = this.props
+    const { width, classes } = this.props
     const { allMeetings, day } = this.state
 
     if (width === 'xs') {
       return (
         <FormControl className={classes.formControl} >
-
           <NativeSelect
             value={day}
             onChange={this.handleChange}
@@ -95,14 +102,11 @@ class Meetings extends React.Component {
 
   render() {
     const { width, formats } = this.props
-    const { meetings, allMeetings } = this.state
+    const { meetings, allMeetings, isLoading } = this.state
 
-    if (!Object.keys(allMeetings).length) {
-      // TODO this should load directly under the nav without any margin
-      // https://material.io/design/components/progress-indicators.html#
-      return <LinearProgress />
+    if (isLoading) {
+      return null
     }
-
     return (
       <React.Fragment>
         {this.renderDropdown()}
@@ -128,4 +132,4 @@ const dayAnchorStyles = {
 }
 
 
-export default bmltInject(withStyles(styles)(withWidth()(Meetings)))
+export default withStyles(styles)(withWidth()(Meetings))
