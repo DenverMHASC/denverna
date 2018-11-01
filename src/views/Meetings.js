@@ -33,6 +33,7 @@ class Meetings extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // TODO there is a bug in here when you change screen sizes, it resets the meeting list. Not sure if this is worth fixing.
     this.setState({
       allMeetings: nextProps.meetings,
       meetings: nextProps.meetings,
