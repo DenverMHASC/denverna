@@ -6,7 +6,7 @@ import { MuiThemeProvider, withStyles } from '@material-ui/core/styles'
 import Header from './components/Header'
 import Meetings from './views/Meetings'
 import Events from './views/Events'
-import Home from './views/home'
+import Home from './views/Home'
 import theme from './theme'
 import bmltInject from './bmltInject'
 
