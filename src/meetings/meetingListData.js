@@ -5,6 +5,7 @@ export const key = {
     'CL': 'Candlelight',
     'CW': 'Children Welcome/Child Care',
     'D': 'Discussion',
+    'M': 'Men Only',
     'ME': 'Meditation',
     'O': 'Open Meeting all are welcome',
     'RF': 'Rotating Format',
