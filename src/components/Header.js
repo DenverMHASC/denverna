@@ -3,7 +3,6 @@ import React from 'react'
 import {
   AppBar,
   Toolbar,
-  Typography,
   CardMedia,
   LinearProgress,
   Tabs,
@@ -105,7 +104,6 @@ class Header extends React.Component {
   }
 
   handleClick(event) {
-    console.log(event.currentTarget)
     this.setState({ anchorEl: event.currentTarget });
   };
 

@@ -1,11 +1,38 @@
 import React from 'react'
-import { Typography, Grid, Button, } from '@material-ui/core'
+import { Typography, Grid, Button, withStyles } from '@material-ui/core'
+import OuterContainer from '../components/OuterContainer'
 import ContactList from '../components/ContactList'
 
 const Home = (props) => {
-  const { history } = props
+  const { history, classes } = props
   return (
-    <Grid container>
+    <OuterContainer>
+      <Grid container>
+        <Typography variant='h3' style={{ margin: '0 auto' }} color='primary'>
+          Welcome to the Mile High Area
+         </Typography>
+        <div
+          style={{ marginTop: '20px', position: 'relative' }}
+        >
+          <img
+            className={classes.skyline}
+            src='/assets/skyline.jpg' />
+          <div className={classes.viewMeetings}>
+            <Typography align='center' variant='h5' style={{ margin: '0 auto' }} color='primary'>
+              Recovery happens in meetings, please join us.
+         </Typography>
+            <Button
+              style={{ marginTop: '10px' }}
+              variant='contained'
+              color='primary'
+              onClick={() => history.push('/meetings')}
+            >
+              View Meeting List
+            </Button>
+          </div>
+
+        </div>
+      </Grid>
       <Grid item md={2} />
       <Grid item md={8} sm={12}>
         <Typography variant='subtitle1' style={{ marginBottom: '1em' }}>
@@ -14,7 +41,6 @@ const Home = (props) => {
         </Typography>
         <Typography style={{ marginBottom: '1em' }} variant='subtitle1'>
           Recovery happens in meetings, please join us. <br />
-          <Button color='primary' onClick={() => history.push('/meetings')}>View Meeting List</Button>
         </Typography>
         <Typography>
           Speak to a recovering addict
@@ -22,9 +48,24 @@ const Home = (props) => {
         <ContactList />
       </Grid>
       <Grid item md={2} />
-    </Grid >
+    </OuterContainer>
   )
 }
 
+const styles = {
+  skyline: {
+    opacity: '0.4',
+    height: 'auto',
+    maxWidth: '100%',
+  },
+  viewMeetings: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    textAlign: 'center',
+  },
+}
 
-export default Home
+
+export default withStyles(styles)(Home)
