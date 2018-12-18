@@ -8,7 +8,6 @@ import { capitalize, pick } from 'lodash'
 import MeetingListLg from '../components/MeetingListLg'
 import MeetingListSm from '../components/MeetingListSm'
 import MeetingListKey from '../components/MeetingListKey'
-import bmltInject from '../bmltInject'
 
 const styles = {
   root: {
@@ -117,19 +116,8 @@ class Meetings extends React.Component {
   }
 }
 
-
-
 const renderMeetingList = (width, meetings) => (
   width === 'xs' ? <MeetingListSm meetings={meetings} /> : <MeetingListLg meetings={meetings} />
 )
-
-const dayAnchorStyles = {
-  button: {
-    display: 'inline-block',
-    margin: '0 px',
-    width: 'fit-content',
-  }
-}
-
 
 export default withStyles(styles)(withWidth()(Meetings))

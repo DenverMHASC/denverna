@@ -172,7 +172,7 @@ class Header extends React.Component {
       <div className={classes.root}>
         <AppBar
           position='static'
-          color="default"
+          color="white"
         >
           <Toolbar className={classes.toolbar}>
             <CardMedia
