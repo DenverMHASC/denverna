@@ -11,7 +11,7 @@ export default createMuiTheme({
       main: '#607d8c',
       light: '#8eacbc',
       dark: '#34515f'
-    }
+    },
   },
   typography: {
     useNextVariants: true,

@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles'
 
-import Header from './components/Header'
+import HeaderNew from './components/HeaderNew'
 import Meetings from './views/Meetings'
 import Events from './views/Events'
 import Home from './views/Home'
@@ -18,7 +18,7 @@ const App = (props) => {
       <CssBaseline />
       <BrowserRouter>
         <React.Fragment>
-          <Header isLoading={isLoading} />
+          <HeaderNew isLoading={isLoading} />
           <div className={classes.appContainer}>
             <Switch>
               <Route exact={true} path='/' component={Home} />
