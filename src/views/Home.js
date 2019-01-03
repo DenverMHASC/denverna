@@ -15,7 +15,8 @@ const Home = (props) => {
       >
         <img
           className={classes.skyline}
-          src='/assets/skyline.jpg' />
+          src='/assets/skyline.jpg'
+        />
         <div className={classes.viewMeetings}>
           <Typography align='center' variant='h5' style={{ margin: '0 auto' }} color='primary'>
             Recovery happens in meetings, please join us.
