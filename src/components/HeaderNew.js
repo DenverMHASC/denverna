@@ -21,22 +21,24 @@ const styles = (theme) => ({
   },
   grow: {
     flexGrow: 1,
-    fontWeight: 'bold',
     color: 'rgb(48, 106, 141)',
   },
   menuButton: {
+    backgroundColor: 'rgb(82,155,210)',
+    borderRadius: '0px',
     marginLeft: -24,
     marginRight: 24,
-    borderRadius: '0px',
-    backgroundColor: '#1c84be',
+    padding: '1px',
   },
   menuIcon: {
     color: 'white',
     fontSize: '50px',
+    height: '1.1em',
     marginBottom: '-18px',
   },
   menuIconTypography: {
     flexGrow: 1,
+    fontSize: '11px',
     color: 'white',
     fontWeight: 'bold',
   },
@@ -44,7 +46,7 @@ const styles = (theme) => ({
     flexDirection: 'column',
   },
   toolbar: {
-    borderTop: '4px solid #1c84be',
+    borderTop: '4px solid rgb(82,155,210)',
     backgroundColor: 'white',
   },
   buttonNav: {
@@ -53,7 +55,14 @@ const styles = (theme) => ({
   },
   fullList: {
     width: '250px'
-  }
+  },
+  logo: {
+    height: '50px',
+    width: '50px',
+    margin: '0 auto',
+    backgroundColor: 'white',
+
+  },
 });
 
 class Header extends React.Component {
@@ -112,7 +121,7 @@ class Header extends React.Component {
       <div className={classes.root}>
         <AppBar
           position='static'
-          color="default"
+          color="white"
         >
           <Toolbar
             className={classes.toolbar}
@@ -142,6 +151,7 @@ class Header extends React.Component {
             <Button onClick={() => this.handleChange(null, 1)} className={classes.buttonNav}>MEETING LIST</Button>
             <Button onClick={() => this.handleChange(null, 2)} className={classes.buttonNav}>EVENTS</Button>
           </Toolbar>
+          {/* <img className={classes.logo} src="/assets/logo.png"></img> */}
         </AppBar>
       </div>
     );
