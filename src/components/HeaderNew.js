@@ -28,7 +28,7 @@ const styles = (theme) => ({
     marginLeft: -24,
     marginRight: 24,
     borderRadius: '0px',
-    backgroundColor: 'rgb(82,155,210)',
+    backgroundColor: '#1c84be',
   },
   menuIcon: {
     color: 'white',
@@ -44,7 +44,7 @@ const styles = (theme) => ({
     flexDirection: 'column',
   },
   toolbar: {
-    borderTop: '4px solid rgb(82,155,210)',
+    borderTop: '4px solid #1c84be',
     backgroundColor: 'white',
   },
   buttonNav: {
