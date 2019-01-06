@@ -21,20 +21,35 @@ const styles = (theme) => ({
   },
   grow: {
     flexGrow: 1,
+    fontWeight: 'bold',
+    color: 'rgb(48, 106, 141)',
   },
   menuButton: {
     marginLeft: -24,
     marginRight: 24,
-    padding: 24,
     borderRadius: '0px',
-    backgroundColor: 'steelblue',
+    backgroundColor: 'rgb(82,155,210)',
+  },
+  menuIcon: {
+    color: 'white',
+    fontSize: '50px',
+    marginBottom: '-18px',
+  },
+  menuIconTypography: {
+    flexGrow: 1,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  menuButtonContainer: {
+    flexDirection: 'column',
   },
   toolbar: {
-    borderTop: '4px solid #4784a8',
+    borderTop: '4px solid rgb(82,155,210)',
     backgroundColor: 'white',
   },
-  typeography: {
-    color: '#4784a8',
+  buttonNav: {
+    color: 'rgb(60,168,214)',
+    fontWeight: 'bold',
   },
   fullList: {
     width: '250px'
@@ -102,8 +117,13 @@ class Header extends React.Component {
           <Toolbar
             className={classes.toolbar}
           >
-            <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} color="inherit" aria-label="Menu">
-              <MenuIcon />
+            <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} color="white" width=".5em" height=".5em">
+              <div className={classes.menuButtonContainer}>
+                <MenuIcon className={classes.menuIcon} />
+                <Typography className={classes.menuIconTypography}>
+                  MENU
+                </Typography>
+              </div>
             </IconButton>
             <Drawer open={this.state.open} onClose={this.toggleDrawer(false)}>
               <div
@@ -115,10 +135,12 @@ class Header extends React.Component {
                 {this.renderList()}
               </div>
             </Drawer>
-            <Typography variant="h6" className={classes.grow}>
+            <Typography variant="h5" className={classes.grow}>
               Narcotics Anonymous | Mile High Area
-          </Typography>
-            <Button color="inherit">Login</Button>
+            </Typography>
+            <Button onClick={() => this.handleChange(null, 0)} className={classes.buttonNav}>HOME</Button>
+            <Button onClick={() => this.handleChange(null, 1)} className={classes.buttonNav}>MEETING LIST</Button>
+            <Button onClick={() => this.handleChange(null, 2)} className={classes.buttonNav}>EVENTS</Button>
           </Toolbar>
         </AppBar>
       </div>
