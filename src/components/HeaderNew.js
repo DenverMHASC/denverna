@@ -26,7 +26,6 @@ const styles = (theme) => ({
   menuButton: {
     backgroundColor: 'rgb(82,155,210)',
     borderRadius: '0px',
-    marginLeft: -24,
     marginRight: 24,
     padding: '1px',
   },
@@ -46,6 +45,7 @@ const styles = (theme) => ({
     flexDirection: 'column',
   },
   toolbar: {
+    paddingLeft: '0px',
     borderTop: '4px solid rgb(82,155,210)',
     backgroundColor: 'white',
   },
@@ -75,6 +75,7 @@ class Header extends React.Component {
     this.toggleDrawer = this.toggleDrawer.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.renderList = this.renderList.bind(this)
+    this.renderNavButtons = this.renderNavButtons.bind(this)
   }
 
   toggleDrawer(open) {
@@ -93,15 +94,30 @@ class Header extends React.Component {
       history.push('/meetings')
     } else if (value === 2) {
       history.push('/events')
+    } else if (value === 3) {
+      history.push('/trusted-servants')
     }
   }
 
+  renderNavButtons(width, classes) {
+    if (['sm', 'xs'].includes(width)) {
+      return null
+    } else {
+      return (
+        <div>
+          <Button onClick={() => this.handleChange(null, 0)} className={classes.buttonNav}>HOME</Button>
+          <Button onClick={() => this.handleChange(null, 1)} className={classes.buttonNav}>MEETING LIST</Button>
+          <Button onClick={() => this.handleChange(null, 2)} className={classes.buttonNav}>EVENTS</Button>
+        </div>
+      )
+    }
+  }
 
   renderList() {
     const fullList = (
       <div className={this.props.classes.fullList}>
         <List>
-          {['Home', 'Meeting List', 'Events'].map((text, index) => (
+          {['Home', 'Meeting List', 'Events', 'Trusted Servants'].map((text, index) => (
             <ListItem onClick={() => this.handleChange(null, index)} button key={text}>
               <ListItemText primary={text} />
             </ListItem>
@@ -114,19 +130,17 @@ class Header extends React.Component {
   }
 
   render() {
+    const { classes, width } = this.props
 
-
-    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <AppBar
           position='static'
-          color="white"
         >
           <Toolbar
             className={classes.toolbar}
           >
-            <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} color="white" width=".5em" height=".5em">
+            <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} width=".5em" height=".5em">
               <div className={classes.menuButtonContainer}>
                 <MenuIcon className={classes.menuIcon} />
                 <Typography className={classes.menuIconTypography}>
@@ -145,11 +159,9 @@ class Header extends React.Component {
               </div>
             </Drawer>
             <Typography variant="h5" className={classes.grow}>
-              Narcotics Anonymous | Mile High Area
+              {['sm', 'xs'].includes(width) ? 'NA | Mile High Area' : 'Narcotics Anonymous | Mile High Area'}
             </Typography>
-            <Button onClick={() => this.handleChange(null, 0)} className={classes.buttonNav}>HOME</Button>
-            <Button onClick={() => this.handleChange(null, 1)} className={classes.buttonNav}>MEETING LIST</Button>
-            <Button onClick={() => this.handleChange(null, 2)} className={classes.buttonNav}>EVENTS</Button>
+            {this.renderNavButtons(width, classes)}
           </Toolbar>
           {/* <img className={classes.logo} src="/assets/logo.png"></img> */}
         </AppBar>

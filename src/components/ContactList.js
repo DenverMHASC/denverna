@@ -9,13 +9,13 @@ const ContactList = (_props) => {
         <ListItemIcon>
           <LocalPhone />
         </ListItemIcon>
-        <ListItemText primary="(303)-832-3784" />
+        <ListItemText primary="(303) 832-3784" />
       </ListItem>
       <ListItem>
         <ListItemIcon>
           <Email />
         </ListItemIcon>
-        <ListItemText primary="PhoneLine.mhasc@gmail.com" />
+        <ListItemText primary="webservant.mhasc@gmail.com" />
       </ListItem>
       <ListItem>
         <ListItemIcon>

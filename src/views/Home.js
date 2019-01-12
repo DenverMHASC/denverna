@@ -1,13 +1,13 @@
 import React from 'react'
-import { Typography, Grid, Button, withStyles } from '@material-ui/core'
+import { Typography, Grid, Button, withStyles, withWidth } from '@material-ui/core'
 import OuterContainer from '../components/OuterContainer'
 import ContactList from '../components/ContactList'
 
 const Home = (props) => {
-  const { history, classes } = props
+  const { history, classes, width } = props
   return (
     <OuterContainer>
-      <Typography variant='h3' style={{ margin: '0 auto' }} color='primary'>
+      <Typography variant='h3' style={{ margin: '0 auto', textAlign: 'center' }} color='primary'>
         Welcome to the Mile High Area
          </Typography>
       <div
@@ -16,11 +16,13 @@ const Home = (props) => {
         <img
           className={classes.skyline}
           src='/assets/skyline.jpg'
+          title='R0uge [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons'
         />
         <div className={classes.viewMeetings}>
-          <Typography align='center' variant='h5' style={{ margin: '0 auto' }} color='primary'>
-            Recovery happens in meetings, please join us.
-         </Typography>
+          {['xs', 'sm'].includes(width) ? null :
+            <Typography align='center' variant='h5' style={{ margin: '0 auto' }} color='primary'>
+              Recovery happens in meetings, please join us.
+            </Typography>}
           <Button
             style={{ marginTop: '10px' }}
             variant='contained'
@@ -73,4 +75,4 @@ const styles = {
 }
 
 
-export default withStyles(styles)(Home)
+export default withWidth()(withStyles(styles)(Home))
