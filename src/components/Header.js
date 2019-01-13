@@ -1,195 +1,192 @@
-import React from 'react'
-
-import {
-  AppBar,
-  Toolbar,
-  CardMedia,
-  LinearProgress,
-  Tabs,
-  Tab,
-  Button,
-  Menu,
-  MenuItem,
-  withStyles, withWidth
-} from '@material-ui/core'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Drawer from '@material-ui/core/Drawer';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import withWidth from '@material-ui/core/withWidth';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import { withRouter } from 'react-router-dom'
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    color: 'white',
   },
-  cover: {
-    width: '56px'
+  grow: {
+    flexGrow: 1,
+    color: 'rgb(48, 106, 141)',
+  },
+  menuButton: {
+    backgroundColor: 'rgb(82,155,210)',
+    borderRadius: '0px',
+    marginRight: 24,
+    padding: '1px',
+  },
+  menuIcon: {
+    color: 'white',
+    fontSize: '50px',
+    height: '1.1em',
+    marginBottom: '-18px',
+  },
+  menuIconTypography: {
+    flexGrow: 1,
+    fontSize: '11px',
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  menuButtonContainer: {
+    flexDirection: 'column',
   },
   toolbar: {
-    justifyContent: 'space-between',
+    paddingLeft: '0px',
+    borderTop: '4px solid rgb(82,155,210)',
+    backgroundColor: 'white',
   },
-  tabsRoot: {
-    borderBottom: '1px solid #e8e8e8',
+  buttonNav: {
+    color: 'rgb(60,168,214)',
+    fontWeight: 'bold',
   },
-  tabsIndicator: {
-    backgroundColor: '#1890ff',
+  fullList: {
+    width: '250px'
   },
-  tabRoot: {
-    textTransform: 'initial',
-    minWidth: 72,
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing.unit * 4,
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
-    },
-    '&$tabSelected': {
-      color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&:focus': {
-      color: '#40a9ff',
-    },
+  logo: {
+    height: '87px',
+    width: '87px',
+    margin: '0 auto',
   },
-  tabSelected: {},
-  typography: {
-    padding: theme.spacing.unit * 3,
-  },
+  semiCircle: {
+    backgroundColor: '#fff',
+    borderRadius: '50%',
+    bottom: '0',
+    boxShadow: '0 4px 2px -2px rgba(0,0,0,.2)',
+    height: '103px',
+    display: 'block',
+    width: '103px',
+    padding: '8px',
+    position: 'absolute',
+    zIndex: '0',
+    left: '50%',
+    transform: 'translateX(-50%) translateY(40%)',
+    transitionProperty: 'all',
+    transitionDuration: '.15s',
+    transitionTimingFunction: 'linear',
+  }
 });
 
 class Header extends React.Component {
-  constructor() {
+
+  constructor(props) {
     super()
     this.state = {
-      value: 0,
-      isLoading: true,
-      anchorEl: null,
+      open: false,
     }
-
-    this.handleClick = this.handleClick.bind(this)
-    this.renderMenu = this.renderMenu.bind(this)
+    this.toggleDrawer = this.toggleDrawer.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.renderList = this.renderList.bind(this)
+    this.renderNavButtons = this.renderNavButtons.bind(this)
   }
 
-  componentDidMount() {
-    if (window.location.pathname === '/') {
-      this.setState({ value: 0 })
-    } else if (window.location.pathname === '/meetings') {
-      this.setState({ value: 1 })
-    } else if (window.location.pathname === '/events') {
-      this.setState({ value: 2 })
+  toggleDrawer(open) {
+    return () => {
+      this.setState({
+        open
+      })
     }
   }
 
   handleChange(event, value) {
     const { history } = this.props
-    this.setState({ value });
     if (value === 0) {
       history.push('/')
     } else if (value === 1) {
       history.push('/meetings')
     } else if (value === 2) {
       history.push('/events')
+    } else if (value === 3) {
+      history.push('/trusted-servants')
     }
-    this.setState({ anchorEl: null });
   }
 
-  handleClick(event) {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  componentWillReceiveProps({ isLoading }) {
-    this.setState({ isLoading })
-  }
-
-
-  renderMenu() {
-    const { classes, width } = this.props
-    const { value, anchorEl } = this.state;
-
-    if (width === 'xs') {
+  renderNavButtons(width, classes) {
+    if (['sm', 'xs'].includes(width)) {
+      return null
+    } else {
       return (
         <div>
-          <Button
-            aria-owns={anchorEl ? 'simple-menu' : undefined}
-            aria-haspopup="true"
-            onClick={this.handleClick}
-          >
-            Menu
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handleClose}
-          >
-            <MenuItem onClick={() => this.handleChange(null, 0)}>Home</MenuItem>
-            <MenuItem onClick={() => this.handleChange(null, 1)}>Meeting List</MenuItem>
-            <MenuItem onClick={() => this.handleChange(null, 2)}>Events</MenuItem>
-          </Menu>
+          <Button onClick={() => this.handleChange(null, 0)} className={classes.buttonNav}>HOME</Button>
+          <Button onClick={() => this.handleChange(null, 1)} className={classes.buttonNav}>MEETING LIST</Button>
+          <Button onClick={() => this.handleChange(null, 2)} className={classes.buttonNav}>EVENTS</Button>
         </div>
       )
     }
-    return (
-      <Tabs
-        value={value}
-        onChange={this.handleChange}
-        classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
-      >
-        <Tab
-          disableRipple
-          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-          label="Home"
-        />
-        <Tab
-          disableRipple
-          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-          label="Meeting List"
-        />
-        <Tab
-          disableRipple
-          classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-          label="Events"
-        />
-      </Tabs>
-    )
+  }
+
+  renderList() {
+    const fullList = (
+      <div className={this.props.classes.fullList}>
+        <List>
+          {['Home', 'Meeting List', 'Events', 'Trusted Servants'].map((text, index) => (
+            <ListItem onClick={() => this.handleChange(null, index)} button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    );
+
+    return fullList
   }
 
   render() {
-    const { classes } = this.props
-    const { value, isLoading } = this.state;
+    const { classes, width } = this.props
 
     return (
       <div className={classes.root}>
-        <AppBar
-          position='static'
-          color="white"
-        >
+        <AppBar position='sticky'>
           <Toolbar className={classes.toolbar}>
-            <CardMedia
-              component="img"
-              className={classes.cover}
-              image="/assets/logo.png"
-              title="Logo"
-            />
-            {this.renderMenu()}
+            <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} width=".5em" height=".5em">
+              <div className={classes.menuButtonContainer}>
+                <MenuIcon className={classes.menuIcon} />
+                <Typography className={classes.menuIconTypography}>
+                  MENU
+                </Typography>
+              </div>
+            </IconButton>
+            <Drawer open={this.state.open} onClose={this.toggleDrawer(false)}>
+              <div
+                tabIndex={0}
+                role="button"
+                onClick={this.toggleDrawer(false)}
+                onKeyDown={this.toggleDrawer(false)}
+              >
+                {this.renderList()}
+              </div>
+            </Drawer>
+            <Typography variant="h5" className={classes.grow}>
+              {['sm', 'xs', 'md'].includes(width) ? 'NA | Mile High Area' : 'Narcotics Anonymous | Mile High Area'}
+            </Typography>
+            {this.renderNavButtons(width, classes)}
           </Toolbar>
-          {isLoading ? <LinearProgress /> : null}
+          {['md', 'lg', 'xl'].includes(width) ?
+            <a className={classes.semiCircle} href="/" rel="home">
+              <img className={classes.logo} src="/assets/logo.png"></img>
+            </a>
+            : null}
         </AppBar>
       </div>
-
-    )
+    );
   }
-
 }
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withWidth()(withStyles(styles)(withRouter(Header)))

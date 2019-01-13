@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Grid, Button, withStyles, withWidth } from '@material-ui/core'
+import { Typography, Grid, Button, withStyles, withWidth, CardMedia } from '@material-ui/core'
 import OuterContainer from '../components/OuterContainer'
 import ContactList from '../components/ContactList'
 
@@ -13,20 +13,21 @@ const Home = (props) => {
       <div
         style={{ marginTop: '20px', position: 'relative' }}
       >
-        <img
+        <CardMedia
+          component="img"
           className={classes.skyline}
-          src='/assets/skyline.jpg'
-          title='R0uge [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons'
+          image="/assets/skyline.jpg"
+          title="R0uge [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons"
+          height="400"
         />
         <div className={classes.viewMeetings}>
-          {['xs', 'sm'].includes(width) ? null :
-            <Typography align='center' variant='h5' style={{ margin: '0 auto' }} color='primary'>
-              Recovery happens in meetings, please join us.
-            </Typography>}
+
+          <Typography align='center' variant='h5' style={{ margin: '0 auto' }} color='primary'>
+            Recovery happens in meetings, please join us.
+            </Typography>
           <Button
-            style={{ marginTop: '10px' }}
+            style={{ marginTop: '10px', backgroundColor: '#1c84be', color: 'white' }}
             variant='contained'
-            color='primary'
             onClick={() => history.push('/meetings')}
           >
             View Meeting List
@@ -58,9 +59,8 @@ const Home = (props) => {
 const styles = {
   skyline: {
     opacity: '0.4',
-    height: 'auto',
-    maxWidth: '100%',
-    marginBottom: '2em'
+    objectFit: 'cover',
+    marginBottom: '2em',
   },
   viewMeetings: {
     position: 'absolute',

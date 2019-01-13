@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles'
 
-import HeaderNew from './components/HeaderNew'
+import Header from './components/Header'
 import Meetings from './views/Meetings'
 import Events from './views/Events'
 import TrustedServants from './views/TrustedServants'
@@ -19,7 +19,7 @@ const App = (props) => {
       <CssBaseline />
       <BrowserRouter>
         <React.Fragment>
-          <HeaderNew isLoading={isLoading} />
+          <Header isLoading={isLoading} />
           <div className={classes.appContainer}>
             <Switch>
               <Route exact={true} path='/' component={Home} />
