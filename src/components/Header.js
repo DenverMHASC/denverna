@@ -21,13 +21,19 @@ const styles = (theme) => ({
   },
   grow: {
     flexGrow: 1,
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
     color: 'rgb(48, 106, 141)',
   },
+  header: {
+    height: '56px'
+  },
   menuButton: {
-    backgroundColor: 'rgb(82,155,210)',
+    backgroundColor: '#1c84be',
     borderRadius: '0px',
     marginRight: 24,
-    padding: '1px',
+    padding: '0px',
+    marginTop: '-7px',
   },
   menuIcon: {
     color: 'white',
@@ -46,7 +52,8 @@ const styles = (theme) => ({
   },
   toolbar: {
     paddingLeft: '0px',
-    borderTop: '4px solid rgb(82,155,210)',
+    minHeight: '56px',
+    borderTop: '4px solid #1c84be',
     backgroundColor: 'white',
   },
   buttonNav: {
@@ -57,8 +64,8 @@ const styles = (theme) => ({
     width: '250px'
   },
   logo: {
-    height: '87px',
-    width: '87px',
+    height: '66px',
+    width: '66px',
     margin: '0 auto',
   },
   semiCircle: {
@@ -66,9 +73,9 @@ const styles = (theme) => ({
     borderRadius: '50%',
     bottom: '0',
     boxShadow: '0 4px 2px -2px rgba(0,0,0,.2)',
-    height: '103px',
     display: 'block',
-    width: '103px',
+    height: '80px',
+    width: '80px',
     padding: '8px',
     position: 'absolute',
     zIndex: '0',
@@ -149,7 +156,7 @@ class Header extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position='sticky'>
+        <AppBar className={classes.header} position='sticky'>
           <Toolbar className={classes.toolbar}>
             <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} width=".5em" height=".5em">
               <div className={classes.menuButtonContainer}>
@@ -170,11 +177,11 @@ class Header extends React.Component {
               </div>
             </Drawer>
             <Typography variant="h5" className={classes.grow}>
-              {['sm', 'xs', 'md'].includes(width) ? 'NA | Mile High Area' : 'Narcotics Anonymous | Mile High Area'}
+              {['sm', 'xs'].includes(width) ? 'NA | Mile High Area' : 'Narcotics Anonymous | Mile High Area'}
             </Typography>
             {this.renderNavButtons(width, classes)}
           </Toolbar>
-          {['md', 'lg', 'xl'].includes(width) ?
+          {['sm', 'md', 'lg', 'xl'].includes(width) ?
             <a className={classes.semiCircle} href="/" rel="home">
               <img className={classes.logo} src="/assets/logo.png"></img>
             </a>
