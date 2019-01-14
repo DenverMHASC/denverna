@@ -156,7 +156,7 @@ class Header extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar className={classes.header} position='sticky'>
+        <AppBar className={classes.header} position='fixed'>
           <Toolbar className={classes.toolbar}>
             <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} width=".5em" height=".5em">
               <div className={classes.menuButtonContainer}>
