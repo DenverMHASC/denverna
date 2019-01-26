@@ -42,7 +42,7 @@ class TrustedServants extends React.Component {
     const { classes } = this.props
     return (
       <OuterContainer>
-        <Grid item md={4} sm={12} >
+        <Grid style={{ maxWidth: '445px', minWidth: '445px', margin: "20px" }} item md={4} sm={12} >
           <Card>
             <CardHeader
               title="Mile High Area Service Meetings"
@@ -54,7 +54,7 @@ class TrustedServants extends React.Component {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item md={4} sm={12} >
+        <Grid style={{ maxWidth: '445px', minWidth: '445px', margin: "20px" }} item md={4} sm={12} >
           <Card>
             <CardHeader
               title="Trusted Servant Resources"

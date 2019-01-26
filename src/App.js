@@ -1,6 +1,6 @@
 import React from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import { Switch, Route, HashRouter } from 'react-router-dom'
 import { MuiThemeProvider, withStyles } from '@material-ui/core/styles'
 
 import Header from './components/Header'
@@ -17,7 +17,7 @@ const App = (props) => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      <HashRouter>
         <React.Fragment>
           <Header isLoading={isLoading} />
           <div className={classes.appContainer}>
@@ -29,7 +29,7 @@ const App = (props) => {
             </Switch>
           </div>
         </React.Fragment>
-      </BrowserRouter>
+      </HashRouter>
     </MuiThemeProvider>
   )
 }

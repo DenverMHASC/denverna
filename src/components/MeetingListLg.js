@@ -21,10 +21,26 @@ const MeetingListLg = (props) => {
 }
 
 const meetingListTableStyles = {
-	time: { width: '12%' },
-	name: { width: '19%' },
-	address: { width: '48%' },
-	type: { width: '21%' }
+	time: {
+		fontSize: '16px',
+		fontWeight: 'bold',
+		width: '10%'
+	},
+	name: {
+		fontSize: '16px',
+		fontWeight: 'bold',
+		width: '30%'
+	},
+	address: {
+		fontSize: '16px',
+		fontWeight: 'bold',
+		width: '40%'
+	},
+	type: {
+		fontSize: '16px',
+		fontWeight: 'bold',
+		width: '20%'
+	}
 }
 
 const MeetingListTable = withStyles(meetingListTableStyles)(({ day, meetings, classes }) => {
@@ -34,11 +50,11 @@ const MeetingListTable = withStyles(meetingListTableStyles)(({ day, meetings, cl
 			<Paper>
 				<Table padding='dense'>
 					<TableHead>
-						<TableRow>
+						<TableRow className={classes.tableHeader}>
 							<TableCell className={classes.time}>Time</TableCell>
 							<TableCell className={classes.name}>Name</TableCell>
 							<TableCell className={classes.address}>Address</TableCell>
-							<TableCell className={classes.type}>Type</TableCell>
+							<TableCell className={classes.type}>Format</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -50,12 +66,18 @@ const MeetingListTable = withStyles(meetingListTableStyles)(({ day, meetings, cl
 	)
 })
 
-const MeetingRow = ({ time, name, format, address }) => {
+const rowStyles = {
+	cell: {
+		fontSize: '16px'
+	}
+}
+
+const MeetingRow = withStyles(rowStyles)(({ time, name, format, address, classes }) => {
 	return (
 		<TableRow>
-			<TableCell>{time}</TableCell>
-			<TableCell>{name}</TableCell>
-			<TableCell>
+			<TableCell className={classes.cell}>{time}</TableCell>
+			<TableCell className={classes.cell}>{name}</TableCell>
+			<TableCell className={classes.cell}>
 				<A
 					href={generateGoogleMapsLinkFromAddress(address)}
 				>
@@ -63,9 +85,9 @@ const MeetingRow = ({ time, name, format, address }) => {
 					/>
 				</A>
 			</TableCell>
-			<TableCell><span>{format.join(', ')}</span></TableCell>
+			<TableCell className={classes.cell}><span>{format.join(', ')}</span></TableCell>
 		</TableRow>
 	)
-}
+})
 
 export default MeetingListLg

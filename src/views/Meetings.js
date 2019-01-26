@@ -8,6 +8,8 @@ import { capitalize, pick } from 'lodash'
 import MeetingListLg from '../components/MeetingListLg'
 import MeetingListSm from '../components/MeetingListSm'
 import MeetingListKey from '../components/MeetingListKey'
+import OuterContainer from '../components/OuterContainer'
+
 
 const styles = {
   root: {
@@ -16,6 +18,7 @@ const styles = {
   },
   formControl: {
     minWidth: 140,
+    maxWidth: 140,
   },
 }
 
@@ -107,17 +110,17 @@ class Meetings extends React.Component {
       return null
     }
     return (
-      <React.Fragment>
+      <OuterContainer style={{ flexDirection: 'column' }}>
         {this.renderDropdown()}
         {renderMeetingList(width, meetings || allMeetings)}
         <MeetingListKey formats={formats} />
-      </React.Fragment>
+      </OuterContainer>
     )
   }
 }
 
 const renderMeetingList = (width, meetings) => (
-  width === 'xs' ? <MeetingListSm meetings={meetings} /> : <MeetingListLg meetings={meetings} />
+  ['xs', 'sm'].includes(width) ? <MeetingListSm meetings={meetings} /> : <MeetingListLg meetings={meetings} />
 )
 
 export default withStyles(styles)(withWidth()(Meetings))
