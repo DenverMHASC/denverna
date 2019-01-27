@@ -139,7 +139,7 @@ class Header extends React.Component {
     const fullList = (
       <div className={this.props.classes.fullList}>
         <List>
-          {['Home', 'Meeting List', 'Events', 'Trusted Servants'].map((text, index) => (
+          {['Home', 'Meeting List', 'Events & Activities', 'For Trusted Servants'].map((text, index) => (
             <ListItem onClick={() => this.handleChange(null, index)} button key={text}>
               <ListItemText primary={text} />
             </ListItem>
