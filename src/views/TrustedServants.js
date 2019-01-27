@@ -66,7 +66,7 @@ class TrustedServants extends React.Component {
           <Card>
             <CardHeader
               title="Contact Information"
-            // subheader="Helpful resources from those involved in service."
+              subheader="Email addresses to contact area trusted servants."
             />
             <CardContent>
               <div style={{ width: '100%' }}>
@@ -92,7 +92,7 @@ class TrustedServants extends React.Component {
           <Card>
             <CardHeader
               title="Trusted Servant Resources"
-              subheader="Helpful resources from those involved in service"
+              subheader="Helpful resources from those involved in service."
             />
             <CardContent>
               <div style={{ width: '100%' }}>

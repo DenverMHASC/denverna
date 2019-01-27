@@ -9,7 +9,10 @@ const Home = (props) => {
     <OuterContainer>
       <Typography variant='h3' style={{ margin: '0 auto', textAlign: 'center' }} color='primary'>
         Welcome to the Mile High Area
-         </Typography>
+      </Typography>
+      <Typography style={{ margin: '0 auto', textAlign: 'center' }} color='primary' >
+        The Mile High Area of Narcotics Anonymous serves Denver and the greater Denver Metro Area
+      </Typography>
       <div
         style={{ marginTop: '20px', position: 'relative' }}
       >
@@ -24,7 +27,7 @@ const Home = (props) => {
 
           <Typography align='center' variant='h5' style={{ margin: '0 auto', color: '#225c83' }} >
             Recovery happens in meetings, please join us.
-            </Typography>
+          </Typography>
           <Button
             style={{ marginTop: '10px', backgroundColor: '#1c84be', color: 'white' }}
             variant='contained'

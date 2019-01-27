@@ -9,7 +9,10 @@ const ContactList = (_props) => {
         <ListItemIcon>
           <LocalPhone />
         </ListItemIcon>
-        <ListItemText primary="(303) 832-3784" />
+        <ListItemText
+          primary="(303) 832-3784"
+          secondary="Connection to a recovering addict 24/7, meetings, and events."
+        />
       </ListItem>
       <ListItem>
         <ListItemIcon>
