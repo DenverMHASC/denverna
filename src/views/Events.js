@@ -1,6 +1,6 @@
 import React from 'react'
 import OuterContainer from '../components/OuterContainer'
-import { CardContent, Card, CardHeader, Typography } from '@material-ui/core';
+import { CardContent, Card, CardHeader, Typography, withWidth } from '@material-ui/core';
 
 
 const Events = (props) => {
@@ -9,7 +9,7 @@ const Events = (props) => {
     height: '600px'
   }
   return (
-    <OuterContainer>
+    <OuterContainer width={props.width}>
       <Card style={{ width: '100%', marginTop: '20px' }}>
         <CardHeader
           title={<Typography style={{ color: '#225c83' }} variant='h5'>Activities and Events</Typography>}
@@ -23,4 +23,4 @@ const Events = (props) => {
   )
 }
 
-export default Events
+export default withWidth()(Events)

@@ -6,7 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
   Grid,
-  withStyles,
+  withWidth,
   Card,
   CardHeader,
   CardContent,
@@ -58,9 +58,9 @@ class TrustedServants extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { width } = this.props
     return (
-      <OuterContainer style={{ justifyContent: 'space-between' }}>
+      <OuterContainer width={width} style={{ justifyContent: 'space-between' }}>
         <CalendarCard />
         <GoogleSheetCard
           title='Contact Information'
@@ -101,11 +101,11 @@ class TrustedServants extends React.Component {
   }
 }
 
-export default withStyles(styles)(TrustedServants)
+export default withWidth()(TrustedServants)
 
 const CalendarCard = () => (
-  <Grid style={{ margin: '20px' }} item md={12} sm={12}  >
-    <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
+  <Grid style={{ marginTop: '20px', marginBottom: '20px', width: '100%' }} item md={12} sm={12}  >
+    <Card>
       <CardHeader
         title={<Typography style={{ color: '#225c83' }} variant='h5'>Mile High Area Service Meetings</Typography>}
         subheader={<Typography style={{ color: '#225c83' }}>Attend a subcommittee meeting and get involved!</Typography>}
@@ -123,7 +123,7 @@ const GoogleSheetCard = ({ title, subtitle, data, icon, children, hasSecondary }
   if (!data[0]) return null
   const keyNames = Object.keys(data[0])
   return (
-    <Grid style={{ margin: '20px', width: '100%' }} item md={12} sm={12} >
+    <Grid style={{ marginTop: '20px', marginBottom: '20px', width: '100%' }} item md={12} sm={12} >
       <Card>
         <CardHeader
           title={<Typography style={{ color: '#225c83' }} variant='h5'>{title}</Typography>}

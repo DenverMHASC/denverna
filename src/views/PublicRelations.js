@@ -1,24 +1,15 @@
 import React from 'react'
 import {
   Typography,
-  withStyles,
   Card,
   CardContent,
+  withWidth,
 } from '@material-ui/core'
-import FolderIcon from '@material-ui/icons/Folder';
-import EmailIcon from '@material-ui/icons/Email';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import LinkIcon from '@material-ui/icons/LinkSharp';
 import GetSheetDone from 'get-sheet-done'
 import OuterContainer from '../components/OuterContainer'
 
 
 const PUBLIC_RELATIONS_ID = "1O04SSyO3AIAPG-RBQbQ9ZVSlYG3EAcQl_31S26Le-0Q"
-
-
-const styles = theme => ({
-});
-
 
 class TrustedServants extends React.Component {
   constructor() {
@@ -35,9 +26,9 @@ class TrustedServants extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { width } = this.props
     return (
-      <OuterContainer>
+      <OuterContainer width={width}>
         <Card style={{ width: '100%', marginTop: '20px' }}>
           <CardContent>
             {this.state.content.map(({ header, body }, ix) => {
@@ -56,4 +47,4 @@ class TrustedServants extends React.Component {
   }
 }
 
-export default withStyles(styles)(TrustedServants)
+export default withWidth()(TrustedServants)

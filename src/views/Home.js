@@ -7,7 +7,7 @@ import skyline from '../../assets/skyline.jpg'
 const Home = (props) => {
   const { history, classes, width } = props
   return (
-    <OuterContainer>
+    <OuterContainer width={width}>
       <Typography variant='h3' style={{ margin: '0 auto', textAlign: 'center' }} color='primary'>
         Welcome to the Mile High Area
       </Typography>
