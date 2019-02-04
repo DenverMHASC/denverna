@@ -122,6 +122,7 @@ class Header extends React.Component {
     } else if (value === 4) {
       history.push('/public-relations')
     }
+    window.scroll(0, 0)
   }
 
   renderNavButtons(width, classes) {
