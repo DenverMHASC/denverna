@@ -20,6 +20,7 @@ import OuterContainer from '../components/OuterContainer'
 
 
 const TRUSTED_SERVANT_RESOURCES_DATA_ID = "1BLFmqqeuhRJpSagt2NWks8kTYfJ-sMCjYJtzyC8krh0"
+const TRUSTED_SERVANT_FORMS_ID = "1YDoK845zn7ekr6sNpZT2Loi29dOvAbkLolovWDOMZaI"
 const TRUST_SERVANT_CONTACT_INFO_ID = "1P7PVwFR2FLD4p-IG2jTWUIqe78uezegywdIfAxBBors"
 
 const styles = theme => ({
@@ -32,6 +33,7 @@ class TrustedServants extends React.Component {
     this.state = {
       links: [],
       contactInfo: [],
+      forms: [],
     }
   }
 
@@ -42,6 +44,10 @@ class TrustedServants extends React.Component {
 
     GetSheetDone.labeledCols(TRUST_SERVANT_CONTACT_INFO_ID).then(sheet => {
       this.setState({ contactInfo: sheet.data })
+    })
+
+    GetSheetDone.labeledCols(TRUSTED_SERVANT_FORMS_ID).then(sheet => {
+      this.setState({ forms: sheet.data })
     })
   }
 
@@ -70,9 +76,8 @@ class TrustedServants extends React.Component {
             />
             <CardContent>
               <div style={{ width: '100%' }}>
-                <List dense={true}>
+                <List dense={false}>
                   {this.state.contactInfo.map(({ emaillabel, emailaddr }, ix) => {
-                    console.log(arguments)
                     return (
                       <ListItem key={ix}>
                         <ListItemIcon><EmailIcon /></ListItemIcon>
@@ -103,14 +108,6 @@ class TrustedServants extends React.Component {
                       <ListItemText primary="Area Minutes Archive" />
                     </ListItem>
                   </a>
-                  <a target="_new" style={{ textDecoration: 'none' }} href="https://drive.google.com/drive/folders/1CbOPzwhE5LVG0-ZX1NlwvoEgwCoGkfmt">
-                    <ListItem>
-                      <ListItemIcon><FileCopyIcon /></ListItemIcon>
-                      <ListItemText primary="Literature Order Forms" />
-                    </ListItem>
-                  </a>
-                </List>
-                <List dense={true}>
                   {this.state.links.map(({ linktext, linkurl }, ix) => {
                     return (
                       <a key={ix} target="_new" style={{ textDecoration: 'none' }} href={linkurl}>
@@ -126,7 +123,30 @@ class TrustedServants extends React.Component {
             </CardContent>
           </Card>
         </Grid>
-        <Grid style={{ maxWidth: '445px', minWidth: '445px', margin: "20px" }} item md={4} sm={12} ></Grid>
+        <Grid style={{ maxWidth: '445px', minWidth: '445px', margin: "20px" }} item md={4} sm={12} >
+          <Card>
+            <CardHeader
+              title="Forms"
+              subheader="Useful forms for area meetings."
+            />
+            <CardContent>
+              <div style={{ width: '100%' }}>
+                <List dense={false}>
+                  {this.state.forms.map(({ linktext, linkurl }, ix) => {
+                    return (
+                      <a key={ix} target="_new" style={{ textDecoration: 'none' }} href={linkurl}>
+                        <ListItem>
+                          <ListItemIcon><FileCopyIcon /></ListItemIcon>
+                          <ListItemText primary={linktext} />
+                        </ListItem>
+                      </a>
+                    )
+                  })}
+                </List>
+              </div>
+            </CardContent>
+          </Card>
+        </Grid>
       </OuterContainer>
     )
   }

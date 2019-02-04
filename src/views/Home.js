@@ -11,7 +11,7 @@ const Home = (props) => {
         Welcome to the Mile High Area
       </Typography>
       <Typography style={{ margin: '0 auto', textAlign: 'center' }} color='primary' >
-        The Mile High Area of Narcotics Anonymous serves Denver and the greater Denver Metro Area
+        The Mile High Area of Narcotics Anonymous serves Denver, the greater Denver Metro Area, Summit County, and Steamboat Springs.
       </Typography>
       <div
         style={{ marginTop: '20px', position: 'relative' }}

@@ -7,6 +7,7 @@ import Header from './components/Header'
 import Meetings from './views/Meetings'
 import Events from './views/Events'
 import TrustedServants from './views/TrustedServants'
+import PublicRelations from './views/PublicRelations'
 import Home from './views/Home'
 import theme from './theme'
 import bmltInject from './bmltInject'
@@ -26,6 +27,7 @@ const App = (props) => {
               <Route path='/meetings' render={(props) => <Meetings {...props} meetings={meetings} formats={formats} isLoading={isLoading} />} />
               <Route path='/events' component={Events} />
               <Route path='/trusted-servants' component={TrustedServants} />
+              <Route path='/public-relations' component={PublicRelations} />
             </Switch>
           </div>
         </React.Fragment>
