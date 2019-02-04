@@ -1,5 +1,11 @@
 import React from 'react'
-import { Typography, Grid, Button, withStyles, withWidth, CardMedia } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles';
+import withWidth from '@material-ui/core/withWidth'
+import CardMedia from '@material-ui/core/CardMedia'
+import Typography from '@material-ui/core/Typography'
+
 import OuterContainer from '../components/OuterContainer'
 import ContactList from '../components/ContactList'
 import skyline from '../../assets/skyline.jpg'

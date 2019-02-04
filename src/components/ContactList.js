@@ -10,7 +10,9 @@ const ContactList = (_props) => {
           <LocalPhone />
         </ListItemIcon>
         <ListItemText
-          primary={<Typography variant='subtitle1' style={{ color: '#225c83' }}>(303) 832-3784</Typography>}
+          primary={<Typography style={{ color: '#225c83' }}>
+            <a href="tel:303-832-3784">(303) 832-3784</a>
+          </Typography>}
           secondary={<Typography style={{ color: '#225c83' }}>Connection to a recovering addict 24/7, meetings, and events.</Typography>}
         />
       </ListItem>

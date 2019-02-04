@@ -2,7 +2,7 @@ import React from "react"
 import { map } from 'lodash'
 import {
 	Table, Paper, TableHead,
-	TableRow, TableBody, TableCell, Typography,
+	TableRow, TableBody, TableCell,
 	withStyles
 } from '@material-ui/core'
 

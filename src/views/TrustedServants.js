@@ -1,16 +1,16 @@
 import React from 'react'
-import {
-  Typography,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Grid,
-  withWidth,
-  Card,
-  CardHeader,
-  CardContent,
-} from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import withWidth from '@material-ui/core/withWidth'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardContent from '@material-ui/core/CardContent'
+import Card from '@material-ui/core/Card'
+import Typography from '@material-ui/core/Typography'
+
 import FolderIcon from '@material-ui/icons/Folder';
 import EmailIcon from '@material-ui/icons/Email';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
@@ -113,14 +113,14 @@ const CalendarCard = () => (
       <CardContent>
         <iframe
           src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=9ip36bqq8qgdusokmkb96n486k%40group.calendar.google.com&amp;color=%2329527A&amp;ctz=America%2FDenver"
-          style={{ border: '0', margin: '0 auto', width: '100%', height: '400px' }} frameBorder="0" scrolling="no"></iframe>
+          style={{ border: '0', margin: '0 auto', width: '1px', minWidth: '100%', height: '400px' }} frameBorder="0" scrolling="no"></iframe>
       </CardContent>
     </Card>
   </Grid>
 )
 
 const GoogleSheetCard = ({ title, subtitle, data, icon, children, hasSecondary }) => {
-  if (!data[0]) return null
+  if (!data[0]) return <LinearProgress />
   const keyNames = Object.keys(data[0])
   return (
     <Grid style={{ marginTop: '20px', marginBottom: '20px', width: '100%' }} item md={12} sm={12} >

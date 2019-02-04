@@ -1,10 +1,10 @@
 import React from 'react'
-import {
-  Typography,
-  Card,
-  CardContent,
-  withWidth,
-} from '@material-ui/core'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import withWidth from '@material-ui/core/withWidth'
+import CardContent from '@material-ui/core/CardContent'
+import Card from '@material-ui/core/Card'
+import Typography from '@material-ui/core/Typography'
+
 import GetSheetDone from 'get-sheet-done'
 import OuterContainer from '../components/OuterContainer'
 
@@ -31,15 +31,16 @@ class TrustedServants extends React.Component {
       <OuterContainer width={width}>
         <Card style={{ width: '100%', marginTop: '20px' }}>
           <CardContent>
+            {this.state.content.length === 0 ? <LinearProgress /> : null}
             {this.state.content.map(({ header, body }, ix) => {
               return (
                 <div style={{ marginBottom: '20px' }} key={ix}>
                   <Typography style={{ color: '#225c83' }} variant='h5'>{header}</Typography>
                   <Typography style={{ color: '#225c83' }}>{body}</Typography>
+                  <Typography><a href="http://www.na.org">More info on www.na.org</a></Typography>
                 </div>
               )
             })}
-            <Typography><a href="http://www.na.org">More info on www.na.org</a></Typography>
           </CardContent>
         </Card>
       </OuterContainer>
