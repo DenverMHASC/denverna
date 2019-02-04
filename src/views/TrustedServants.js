@@ -104,57 +104,62 @@ class TrustedServants extends React.Component {
 export default withStyles(styles)(TrustedServants)
 
 const CalendarCard = () => (
-  <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
-    <CardHeader
-      title={<Typography style={{ color: '#225c83' }} variant='h5'>Mile High Area Service Meetings</Typography>}
-      subheader={<Typography style={{ color: '#225c83' }}>Attend a subcommittee meeting and get involved!</Typography>}
-    />
-    <CardContent>
-      <iframe
-        src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=9ip36bqq8qgdusokmkb96n486k%40group.calendar.google.com&amp;color=%2329527A&amp;ctz=America%2FDenver"
-        style={{ border: '0', margin: '0 auto', width: '100%', height: '400px' }} frameBorder="0" scrolling="no"></iframe>
-    </CardContent>
-  </Card>
-
+  <Grid style={{ margin: '20px' }} item md={12} sm={12}  >
+    <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
+      <CardHeader
+        title={<Typography style={{ color: '#225c83' }} variant='h5'>Mile High Area Service Meetings</Typography>}
+        subheader={<Typography style={{ color: '#225c83' }}>Attend a subcommittee meeting and get involved!</Typography>}
+      />
+      <CardContent>
+        <iframe
+          src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=9ip36bqq8qgdusokmkb96n486k%40group.calendar.google.com&amp;color=%2329527A&amp;ctz=America%2FDenver"
+          style={{ border: '0', margin: '0 auto', width: '100%', height: '400px' }} frameBorder="0" scrolling="no"></iframe>
+      </CardContent>
+    </Card>
+  </Grid>
 )
 
 const GoogleSheetCard = ({ title, subtitle, data, icon, children, hasSecondary }) => {
   if (!data[0]) return null
   const keyNames = Object.keys(data[0])
   return (
-    <Card style={{ marginTop: '10px', marginBottom: '10px' }}>
-      <CardHeader
-        title={<Typography style={{ color: '#225c83' }} variant='h5'>{title}</Typography>}
-        subheader={<Typography style={{ color: '#225c83' }}>{subtitle}</Typography>}
-      />
-      <CardContent>
-        <div style={{ width: '100%' }}>
-          <List dense={false}>
-            {children}
-            {data.map((d, ix) => {
-              if (hasSecondary) {
+    <Grid style={{ margin: '20px', width: '100%' }} item md={12} sm={12} >
+      <Card>
+        <CardHeader
+          title={<Typography style={{ color: '#225c83' }} variant='h5'>{title}</Typography>}
+          subheader={<Typography style={{ color: '#225c83' }}>{subtitle}</Typography>}
+        />
+        <CardContent>
+          <div style={{ width: '100%' }}>
+            <List dense={false}>
+              {children}
+              {data.map((d, ix) => {
+                if (hasSecondary) {
+                  return (
+                    <ListItem key={ix}>
+                      <ListItemIcon><EmailIcon /></ListItemIcon>
+                      <ListItemText
+                        primary={<Typography style={{ color: '#225c83', fontSize: '16px' }}>{d[keyNames[0]]}</Typography>}
+                        secondary={<Typography style={{ wordBreak: 'break-all', color: '#225c83' }}>
+                          <a href={'mailto:' + d[keyNames[1]]}> {d[keyNames[1]]}</a>
+                        </Typography>}
+                      />
+                    </ListItem>
+                  )
+                }
                 return (
-                  <ListItem key={ix}>
-                    <ListItemIcon><EmailIcon /></ListItemIcon>
-                    <ListItemText
-                      primary={<Typography style={{ color: '#225c83', fontSize: '16px' }}>{d[keyNames[0]]}</Typography>}
-                      secondary={<Typography style={{ color: '#225c83' }}>{d[keyNames[1]]}</Typography>}
-                    />
-                  </ListItem>
+                  <a key={ix} target="_new" style={{ textDecoration: 'none' }} href={d[keyNames[1]]}>
+                    <ListItem>
+                      <ListItemIcon>{icon}</ListItemIcon>
+                      <ListItemText primary={<Typography style={{ color: '#225c83', fontSize: '16px' }}>{d[keyNames[0]]}</Typography>} />
+                    </ListItem>
+                  </a>
                 )
-              }
-              return (
-                <a key={ix} target="_new" style={{ textDecoration: 'none' }} href={d[keyNames[1]]}>
-                  <ListItem>
-                    <ListItemIcon>{icon}</ListItemIcon>
-                    <ListItemText primary={<Typography style={{ color: '#225c83', fontSize: '16px' }}>{d[keyNames[0]]}</Typography>} />
-                  </ListItem>
-                </a>
-              )
-            })}
-          </List>
-        </div>
-      </CardContent>
-    </Card>
+              })}
+            </List>
+          </div>
+        </CardContent>
+      </Card>
+    </Grid>
   )
 }
