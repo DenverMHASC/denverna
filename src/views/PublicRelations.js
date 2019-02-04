@@ -1,14 +1,8 @@
 import React from 'react'
 import {
   Typography,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Grid,
   withStyles,
   Card,
-  CardHeader,
   CardContent,
 } from '@material-ui/core'
 import FolderIcon from '@material-ui/icons/Folder';
@@ -49,8 +43,8 @@ class TrustedServants extends React.Component {
             {this.state.content.map(({ header, body }, ix) => {
               return (
                 <div style={{ marginBottom: '20px' }} key={ix}>
-                  <Typography variant='h4'>{header}</Typography>
-                  <Typography>{body}</Typography>
+                  <Typography style={{ color: '#225c83' }} variant='h5'>{header}</Typography>
+                  <Typography style={{ color: '#225c83' }}>{body}</Typography>
                 </div>
               )
             })}

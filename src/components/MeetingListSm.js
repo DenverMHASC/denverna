@@ -24,15 +24,20 @@ const MeetingCardStyles = {
   root: {
     padding: '10px',
     margin: '10px 0'
+  },
+  typography: {
+    fontSize: '16px'
   }
 }
+
+
 
 const MeetingCard = withStyles(MeetingCardStyles)(({ time, name, format, address, classes }) => {
   return (
     <Paper className={classes.root}>
-      <Typography>Name: {name}</Typography>
-      <Typography>Time: {time}</Typography>
-      <Typography>
+      <Typography className={classes.typography}>Name: {name}</Typography>
+      <Typography className={classes.typography}>Time: {time}</Typography>
+      <Typography className={classes.typography}>
         Address: <A
           href={generateGoogleMapsLinkFromAddress(address)}
         >
@@ -40,7 +45,7 @@ const MeetingCard = withStyles(MeetingCardStyles)(({ time, name, format, address
           />
         </A>
       </Typography>
-      <Typography>Format: {format.join(', ')}</Typography>
+      <Typography className={classes.typography}>Format: {format.join(', ')}</Typography>
 
     </Paper>
   )

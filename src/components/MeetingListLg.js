@@ -24,12 +24,12 @@ const meetingListTableStyles = {
 	time: {
 		fontSize: '16px',
 		fontWeight: 'bold',
-		width: '10%'
+		width: '15%'
 	},
 	name: {
 		fontSize: '16px',
 		fontWeight: 'bold',
-		width: '30%'
+		width: '25%'
 	},
 	address: {
 		fontSize: '16px',
