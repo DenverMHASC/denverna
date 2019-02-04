@@ -2,6 +2,7 @@ import React from 'react'
 import { Typography, Grid, Button, withStyles, withWidth, CardMedia } from '@material-ui/core'
 import OuterContainer from '../components/OuterContainer'
 import ContactList from '../components/ContactList'
+import skyline from '../../assets/skyline.jpg'
 
 const Home = (props) => {
   const { history, classes, width } = props
@@ -19,7 +20,7 @@ const Home = (props) => {
         <CardMedia
           component="img"
           className={classes.skyline}
-          image="/assets/skyline.jpg"
+          image={skyline}
           title="R0uge [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons"
           height="400"
         />

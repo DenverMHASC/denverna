@@ -13,6 +13,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withRouter } from 'react-router-dom'
+import logo from '../../assets/logo.png'
 
 const styles = (theme) => ({
   root: {
@@ -185,7 +186,7 @@ class Header extends React.Component {
           </Toolbar>
           {['sm', 'md', 'lg', 'xl'].includes(width) ?
             <a className={classes.semiCircle} href="/" rel="home">
-              <img className={classes.logo} src="/assets/logo.png"></img>
+              <img className={classes.logo} src={logo}></img>
             </a>
             : null}
         </AppBar>

@@ -1,5 +1,6 @@
 {
   "name": "denverna",
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "Denver Narcotics Anonymous",
   "main": "index.js",
@@ -22,6 +23,7 @@
     "babel-plugin-transform-object-rest-spread": "6.26.0",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
+    "file-loader": "^3.0.1",
     "webpack": "4.19.1",
     "webpack-cli": "3.1.0",
     "webpack-dev-server": "^3.1.9"
