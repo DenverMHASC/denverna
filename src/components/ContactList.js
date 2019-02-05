@@ -1,6 +1,13 @@
 import React from 'react'
-import { List, ListItem, ListItemText, ListItemIcon, Typography } from '@material-ui/core'
-import { LocalPhone, Email, MarkunreadMailbox } from '@material-ui/icons'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import Typography from '@material-ui/core/Typography'
+import MarkunreadMailbox from '@material-ui/icons/MarkunreadMailbox';
+import Email from '@material-ui/icons/Email';
+import LocalPhone from '@material-ui/icons/LocalPhone';
+
 
 const ContactList = (_props) => {
   return (

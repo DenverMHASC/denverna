@@ -1,7 +1,8 @@
 import React from 'react'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Switch, Route, HashRouter } from 'react-router-dom'
-import { MuiThemeProvider, withStyles } from '@material-ui/core/styles'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 import Header from './components/Header'
 import Meetings from './views/Meetings'

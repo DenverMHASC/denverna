@@ -1,7 +1,7 @@
 import React from 'react'
 import { bmltResponseToMeetingData } from './bmltToMeetingListData'
 import axios from 'axios-jsonp-pro'
-import { sortBy, mapValues, flatMap, map, flatten, uniq, reduce } from 'lodash'
+import { sortBy, mapValues, flatMap, flatten, uniq, reduce } from 'lodash'
 
 
 const bmltInject = (Component) => {

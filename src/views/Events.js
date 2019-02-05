@@ -1,6 +1,10 @@
 import React from 'react'
 import OuterContainer from '../components/OuterContainer'
-import { CardContent, Card, CardHeader, Typography, withWidth } from '@material-ui/core';
+import CardContent from '@material-ui/core/CardContent';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Typography from '@material-ui/core/Typography';
+import withWidth from '@material-ui/core/withWidth';
 
 
 const Events = (props) => {

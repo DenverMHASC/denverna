@@ -1,5 +1,5 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
 
 const A = ({ href, classes, children }) =>
   <a href={href} className={classes.root}>{children}</a>

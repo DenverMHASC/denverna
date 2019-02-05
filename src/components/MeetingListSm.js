@@ -1,7 +1,8 @@
 import React from 'react'
-import { Paper, Typography, withStyles } from '@material-ui/core'
+import withStyles from '@material-ui/core/styles/withStyles'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 import { map } from 'lodash'
-
 import DayLabel from './DayLabel'
 import Address from './Address'
 import A from './A'

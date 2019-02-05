@@ -1,8 +1,13 @@
 import React from 'react'
-import {
-  withWidth, Button, AppBar, withStyles, InputLabel, LinearProgress, FormControl,
-  Select, MenuItem, NativeSelect
-} from '@material-ui/core'
+
+import withStyles from '@material-ui/core/styles/withStyles'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import NativeSelect from '@material-ui/core/NativeSelect'
+import withWidth from '@material-ui/core/withWidth'
+
+
 import { capitalize, pick } from 'lodash'
 
 import MeetingListLg from '../components/MeetingListLg'
