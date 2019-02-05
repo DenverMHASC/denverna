@@ -35,6 +35,9 @@ const styles = (theme) => ({
     marginRight: 24,
     padding: '0px',
     marginTop: '-7px',
+    '&:hover': {
+      backgroundColor: '#1c84be',
+    }
   },
   menuIcon: {
     color: 'white',
