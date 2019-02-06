@@ -21,19 +21,10 @@ if [[ "$TRAVIS_BRANCH/$TRAVIS_PULL_REQUEST" == "master/false" ]]; then
     if [ ${#filesChanged[@]} -eq 0 ]; then
         echo "No files to update"
     else
-        for f in $filesChanged
-        do
-            #do not upload these files that aren't necessary to the site
-            if [ "$f" != ".travis.yml" ] && [ "$f" != "deploy.sh" ] && [ "$f" != "test.js" ] && [ "$f" != "package.json" ]
-            then
-                echo "Uploading $f"
-                curl --ftp-create-dirs -T $f --user $FTP_USERNAME:$FTP_PASSWORD ftp://ftp.nacolorado.org/test/$f
-            fi
-        done
-        echo "Uploading dist/main.js"
-        curl --ftp-create-dirs -T dist/main.js --user $FTP_USERNAME:$FTP_PASSWORD ftp://ftp.nacolorado.org/test/dist/main.js
-        echo "Uploading dist/main.js.map"
-        curl --ftp-create-dirs -T dist/main.js.map --user $FTP_USERNAME:$FTP_PASSWORD ftp://ftp.nacolorado.org/test/dist/main.js.map
+        echo "Uploading dist/bundle.js"
+        curl --ftp-create-dirs -T dist/main.js --user $FTP_USERNAME:$FTP_PASSWORD ftp://ftp.nacolorado.org/dist/bundle.js
+        echo "Uploading dist/bundle.js.map"
+        curl --ftp-create-dirs -T dist/main.js.map --user $FTP_USERNAME:$FTP_PASSWORD ftp://ftp.nacolorado.org/dist/bundle.js.map
     fi
 
 fi
