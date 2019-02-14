@@ -58,14 +58,17 @@ class Events extends React.Component {
     if (this.state.eventInfo.length === 0) return null
 
     return (
-      this.state.eventInfo.map(({ flyerlink, date }, ix) => {
+      this.state.eventInfo.map(({ flyerlink, date, signuplink, signuptext }, ix) => {
         if (moment().isAfter(date, 'YYYY-mm-dd')) {
           return null
         }
         return (
-          <a key={ix} target="_new" href={flyerlink} style={{ width: '50%', marginTop: '30px' }} >
-            <img src={flyerlink} style={{ border: '1px solid #225c83', width: '100%' }} />
-          </a>
+          <div key={ix} style={{ width: '50%', marginTop: '30px' }}>
+            <a target="_new" href={flyerlink}>
+              <img src={flyerlink} style={{ border: '1px solid #225c83', width: '100%' }} />
+            </a>
+            {signuplink ? <a style={{ textDecoration: 'none' }} target="_new" href={signuplink}><Typography style={{ color: '#225c83', fontSize: '24px', textAlign: 'center' }}>{signuptext}</Typography></a> : null}
+          </div>
         )
       }).filter(e => !!e)
     )
