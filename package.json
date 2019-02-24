@@ -7,8 +7,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development -w",
-    "start": "webpack --mode development",
-    "start:dev": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -40,6 +39,7 @@
     "react": "16.5.2",
     "react-bootstrap": "0.32.4",
     "react-dom": "16.5.2",
+    "react-load-image": "^0.1.7",
     "react-router-dom": "4.3.1"
   }
 }

@@ -5,10 +5,23 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import withWidth from '@material-ui/core/withWidth'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
+import ImageLoader from 'react-load-image'
 
 import OuterContainer from '../components/OuterContainer'
 import ContactList from '../components/ContactList'
 import skyline from '../../assets/skyline.jpg'
+
+const DenverImage = ({ src, classes }) => {
+  return (
+    <CardMedia
+      component="img"
+      className={classes.skyline}
+      image={src}
+      title="R0uge [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons"
+      height="400"
+    />
+  )
+}
 
 const Home = (props) => {
   const { history, classes, width } = props
@@ -23,13 +36,14 @@ const Home = (props) => {
       <div
         style={{ marginTop: '20px', position: 'relative' }}
       >
-        <CardMedia
-          component="img"
-          className={classes.skyline}
-          image={skyline}
-          title="R0uge [CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0)], from Wikimedia Commons"
-          height="400"
-        />
+        <ImageLoader
+          src={skyline}
+        >
+          <DenverImage classes={classes} />
+          <div style={{ fontSize: '50px' }}>error</div>
+          <div>loading...</div>
+        </ImageLoader>
+
         <div className={classes.viewMeetings}>
 
           <Typography align='center' variant='h5' style={{ margin: '0 auto', color: '#225c83' }} >
