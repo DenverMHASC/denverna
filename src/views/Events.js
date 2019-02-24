@@ -59,7 +59,9 @@ class Events extends React.Component {
 
     return (
       this.state.eventInfo.map(({ flyerlink, date, signuplink, signuptext }, ix) => {
-        if (moment().isAfter(date, 'YYYY-mm-dd')) {
+        const endOfEventDate = moment(date, 'YYYY-MM-DD').endOf('day').unix() + 1 // I hate date math.
+        const endOfDay = moment().endOf('day').unix()
+        if (endOfEventDate <= endOfDay) {
           return null
         }
         return (
