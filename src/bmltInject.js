@@ -21,13 +21,21 @@ const bmltInject = (Component) => {
         .then(meetingListData => mapValues(meetingListData, (meetingsByDay, k) => {
           return sortBy(meetingsByDay, ['sortStartTime', 'name'])
         }))
-        .then(meetingListData => this.setState({
-          meetings: meetingListData,
-          allFormats: reduce(meetingListData, (acc, d) => {
+        .then(meetingListData => {
+          const meetings = meetingListData
+          const allFormats = reduce(meetingListData, (acc, d) => {
             acc.push(flatMap(d, m => m.format))
             return uniq(flatten(acc))
-          }, []),
-        }))
+          }, [])
+
+          window.localStorage.setItem("meetings", JSON.stringify(meetings));
+          window.localStorage.setItem("allFormats", JSON.stringify(allFormats));
+
+          this.setState({
+            meetings,
+            allFormats,
+          })
+        })
     }
 
     render() {

@@ -1,0 +1,149 @@
+<!doctype html>
+<head>
+  <style>
+    @media print{
+      @page {
+        -webkit-transition: none !important;
+        transition: none !important;
+        size: landscape
+      }
+
+      .pagebreak {
+        page-break-before: always;
+      }
+    }
+
+    .row {
+      page-break-inside: avoid;
+      display: block;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .left {
+      page-break-inside: avoid;
+      display: block;
+      order: 1;
+    }
+    .middle {
+      page-break-inside: avoid;
+      display: block;
+      order: 2;
+    }
+    .right {
+      page-break-inside: avoid;
+      display: block;
+      order: 3;
+    }
+
+    .day-title {
+      margin: 0px;
+      font-size: 15px;
+    }
+
+    .meeting-details {
+      font-size: 10px;
+      display: block;
+    }
+
+  </style>
+</head>
+<html lang="en">
+
+  <body>
+    <template>
+      <h2 class="day-title"></h2>
+      <span class="meeting-details"></span>
+
+    </template>
+
+    <div id="printable-meeting-list">
+      <div id="back-page" class="row">
+          <div id="back-left-column" class="left"></div>
+          <div id="back-middle-column" class="middle">
+
+
+          </div>
+          <div id="back-right-column" class="right"></div>
+      </div>
+      <div class="pagebreak"></div>
+      <div id="front-page" class="">
+        <div id="left-column" class=""></div>
+        <div id="middle-column" class=""></div>
+        <div id="right-column" class=""></div>
+      </div>
+    </div>
+
+  </body>
+</html>
+
+<script>
+  var meetings = JSON.parse(window.localStorage.getItem("meetings"));
+  var allFormats = JSON.parse(window.localStorage.getItem("allFormats"));
+
+  var backpageLeft = document.getElementById('back-left-column')
+  var backpageMiddle = document.getElementById('back-middle-column')
+  var backpageRight = document.getElementById('back-right-column')
+
+  for (const day in meetings) {
+    var temp = document.getElementsByTagName("template")[0];
+    var dayTitle = temp.content.querySelector("h2");
+    var meetingSpan = temp.content.querySelector("span");
+
+    if (meetings.hasOwnProperty(day)) {
+      const element = meetings[day];
+
+      var h = document.importNode(dayTitle, true)
+      h.textContent = day
+      var column
+
+      if(day === 'sunday') {
+        column = backpageLeft
+      }
+
+      if (day === 'monday') {
+        column = backpageLeft
+      }
+
+      if (day === 'tuesday') {
+        column = backpageLeft
+      }
+
+      if (day === 'wednesday') {
+        column = backpageMiddle
+      }
+
+      if (day === 'thursday') {
+        column = backpageMiddle
+      }
+
+      if (day === 'friday') {
+        column = backpageRight
+      }
+
+
+      if (day === 'saturday') {
+        column = backpageRight
+      }
+
+      column.appendChild(h)
+
+      for (var i = 0; i < element.length; i++) {
+        //Create a new node, based on the template:
+        var p = document.importNode(meetingSpan, true);
+        //Add data from the array:
+        var meeting = element[i]
+        // 10:00 am No Matter What - O, ME, SW, 75 mins - 1510 Glen Ayr Dr #12, Lakewood
+        p.textContent += meeting.time + " " + meeting.name + ' - '
+          + meeting.format.join(', ') + ' - ' + meeting.address.street
+          + ', ' + meeting.address.city;
+        //append the new node wherever you like:
+        column.appendChild(p);
+      }
+
+    }
+  }
+
+
+
+</script>
