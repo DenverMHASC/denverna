@@ -6,7 +6,8 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import withWidth from '@material-ui/core/withWidth'
-
+import PrintOutlined from '@material-ui/icons/PrintOutlined'
+import Typography from '@material-ui/core/Typography';
 
 import { capitalize, pick } from 'lodash'
 
@@ -22,9 +23,28 @@ const styles = {
     flexWrap: 'wrap',
   },
   formControl: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  select: {
     minWidth: 140,
     maxWidth: 140,
   },
+  printContainer: {
+    display: 'inline-flex',
+    alignItems: 'center',
+  },
+  print: {
+    color: 'inherit',
+    textDecoration: 'inherit',
+  },
+  iconLabel: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
 }
 
 class Meetings extends React.Component {
@@ -91,6 +111,7 @@ class Meetings extends React.Component {
     return (
       <FormControl className={classes.formControl} >
         <Select
+          className={classes.select}
           value={day}
           onChange={this.handleChange}
           inputProps={{
@@ -103,6 +124,7 @@ class Meetings extends React.Component {
           </MenuItem>
           {Object.keys(allMeetings).map((day, idx) => (<MenuItem value={day} key={idx}>{capitalize(day)}</MenuItem>))}
         </Select>
+        <Typography><a target="_new" className={classes.print} href="https://drive.google.com/open?id=1kH9Mb9P02EuhONEBT8s-ikp-UvZsMaUs"><span className={classes.iconLabel}><PrintOutlined /><span>Print</span></span></a></Typography>
       </FormControl>
     )
   }
