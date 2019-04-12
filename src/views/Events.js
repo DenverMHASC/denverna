@@ -47,6 +47,7 @@ class Events extends React.Component {
               frameBorder="0"
               scrolling="no">
             </iframe>
+            <Typography style={{ color: '#225c83' }}><a href="#/trusted-servants">For Area Meetings Click Here</a></Typography>
           </CardContent>
         </Card>
         {this.renderFliers()}
