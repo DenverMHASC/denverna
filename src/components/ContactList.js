@@ -28,7 +28,8 @@ const ContactList = (_props) => {
           <Email />
         </ListItemIcon>
         <ListItemText
-          primary={<Typography variant='subtitle1' style={{ color: '#225c83' }}>webservant.mhasc@gmail.com</Typography>}
+          primary={<Typography variant='subtitle1' style={{ color: '#225c83' }}><a href="mailto:webservant.mhasc@gmail.com">webservant.mhasc@gmail.com</a></Typography>}
+          secondary={<Typography variant='subtitle1' style={{ color: '#225c83' }}>Please email us comments, questions, or concerns.</Typography>}
         />
       </ListItem>
       <ListItem>

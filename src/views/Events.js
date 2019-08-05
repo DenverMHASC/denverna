@@ -35,10 +35,11 @@ class Events extends React.Component {
     }
     return (
       <OuterContainer width={props.width} style={{ flexDirection: 'column', alignItems: 'center' }}>
+        {this.renderFliers()}
         <Card style={{ width: '100%', marginTop: '20px', marginBottom: '40  px' }}>
           <CardHeader
-            title={<Typography style={{ color: '#225c83' }} variant='h5'>Activities and Events</Typography>}
-            subheader={<Typography style={{ color: '#225c83' }}>Monthly Potlucks, Mile High Activities, and more!</Typography>}
+            title={<Typography style={{ color: '#225c83' }} variant='h5'>Activities and Events Calendar</Typography>}
+            subheader={<Typography style={{ color: '#225c83' }}>Monthly Potlucks, Mile High Activities, and more! Select an event below for more information.</Typography>}
           />
           <CardContent>
             <iframe
@@ -47,10 +48,11 @@ class Events extends React.Component {
               frameBorder="0"
               scrolling="no">
             </iframe>
-            <Typography style={{ color: '#225c83' }}><a href="#/trusted-servants">For Area Meetings Click Here</a></Typography>
+            <Typography style={{ color: '#225c83' }}><a href="#/trusted-servants">Mile High Area Service Meetings</a></Typography>
+            <Typography style={{ color: '#225c83' }}><a href="https://nacolorado.org/calendar/">Regional Events</a></Typography>
+            <Typography style={{ color: '#225c83' }}><a href="https://nacolorado.org/crcna/crcna-events">CRCNA Events</a></Typography>
           </CardContent>
         </Card>
-        {this.renderFliers()}
       </OuterContainer>
     )
   }

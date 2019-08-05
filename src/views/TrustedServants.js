@@ -75,14 +75,6 @@ class TrustedServants extends React.Component {
           data={this.state.links}
           icon={<LinkIcon />}
         >
-          <a target="_new" style={{ textDecoration: 'none' }} href="https://drive.google.com/drive/folders/19EQDeMd0vpdiZDd9Bai_OOOXsQTVTN6F?usp=sharing">
-            <ListItem>
-              <ListItemIcon><FolderIcon /></ListItemIcon>
-              <ListItemText
-                primary={<Typography style={{ color: '#225c83', fontSize: '16px' }}>Area Minutes Archive</Typography>}
-              />
-            </ListItem>
-          </a>
         </GoogleSheetCard>
         <GoogleSheetCard
           title='Forms'
@@ -108,7 +100,7 @@ const CalendarCard = () => (
     <Card>
       <CardHeader
         title={<Typography style={{ color: '#225c83' }} variant='h5'>Mile High Area Service Meetings</Typography>}
-        subheader={<Typography style={{ color: '#225c83' }}>Attend a subcommittee meeting and get involved!</Typography>}
+        subheader={<Typography style={{ color: '#225c83' }}>Attend a subcommittee meeting and get involved! Select an event below for more information (address, time, details, etc). <br />Area Address: 2475 W 26th Ave, Denver, CO 80211</Typography>}
       />
       <CardContent>
         <iframe
