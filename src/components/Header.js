@@ -80,7 +80,7 @@ const styles = (theme) => ({
     display: 'block',
     height: '80px',
     width: '80px',
-    padding: '8px',
+    padding: '7px',
     position: 'absolute',
     zIndex: '0',
     left: '50%',
