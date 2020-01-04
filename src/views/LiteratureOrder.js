@@ -1,5 +1,6 @@
 import React from 'react'
 import { camelCase } from 'lodash'
+import { formatMoney } from 'accounting'
 import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
@@ -10,47 +11,118 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import InputLabel from '@material-ui/core/InputLabel'
+import TextField from '@material-ui/core/TextField'
 
 import OuterContainer from '../components/OuterContainer'
 import prices from '../literaturePrices'
+import Product from '../components/Product'
 
 const ZERO_TO_ONE_HUNDRED = Array.from(Array(100).keys())
+
+const SECTION_NAMES = [
+  "Books",
+  "Booklets",
+  "Information Pamphlets",
+  "Service Products",
+  "Key Tags",
+  "Large Print",
+  "Medallions",
+  "Specialty Items",
+  "Multimedia Products",
+]
 
 
 class LiteratureOrder extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      prices: null
+      prices: null,
+      orderSummary: '',
+      name: '',
+      groupName: '',
+      phone: '',
+      email: '',
     }
 
     this.renderDropdown = this.renderDropdown.bind(this)
     this.renderSection = this.renderSection.bind(this)
     this.onChange = this.onChange.bind(this)
-
+    this.onPersonalInfoChange = this.onPersonalInfoChange.bind(this)
   }
+
 
   componentDidMount() {
     this.setState({ prices: prices })
   }
 
-  onChange(newQuantity, productToUpdate, sectionName) {
+  render() {
+    const { prices, orderSummary, name, groupName, email, phone } = this.state
+
+    return prices ? (
+      <OuterContainer width={this.props.width}>
+        {SECTION_NAMES.map(name => <React.Fragment key={name}>{this.renderSection(prices[camelCase(name)], name)}</React.Fragment>)}
+        <PersonalInfo
+          name={name}
+          groupName={groupName}
+          email={email}
+          phone={phone}
+          onChange={this.onPersonalInfoChange}
+        />
+        <OrderSummary orderSummary={orderSummary} />
+      </OuterContainer>
+    ) : null
+  }
+
+  onPersonalInfoChange(value, key) {
+    this.setState({ [key]: value })
+  }
+
+  onChange(newQuantity, itemNumber, sectionName) {
     const newPrices = { ...this.state.prices }
     const sectionNameCamel = camelCase(sectionName)
 
     newPrices[sectionNameCamel] = newPrices[sectionNameCamel].map(product => {
-      if (product.itemNumber === productToUpdate.itemNumber) {
+      if (product.itemNumber === itemNumber) {
         product.quantity = newQuantity
         return product
       }
       return product
     })
 
-    this.setState({ prices: newPrices })
+
+    const orderSummary = SECTION_NAMES.map((sectionName) => {
+      let section = newPrices[camelCase(sectionName)].reduce((section, product) => {
+        const { quantity, price, name } = product
+
+        if (quantity > 0) {
+          section.summary += `\n${quantity}x ${name} - ${formatMoney(quantity * price)}`
+          section.subtotal = section.subtotal + (price * quantity)
+          return section
+        }
+
+        return section
+
+      }, {
+        subtotal: 0,
+        summary: ''
+      })
+
+      if (section.subtotal > 0) {
+        section.summary = `${sectionName} Subtotal: ${formatMoney(section.subtotal)}${section.summary}`
+      }
+
+      return section.summary
+
+    }).filter(sectionSummary => sectionSummary !== '').join('\n\n')
+
+    this.setState({
+      prices: newPrices,
+      orderSummary
+    })
 
   }
 
-  renderDropdown(product, sectionName) {
+  renderDropdown(quantity, itemNumber, sectionName) {
     const { width } = this.props
 
     if (width === 'xs') {
@@ -58,8 +130,8 @@ class LiteratureOrder extends React.Component {
         <FormControl >
           <InputLabel> Quantity</InputLabel>
           <NativeSelect
-            onChange={(e) => this.onChange(e.target.value, product, sectionName)}
-            value={product.quantity}
+            onChange={(e) => this.onChange(e.target.value, itemNumber, sectionName)}
+            value={quantity}
             inputProps={{
               name: 'quantity',
               id: 'quantity',
@@ -87,67 +159,101 @@ class LiteratureOrder extends React.Component {
     )
   }
 
-  renderSection(products, name) {
+  renderSection(products, sectionName) {
+
+    const subtotal = products.reduce((sum, product) =>
+      sum + (product.quantity * product.price),
+      0)
+
     return (
-      <Grid item xs={12}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Typography variant='subtitle1'>{name} - subtotal: $0.00</Typography>
-          </Grid>
-          {products.map((product) => {
-            return (
-              <Grid key={product.itemNumber} item xs={12}>
-                <Product product={product} renderDropdown={this.renderDropdown} sectionName={name} />
-              </Grid>
-            )
-          })}
+      <Grid container>
+        <Grid item xs={12}>
+          <Typography variant='subtitle1'>{sectionName} - subtotal: {formatMoney(subtotal)}</Typography>
         </Grid>
+        {products.map((product) => {
+          const { price, quantity, itemNumber, name } = product
+          return (
+            <Product
+              renderDropdown={this.renderDropdown}
+              price={price}
+              quantity={quantity}
+              name={name}
+              itemNumber={itemNumber}
+              sectionName={sectionName}
+            />
+          )
+        })}
       </Grid>
     )
   }
-
-
-  render() {
-    return this.state.prices ? (
-      <OuterContainer>
-        {this.renderSection(prices.books, "Books")}
-        {this.renderSection(prices.booklets, "Booklets")}
-        {this.renderSection(prices.informationPamphlets, "Information Pamphlets")}
-        {this.renderSection(prices.serviceProducts, "Service Products")}
-        {this.renderSection(prices.keyTags, "Key Tags")}
-        {this.renderSection(prices.largePrint, "Large Print")}
-        {this.renderSection(prices.medallions, "Medallions")}
-        {this.renderSection(prices.specialtyItems, "Specialty Items")}
-        {this.renderSection(prices.multimediaProducts, "Multimedia Products")}
-      </OuterContainer>
-    ) : null
-  }
 }
 
-const productCardStyles = {
+const PersonalInfo = (props) => {
+  const { name, groupName, email, phone, onChange } = props
+  return (
+    <Grid container>
+      <Grid item xs={12}>
+        <TextField
+          id="outlined-name"
+          label="Your Name"
+          value={name}
+          onChange={(e) => onChange(e.target.value, 'name')}
+          margin="normal"
+          variant="outlined"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="outlined-groupname"
+          label="Group Name"
+          value={groupName}
+          onChange={(e) => onChange(e.target.value, 'groupName')}
+          margin="normal"
+          variant="outlined"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="outlined-phonenumber"
+          label="Phone Number"
+          value={phone}
+          onChange={(e) => onChange(e.target.value, 'phone')}
+          margin="normal"
+          variant="outlined"
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          id="outlined-email"
+          label="Email"
+          value={email}
+          onChange={(e) => onChange(e.target.value, 'email')}
+          margin="normal"
+          variant="outlined"
+        />
+      </Grid>
+    </Grid>
+  )
+
+}
+
+const orderSummaryStyles = {
   root: {
     padding: '10px',
-    margin: '10px 0'
+    margin: '10px 0',
+    width: '100%'
   },
-  typography: {
-    fontSize: '16px'
-  }
 }
 
 
-const Product = withStyles(productCardStyles)(({ product, classes, renderDropdown, sectionName }) => {
+const OrderSummary = withStyles(orderSummaryStyles)(({ orderSummary, classes }) => {
   return (
     <Paper className={classes.root}>
       <Grid container>
-        <Grid item xs={12}>
-          <Typography><strong>{product.name}</strong></Typography>
-        </Grid>
-        <Grid item xs={6}>
-          {renderDropdown(product, sectionName)}
-        </Grid>
-        <Grid item xs={6}>
-          <Typography>Total: {product.price * product.quantity}</Typography>
-        </Grid>
+        <Typography> <strong>Order Summary</strong></Typography>
+        <pre style={{ whiteSpace: 'pre-wrap' }}>
+          {orderSummary}
+        </pre>
       </Grid>
     </Paper>
   )
