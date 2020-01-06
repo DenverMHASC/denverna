@@ -45,6 +45,7 @@ class LiteratureOrder extends React.Component {
     super(props)
     this.state = {
       prices: null,
+      expanded: null,
       orderSummary: '',
       name: '',
       groupName: '',
@@ -56,6 +57,7 @@ class LiteratureOrder extends React.Component {
     this.renderSection = this.renderSection.bind(this)
     this.onChange = this.onChange.bind(this)
     this.onPersonalInfoChange = this.onPersonalInfoChange.bind(this)
+    this.onChangeExpandPanel = this.onChangeExpandPanel.bind(this)
   }
 
 
@@ -89,6 +91,14 @@ class LiteratureOrder extends React.Component {
 
   onPersonalInfoChange(value, key) {
     this.setState({ [key]: value })
+  }
+
+  onChangeExpandPanel(name) {
+    if (this.state.expanded === name) {
+      this.setState({ expanded: null })
+    } else {
+      this.setState({ expanded: name })
+    }
   }
 
   onChange(newQuantity, itemNumber, sectionName) {
@@ -194,7 +204,10 @@ class LiteratureOrder extends React.Component {
       0)
 
     return (
-      <ExpansionPanel>
+      <ExpansionPanel
+        expanded={this.state.expanded === sectionName}
+        onChange={() => this.onChangeExpandPanel(sectionName)}
+      >
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography >{sectionName} - Total: {formatMoney(subtotal)}</Typography>
         </ExpansionPanelSummary>
