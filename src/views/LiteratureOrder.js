@@ -15,7 +15,10 @@ import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/button'
 import Divider from '@material-ui/core/Divider';
-
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import OuterContainer from '../components/OuterContainer'
 import prices from '../literaturePrices'
@@ -186,30 +189,33 @@ class LiteratureOrder extends React.Component {
   }
 
   renderSection(products, sectionName) {
-
     const subtotal = products.reduce((sum, product) =>
       sum + (product.quantity * product.price),
       0)
 
     return (
-      <Grid container>
-        <Grid item xs={12}>
-          <Typography variant='subtitle1'>{sectionName} - subtotal: {formatMoney(subtotal)}</Typography>
-        </Grid>
-        {products.map((product) => {
-          const { price, quantity, itemNumber, name } = product
-          return (
-            <Product
-              renderDropdown={this.renderDropdown}
-              price={price}
-              quantity={quantity}
-              name={name}
-              itemNumber={itemNumber}
-              sectionName={sectionName}
-            />
-          )
-        })}
-      </Grid>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography >{sectionName} - Total: {formatMoney(subtotal)}</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            {products.map((product) => {
+              const { price, quantity, itemNumber, name } = product
+              return (
+                <Product
+                  renderDropdown={this.renderDropdown}
+                  price={price}
+                  quantity={quantity}
+                  name={name}
+                  itemNumber={itemNumber}
+                  sectionName={sectionName}
+                />
+              )
+            })}
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     )
   }
 }
@@ -223,9 +229,7 @@ const cardStyles = {
 }
 
 const PersonalInfoCard = withStyles(cardStyles)((props) => <Paper className={props.classes.root}>{props.children}</Paper>)
-
 class PersonalInfo extends React.PureComponent {
-
   constructor(props) {
     super(props)
   }
@@ -249,7 +253,6 @@ class PersonalInfo extends React.PureComponent {
             />
           </Grid>
           <Grid item xs={12}>
-
             <TextField
               style={{ width: '100%' }}
               id="outlined-groupname"
@@ -285,14 +288,15 @@ class PersonalInfo extends React.PureComponent {
         </Grid>
       </PersonalInfoCard>
     )
-
   }
 }
 
 
 
+
+
 const createOrderSummaryString = (name, groupName, email, phone, orderSummary) => {
-  return `${orderSummary}\n\nName: ${name}\nGroup Name: ${groupName} \nEmail: ${email} \nphone: ${phone} \n`
+  return `${orderSummary}Name: ${name}\nGroup Name: ${groupName} \nEmail: ${email} \nphone: ${phone}`
 }
 
 const OrderSummary = withStyles(cardStyles)((props) => {

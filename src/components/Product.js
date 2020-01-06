@@ -30,7 +30,7 @@ class Product extends React.PureComponent {
             {renderDropdown(quantity, itemNumber, sectionName)}
           </Grid>
           <Grid item xs={6}>
-            <Typography>subtotal: {formatMoney(price * quantity)}</Typography>
+            <Typography>Total: {formatMoney(price * quantity)}</Typography>
           </Grid>
         </Grid>
       </Paper>
