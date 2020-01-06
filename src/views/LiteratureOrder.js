@@ -2,6 +2,7 @@ import React from 'react'
 import { camelCase } from 'lodash'
 import { formatMoney } from 'accounting'
 import withStyles from '@material-ui/core/styles/withStyles'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
@@ -12,10 +13,14 @@ import MenuItem from '@material-ui/core/MenuItem'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import InputLabel from '@material-ui/core/InputLabel'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/button'
+import Divider from '@material-ui/core/Divider';
+
 
 import OuterContainer from '../components/OuterContainer'
 import prices from '../literaturePrices'
 import Product from '../components/Product'
+
 
 const ZERO_TO_ONE_HUNDRED = Array.from(Array(100).keys())
 
@@ -68,7 +73,13 @@ class LiteratureOrder extends React.Component {
           phone={phone}
           onChange={this.onPersonalInfoChange}
         />
-        <OrderSummary orderSummary={orderSummary} />
+        <OrderSummary
+          orderSummary={orderSummary}
+          name={name}
+          groupName={name}
+          email={email}
+          phone={phone}
+        />
       </OuterContainer>
     ) : null
   }
@@ -89,8 +100,7 @@ class LiteratureOrder extends React.Component {
       return product
     })
 
-
-    const orderSummary = SECTION_NAMES.map((sectionName) => {
+    const orderSummaryData = SECTION_NAMES.map((sectionName) => {
       let section = newPrices[camelCase(sectionName)].reduce((section, product) => {
         const { quantity, price, name } = product
 
@@ -111,9 +121,25 @@ class LiteratureOrder extends React.Component {
         section.summary = `${sectionName} Subtotal: ${formatMoney(section.subtotal)}${section.summary}`
       }
 
-      return section.summary
+      return section
 
-    }).filter(sectionSummary => sectionSummary !== '').join('\n\n')
+    })
+
+    const orderSummarySectionText = orderSummaryData.reduce((sectionSummaryTextArray, data) => {
+      if (data.summary !== '') {
+        sectionSummaryTextArray.push(data.summary)
+      }
+
+      return sectionSummaryTextArray
+    }, []).join('\n\n')
+
+    const orderSubtotal = orderSummaryData.reduce((orderSubtotal, data) => orderSubtotal + data.subtotal, 0)
+    const handlingFee = orderSubtotal * 0.1
+    const orderTotal = orderSubtotal + handlingFee
+
+    const orderSummary =
+      `${orderSummarySectionText}\n\nSubtotal All Products: ${formatMoney(orderSubtotal)}\n10% handling fee: ${formatMoney(handlingFee)}\nTotal: ${formatMoney(orderTotal)}\n\n`
+
 
     this.setState({
       prices: newPrices,
@@ -188,56 +214,7 @@ class LiteratureOrder extends React.Component {
   }
 }
 
-const PersonalInfo = (props) => {
-  const { name, groupName, email, phone, onChange } = props
-  return (
-    <Grid container>
-      <Grid item xs={12}>
-        <TextField
-          id="outlined-name"
-          label="Your Name"
-          value={name}
-          onChange={(e) => onChange(e.target.value, 'name')}
-          margin="normal"
-          variant="outlined"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          id="outlined-groupname"
-          label="Group Name"
-          value={groupName}
-          onChange={(e) => onChange(e.target.value, 'groupName')}
-          margin="normal"
-          variant="outlined"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          id="outlined-phonenumber"
-          label="Phone Number"
-          value={phone}
-          onChange={(e) => onChange(e.target.value, 'phone')}
-          margin="normal"
-          variant="outlined"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <TextField
-          id="outlined-email"
-          label="Email"
-          value={email}
-          onChange={(e) => onChange(e.target.value, 'email')}
-          margin="normal"
-          variant="outlined"
-        />
-      </Grid>
-    </Grid>
-  )
-
-}
-
-const orderSummaryStyles = {
+const cardStyles = {
   root: {
     padding: '10px',
     margin: '10px 0',
@@ -245,19 +222,112 @@ const orderSummaryStyles = {
   },
 }
 
+const PersonalInfoCard = withStyles(cardStyles)((props) => <Paper className={props.classes.root}>{props.children}</Paper>)
 
-const OrderSummary = withStyles(orderSummaryStyles)(({ orderSummary, classes }) => {
+class PersonalInfo extends React.PureComponent {
+
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+
+    const { name, groupName, email, phone, onChange } = this.props
+    return (
+      <PersonalInfoCard>
+        <Grid container>
+          <Typography variant="subtitle1">Please enter your information</Typography>
+          <Grid item xs={12}>
+            <TextField
+              style={{ width: '100%' }}
+              id="outlined-name"
+              label="GSR Name"
+              value={name}
+              onChange={(e) => onChange(e.target.value, 'name')}
+              margin="normal"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12}>
+
+            <TextField
+              style={{ width: '100%' }}
+              id="outlined-groupname"
+              label="Group Name"
+              value={groupName}
+              onChange={(e) => onChange(e.target.value, 'groupName')}
+              margin="normal"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              style={{ width: '100%' }}
+              id="outlined-phonenumber"
+              label="Phone Number"
+              value={phone}
+              onChange={(e) => onChange(e.target.value, 'phone')}
+              margin="normal"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              style={{ width: '100%' }}
+              id="outlined-email"
+              label="Email"
+              value={email}
+              onChange={(e) => onChange(e.target.value, 'email')}
+              margin="normal"
+              variant="outlined"
+            />
+          </Grid>
+        </Grid>
+      </PersonalInfoCard>
+    )
+
+  }
+}
+
+
+
+const createOrderSummaryString = (name, groupName, email, phone, orderSummary) => {
+  return `${orderSummary}\n\nName: ${name}\nGroup Name: ${groupName} \nEmail: ${email} \nphone: ${phone} \n`
+}
+
+const OrderSummary = withStyles(cardStyles)((props) => {
+  const { orderSummary, classes, email, name, groupName, phone } = props
+  const orderSummaryString = createOrderSummaryString(name, groupName, email, phone, orderSummary)
+
+  const oneItemSelectedAndPersonalInfoCompleted = orderSummary !== ''
+    && name !== ''
+    && groupName !== ''
+    && phone !== ''
+    && email !== ''
+
+
   return (
     <Paper className={classes.root}>
       <Grid container>
         <Typography> <strong>Order Summary</strong></Typography>
-        <pre style={{ whiteSpace: 'pre-wrap' }}>
-          {orderSummary}
-        </pre>
+        <Divider />
+        {oneItemSelectedAndPersonalInfoCompleted ? <React.Fragment>
+          <pre style={{ whiteSpace: 'pre-wrap' }}>
+            {orderSummaryString}
+          </pre>
+
+          <CopyToClipboard text={orderSummaryString}>
+            <Button variant="contained" color="primary">Click here to copy your order</Button>
+          </CopyToClipboard>
+          <Typography style={{ marginTop: '10px' }}>Copy your order and send it in an email to literature.mhasc@gmail.com. Pick it up at the next Mile High Area Meeting! </Typography>
+        </React.Fragment> : emptyState
+        }
       </Grid>
     </Paper>
   )
 })
+
+const emptyState = <Typography>Please select at least one item and enter your name, group name, email, and phone number before continuing.</Typography>
 
 
 
