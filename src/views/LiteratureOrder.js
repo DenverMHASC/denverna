@@ -68,25 +68,33 @@ class LiteratureOrder extends React.Component {
   render() {
     const { prices, orderSummary, name, groupName, email, phone } = this.state
 
-    return prices ? (
+    return (
       <OuterContainer width={this.props.width}>
-        {SECTION_NAMES.map(name => <React.Fragment key={name}>{this.renderSection(prices[camelCase(name)], name)}</React.Fragment>)}
-        <PersonalInfo
-          name={name}
-          groupName={groupName}
-          email={email}
-          phone={phone}
-          onChange={this.onPersonalInfoChange}
-        />
-        <OrderSummary
-          orderSummary={orderSummary}
-          name={name}
-          groupName={name}
-          email={email}
-          phone={phone}
-        />
+        <Typography variant="subtitle1">Literature Order Tool</Typography>
+        <Typography style={{ marginBottom: "10px" }} align="center" >
+          Select the items you wish to order, fill out your info, then send an email to literature.mhasc@gmail.com
+          </Typography>
+        {prices ? (
+          <React.Fragment>
+            {SECTION_NAMES.map(name => <React.Fragment key={name}>{this.renderSection(prices[camelCase(name)], name)}</React.Fragment>)}
+            <PersonalInfo
+              name={name}
+              groupName={groupName}
+              email={email}
+              phone={phone}
+              onChange={this.onPersonalInfoChange}
+            />
+            <OrderSummary
+              orderSummary={orderSummary}
+              name={name}
+              groupName={name}
+              email={email}
+              phone={phone}
+            />
+          </React.Fragment>
+        ) : null}
       </OuterContainer>
-    ) : null
+    )
   }
 
   onPersonalInfoChange(value, key) {
@@ -184,14 +192,13 @@ class LiteratureOrder extends React.Component {
     return (
       <FormControl >
         <Select
-          value={product.quantity}
+          value={quantity}
           onChange={(e) => this.onChange(e.target.value, product, sectionName)}
           inputProps={{
             name: 'quantity',
             id: 'quantity',
           }}
         >
-
           {ZERO_TO_ONE_HUNDRED.map((number) => (<MenuItem value={number} key={number}>{number}</MenuItem>))}
         </Select>
       </FormControl>
@@ -212,11 +219,12 @@ class LiteratureOrder extends React.Component {
           <Typography >{sectionName} - Total: {formatMoney(subtotal)}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
+          <div>
             {products.map((product) => {
               const { price, quantity, itemNumber, name } = product
               return (
                 <Product
+                  key={itemNumber}
                   renderDropdown={this.renderDropdown}
                   price={price}
                   quantity={quantity}
@@ -226,7 +234,7 @@ class LiteratureOrder extends React.Component {
                 />
               )
             })}
-          </Typography>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     )
