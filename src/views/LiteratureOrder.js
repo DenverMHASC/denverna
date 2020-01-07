@@ -12,7 +12,6 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import InputLabel from '@material-ui/core/InputLabel'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/button'
 import Divider from '@material-ui/core/Divider';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -23,6 +22,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import OuterContainer from '../components/OuterContainer'
 import prices from '../literaturePrices'
 import Product from '../components/Product'
+import PersonalInfo from '../components/PersonalInfo'
 
 
 const ZERO_TO_ONE_HUNDRED = Array.from(Array(100).keys())
@@ -76,7 +76,15 @@ class LiteratureOrder extends React.Component {
           </Typography>
         {prices ? (
           <React.Fragment>
-            {SECTION_NAMES.map(name => <React.Fragment key={name}>{this.renderSection(prices[camelCase(name)], name)}</React.Fragment>)}
+            {SECTION_NAMES.map(name => (
+              <Grid
+                item
+                xs={12}
+                md={4}
+                key={name}>
+                {this.renderSection(prices[camelCase(name)], name)}
+              </Grid>
+            ))}
             <PersonalInfo
               name={name}
               groupName={groupName}
@@ -241,83 +249,16 @@ class LiteratureOrder extends React.Component {
   }
 }
 
+const createOrderSummaryString = (name, groupName, email, phone, orderSummary) => {
+  return `${orderSummary}Name: ${name}\nGroup Name: ${groupName} \nEmail: ${email} \nphone: ${phone}`
+}
+
 const cardStyles = {
   root: {
     padding: '10px',
     margin: '10px 0',
     width: '100%'
   },
-}
-
-const PersonalInfoCard = withStyles(cardStyles)((props) => <Paper className={props.classes.root}>{props.children}</Paper>)
-class PersonalInfo extends React.PureComponent {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-
-    const { name, groupName, email, phone, onChange } = this.props
-    return (
-      <PersonalInfoCard>
-        <Grid container>
-          <Typography variant="subtitle1">Please enter your information</Typography>
-          <Grid item xs={12}>
-            <TextField
-              style={{ width: '100%' }}
-              id="outlined-name"
-              label="GSR Name"
-              value={name}
-              onChange={(e) => onChange(e.target.value, 'name')}
-              margin="normal"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              style={{ width: '100%' }}
-              id="outlined-groupname"
-              label="Group Name"
-              value={groupName}
-              onChange={(e) => onChange(e.target.value, 'groupName')}
-              margin="normal"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              style={{ width: '100%' }}
-              id="outlined-phonenumber"
-              label="Phone Number"
-              value={phone}
-              onChange={(e) => onChange(e.target.value, 'phone')}
-              margin="normal"
-              variant="outlined"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              style={{ width: '100%' }}
-              id="outlined-email"
-              label="Email"
-              value={email}
-              onChange={(e) => onChange(e.target.value, 'email')}
-              margin="normal"
-              variant="outlined"
-            />
-          </Grid>
-        </Grid>
-      </PersonalInfoCard>
-    )
-  }
-}
-
-
-
-
-
-const createOrderSummaryString = (name, groupName, email, phone, orderSummary) => {
-  return `${orderSummary}Name: ${name}\nGroup Name: ${groupName} \nEmail: ${email} \nphone: ${phone}`
 }
 
 const OrderSummary = withStyles(cardStyles)((props) => {
