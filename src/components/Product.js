@@ -1,5 +1,8 @@
 import React from 'react'
-import { Grid, Typography, Paper } from '@material-ui/core'
+
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 import { formatMoney } from 'accounting'
 import withStyles from '@material-ui/core/styles/withStyles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
