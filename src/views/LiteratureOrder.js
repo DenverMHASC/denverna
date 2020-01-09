@@ -24,7 +24,6 @@ import prices from '../literaturePrices'
 import Product from '../components/Product'
 import PersonalInfo from '../components/PersonalInfo'
 
-
 const ZERO_TO_ONE_HUNDRED = Array.from(Array(100).keys())
 
 const SECTION_NAMES = [
@@ -70,35 +69,40 @@ class LiteratureOrder extends React.Component {
 
     return (
       <OuterContainer width={this.props.width}>
-        <Typography variant="subtitle1">Literature Order Tool</Typography>
-        <Typography style={{ marginBottom: "10px" }} align="center" >
-          Select the items you wish to order, fill out your info, then send an email to literature.mhasc@gmail.com
+        <Grid item xs={12}>
+          <Typography align="center" variant="subtitle1">Literature Order Tool</Typography>
+          <Typography style={{ marginBottom: "10px" }} align="center" >
+            Select the items you wish to order, fill out your info, then send an email to literature.mhasc@gmail.com
           </Typography>
+        </Grid>
         {prices ? (
           <React.Fragment>
             {SECTION_NAMES.map(name => (
               <Grid
                 item
                 xs={12}
-                md={4}
+                md={10}
+                // justify="center"
                 key={name}>
                 {this.renderSection(prices[camelCase(name)], name)}
               </Grid>
             ))}
-            <PersonalInfo
-              name={name}
-              groupName={groupName}
-              email={email}
-              phone={phone}
-              onChange={this.onPersonalInfoChange}
-            />
-            <OrderSummary
-              orderSummary={orderSummary}
-              name={name}
-              groupName={name}
-              email={email}
-              phone={phone}
-            />
+            <Grid item xs={12} md={10}>
+              <PersonalInfo
+                name={name}
+                groupName={groupName}
+                email={email}
+                phone={phone}
+                onChange={this.onPersonalInfoChange}
+              />
+              <OrderSummary
+                orderSummary={orderSummary}
+                name={name}
+                groupName={name}
+                email={email}
+                phone={phone}
+              />
+            </Grid>
           </React.Fragment>
         ) : null}
       </OuterContainer>
@@ -169,12 +173,10 @@ class LiteratureOrder extends React.Component {
     const orderSummary =
       `${orderSummarySectionText}\n\nSubtotal All Products: ${formatMoney(orderSubtotal)}\n10% handling fee: ${formatMoney(handlingFee)}\nTotal: ${formatMoney(orderTotal)}\n\n`
 
-
     this.setState({
       prices: newPrices,
       orderSummary
     })
-
   }
 
   renderDropdown(quantity, itemNumber, sectionName) {
@@ -192,7 +194,7 @@ class LiteratureOrder extends React.Component {
               id: 'quantity',
             }}
           >
-            {ZERO_TO_ONE_HUNDRED.map((number) => (<option value={number} key={number}>{number}</option>))}
+            {ZERO_TO_ONE_HUNDRED.map((number) => (<option value={number} key={number}>{number === 0 ? "none" : number}</option>))}
           </NativeSelect>
         </FormControl >
       )
@@ -201,19 +203,21 @@ class LiteratureOrder extends React.Component {
       <FormControl >
         <Select
           value={quantity}
-          onChange={(e) => this.onChange(e.target.value, product, sectionName)}
+          onChange={(e) => this.onChange(e.target.value, itemNumber, sectionName)}
           inputProps={{
             name: 'quantity',
             id: 'quantity',
           }}
         >
-          {ZERO_TO_ONE_HUNDRED.map((number) => (<MenuItem value={number} key={number}>{number}</MenuItem>))}
+          {ZERO_TO_ONE_HUNDRED.map((number) => (<MenuItem value={number} key={number}>{number === 0 ? "none" : number}</MenuItem>))}
         </Select>
       </FormControl>
     )
   }
 
   renderSection(products, sectionName) {
+    const { width } = this.props
+
     const subtotal = products.reduce((sum, product) =>
       sum + (product.quantity * product.price),
       0)
@@ -227,24 +231,25 @@ class LiteratureOrder extends React.Component {
           <Typography >{sectionName} - Total: {formatMoney(subtotal)}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <div>
+          <Grid container>
             {products.map((product) => {
               const { price, quantity, itemNumber, name } = product
               return (
-                <Product
-                  key={itemNumber}
-                  renderDropdown={this.renderDropdown}
-                  price={price}
-                  quantity={quantity}
-                  name={name}
-                  itemNumber={itemNumber}
-                  sectionName={sectionName}
-                />
+                <Grid key={itemNumber} item xs={12} md={6}>
+                  <Product
+                    renderDropdown={this.renderDropdown}
+                    price={price}
+                    quantity={quantity}
+                    name={name}
+                    itemNumber={itemNumber}
+                    sectionName={sectionName}
+                  />
+                </Grid>
               )
             })}
-          </div>
+          </Grid>
         </ExpansionPanelDetails>
-      </ExpansionPanel>
+      </ExpansionPanel >
     )
   }
 }
@@ -275,25 +280,30 @@ const OrderSummary = withStyles(cardStyles)((props) => {
   return (
     <Paper className={classes.root}>
       <Grid container>
-        <Typography> <strong>Order Summary</strong></Typography>
-        <Divider />
-        {oneItemSelectedAndPersonalInfoCompleted ? <React.Fragment>
-          <pre style={{ whiteSpace: 'pre-wrap' }}>
-            {orderSummaryString}
-          </pre>
+        <Grid item xs={12}>
+          <Typography style={{ marginBottom: '10px' }} align="center"> <strong>Order Summary</strong></Typography>
+          <Divider />
+        </Grid>
 
-          <CopyToClipboard text={orderSummaryString}>
-            <Button variant="contained" color="primary">Click here to copy your order</Button>
-          </CopyToClipboard>
-          <Typography style={{ marginTop: '10px' }}>Copy your order and send it in an email to literature.mhasc@gmail.com. Pick it up at the next Mile High Area Meeting! </Typography>
-        </React.Fragment> : emptyState
-        }
+        <Grid item xs={12}>
+          {oneItemSelectedAndPersonalInfoCompleted ? <React.Fragment>
+            <pre style={{ whiteSpace: 'pre-wrap' }}>
+              {orderSummaryString}
+            </pre>
+            <Divider style={{ marginBottom: '10px' }} />
+            <CopyToClipboard text={orderSummaryString}>
+              <Button variant="contained" color="primary">Click here to copy your order</Button>
+            </CopyToClipboard>
+            <Typography style={{ marginTop: '10px' }}>Copy your order and send it in an email to literature.mhasc@gmail.com. Pick it up at the next Mile High Area Meeting! </Typography>
+          </React.Fragment> : emptyState
+          }
+        </Grid>
       </Grid>
     </Paper>
   )
 })
 
-const emptyState = <Typography>Please select at least one item and enter your name, group name, email, and phone number before continuing.</Typography>
+const emptyState = <Typography style={{ marginTop: '10px' }} align="center">Please select at least one item and enter your name, group name, email, and phone number before continuing.</Typography>
 
 
 
