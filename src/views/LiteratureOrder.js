@@ -1,5 +1,5 @@
 import React from 'react'
-import { camelCase } from 'lodash'
+import camelCase from 'lodash/camelCase'
 import { formatMoney } from 'accounting'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -25,6 +25,9 @@ import Product from '../components/Product'
 import PersonalInfo from '../components/PersonalInfo'
 
 const ZERO_TO_ONE_HUNDRED = Array.from(Array(100).keys())
+
+const nativeSelectItems = ZERO_TO_ONE_HUNDRED.map((number) => (<option value={number} key={number}>{number === 0 ? "none" : number}</option>))
+const selectItems = ZERO_TO_ONE_HUNDRED.map((number) => (<MenuItem value={number} key={number}>{number === 0 ? "none" : number}</MenuItem>))
 
 const SECTION_NAMES = [
   "Books",
@@ -82,7 +85,6 @@ class LiteratureOrder extends React.Component {
                 item
                 xs={12}
                 md={10}
-                // justify="center"
                 key={name}>
                 {this.renderSection(prices[camelCase(name)], name)}
               </Grid>
@@ -194,7 +196,7 @@ class LiteratureOrder extends React.Component {
               id: 'quantity',
             }}
           >
-            {ZERO_TO_ONE_HUNDRED.map((number) => (<option value={number} key={number}>{number === 0 ? "none" : number}</option>))}
+            {nativeSelectItems}
           </NativeSelect>
         </FormControl >
       )
@@ -209,7 +211,7 @@ class LiteratureOrder extends React.Component {
             id: 'quantity',
           }}
         >
-          {ZERO_TO_ONE_HUNDRED.map((number) => (<MenuItem value={number} key={number}>{number === 0 ? "none" : number}</MenuItem>))}
+          {selectItems}
         </Select>
       </FormControl>
     )
