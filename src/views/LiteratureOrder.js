@@ -100,7 +100,7 @@ class LiteratureOrder extends React.Component {
               <OrderSummary
                 orderSummary={orderSummary}
                 name={name}
-                groupName={name}
+                groupName={groupName}
                 email={email}
                 phone={phone}
               />
