@@ -1,5 +1,6 @@
 import React from 'react'
 import camelCase from 'lodash/camelCase'
+
 import { formatMoney } from 'accounting'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -18,6 +19,8 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Link from '@material-ui/icons/Link';
+
 
 import OuterContainer from '../components/OuterContainer'
 import prices from '../literaturePrices'
@@ -77,6 +80,9 @@ class LiteratureOrder extends React.Component {
           <Typography style={{ marginBottom: "10px" }} align="center" >
             Select the items you wish to order, fill out your info, then send an email to literature.mhasc@gmail.com
           </Typography>
+          <a target="_new" style={{ textDecoration: 'none' }} href={"https://docs.google.com/forms/d/e/1FAIpQLSdqTIj8Df6Kh-DmOPH9BHqJixcQiQ3HP6--sVr3RYRSBTsQMg/viewform"}>
+            <Typography style={{ color: '#225c83', fontSize: '16px', textAlign: 'center', marginBottom: '10px' }}>Click here to give us feedback </Typography>
+          </a>
         </Grid>
         {prices ? (
           <React.Fragment>
@@ -104,6 +110,7 @@ class LiteratureOrder extends React.Component {
                 email={email}
                 phone={phone}
               />
+
             </Grid>
           </React.Fragment>
         ) : null}
