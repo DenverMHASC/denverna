@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -11,7 +12,6 @@ import CardContent from '@material-ui/core/CardContent'
 import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography'
 
-import FolderIcon from '@material-ui/icons/Folder';
 import EmailIcon from '@material-ui/icons/Email';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import LinkIcon from '@material-ui/icons/LinkSharp';
@@ -23,10 +23,6 @@ const TRUSTED_SERVANT_RESOURCES_DATA_ID = "1BLFmqqeuhRJpSagt2NWks8kTYfJ-sMCjYJtz
 const TRUSTED_SERVANT_FORMS_ID = "1YDoK845zn7ekr6sNpZT2Loi29dOvAbkLolovWDOMZaI"
 const TRUSTED_SERVANT_CONTACT_INFO_ID = "1P7PVwFR2FLD4p-IG2jTWUIqe78uezegywdIfAxBBors"
 const TRUSTED_SERVANT_GUIDELINES_ID = "1hoDrNQgIyTxSOQ-91cKFjDnJJbkKXU49kfSYWr6IBDY"
-
-const styles = theme => ({
-});
-
 
 class TrustedServants extends React.Component {
   constructor() {
@@ -74,8 +70,8 @@ class TrustedServants extends React.Component {
           subtitle='Helpful resources from those involved in service.'
           data={this.state.links}
           icon={<LinkIcon />}
-        >
-        </GoogleSheetCard>
+        />
+        <LiteratureOrderCard />
         <GoogleSheetCard
           title='Forms'
           subtitle='Useful forms for area meetings.'
@@ -88,7 +84,7 @@ class TrustedServants extends React.Component {
           data={this.state.guidelines}
           icon={<FileCopyIcon />}
         />
-      </OuterContainer>
+      </OuterContainer >
     )
   }
 }
@@ -148,6 +144,31 @@ const GoogleSheetCard = ({ title, subtitle, data, icon, children, hasSecondary }
                   </a>
                 )
               })}
+            </List>
+          </div>
+        </CardContent>
+      </Card>
+    </Grid>
+  )
+}
+
+const LiteratureOrderCard = () => {
+  return (
+    <Grid style={{ marginTop: '20px', marginBottom: '20px', width: '100%' }} item md={12} sm={12} >
+      <Card>
+        <CardHeader
+          title={<Typography style={{ color: '#225c83' }} variant='h5'>Literature Order Tool</Typography>}
+          subheader={<Typography style={{ color: '#225c83' }}>Create your literature order online before the next area meeting!</Typography>}
+        />
+        <CardContent>
+          <div style={{ width: '100%' }}>
+            <List dense={false}>
+              <NavLink style={{ textDecoration: 'none' }} to="/trusted-servants/literature-order">
+                <ListItem>
+                  <ListItemIcon><LinkIcon /></ListItemIcon>
+                  <ListItemText primary={<Typography style={{ color: '#225c83', fontSize: '16px' }}>Go to literature order tool</Typography>} />
+                </ListItem>
+              </NavLink>
             </List>
           </div>
         </CardContent>

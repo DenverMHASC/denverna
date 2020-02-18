@@ -9,6 +9,7 @@ import Meetings from './views/Meetings'
 import Events from './views/Events'
 import TrustedServants from './views/TrustedServants'
 import PublicRelations from './views/PublicRelations'
+import LiteratureOrder from './views/LiteratureOrder'
 import Home from './views/Home'
 import theme from './theme'
 import bmltInject from './bmltInject'
@@ -27,7 +28,8 @@ const App = (props) => {
               <Route exact={true} path='/' component={Home} />
               <Route path='/meetings' render={(props) => <Meetings {...props} meetings={meetings} formats={formats} isLoading={isLoading} />} />
               <Route path='/events' component={Events} />
-              <Route path='/trusted-servants' component={TrustedServants} />
+              <Route exact path='/trusted-servants' component={TrustedServants} />
+              <Route exact path='/trusted-servants/literature-order' component={LiteratureOrder} />
               <Route path='/public-relations' component={PublicRelations} />
             </Switch>
           </div>
