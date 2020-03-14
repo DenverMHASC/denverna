@@ -7,6 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Header from './components/Header'
 import CovidBanner from './components/CovidBanner'
 import Meetings from './views/Meetings'
+import Covid from './views/Covid'
 import Events from './views/Events'
 import TrustedServants from './views/TrustedServants'
 import PublicRelations from './views/PublicRelations'
@@ -30,6 +31,7 @@ const App = (props) => {
               <Route exact={true} path='/' component={Home} />
               <Route path='/meetings' render={(props) => <Meetings {...props} meetings={meetings} formats={formats} isLoading={isLoading} />} />
               <Route path='/events' component={Events} />
+              <Route path='/corona-virus' component={Covid} />
               <Route exact path='/trusted-servants' component={TrustedServants} />
               <Route exact path='/trusted-servants/literature-order' component={LiteratureOrder} />
               <Route path='/public-relations' component={PublicRelations} />

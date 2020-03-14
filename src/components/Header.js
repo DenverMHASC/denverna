@@ -124,7 +124,11 @@ class Header extends React.Component {
       history.push('/trusted-servants')
     } else if (value === 4) {
       history.push('/public-relations')
+    } else if (value === 5) {
+      history.push('/corona-virus')
     }
+
+
     window.scroll(0, 0)
   }
 
@@ -146,7 +150,7 @@ class Header extends React.Component {
     const fullList = (
       <div className={this.props.classes.fullList}>
         <List>
-          {['Home', 'Meeting List', 'Events & Activities', 'For Trusted Servants', 'Public Relations'].map((text, index) => (
+          {['Home', 'Meeting List', 'Events & Activities', 'For Trusted Servants', 'Public Relations', 'Coronavirus Updates'].map((text, index) => (
             <ListItem onClick={() => this.handleChange(null, index)} button key={text}>
               <ListItemText primary={text} />
             </ListItem>
