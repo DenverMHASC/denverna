@@ -31,7 +31,7 @@ const App = (props) => {
               <Route exact={true} path='/' component={Home} />
               <Route path='/meetings' render={(props) => <Meetings {...props} meetings={meetings} formats={formats} isLoading={isLoading} />} />
               <Route path='/events' component={Events} />
-              <Route path='/corona-virus' component={Covid} />
+              <Route path='/coronavirus' component={Covid} />
               <Route exact path='/trusted-servants' component={TrustedServants} />
               <Route exact path='/trusted-servants/literature-order' component={LiteratureOrder} />
               <Route path='/public-relations' component={PublicRelations} />

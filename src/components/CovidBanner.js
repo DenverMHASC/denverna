@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import Typography from '@material-ui/core/Typography'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -14,7 +13,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
-
 
 const red = '#df2a00'
 const white = '#fff'
@@ -36,14 +34,14 @@ class CovidBanner extends Component {
 
   handleClick() {
     const { history } = this.props
-    history.push('/covid')
+    history.push('/coronavirus')
   }
 
   render() {
 
     const message = (
       <Typography onClick={this.handleClick} style={{ color: white, textDecoration: 'underline', cursor: 'pointer' }} variant="h5" component="span">
-        Coronavirus disease (COVID-19) Alert
+        Coronavirus (COVID-19) Information
       </Typography>
     )
 
@@ -64,14 +62,6 @@ class CovidBanner extends Component {
     )
   }
 }
-
-// <a
-// style={{ color: white }}
-// href="https://www.na.org/admin/include/spaw2/uploads/pdf/Coronavirus_web_message_12Mar.pdf"
-// target="_blank"
-// >
-// View NAWS coronavirus statement
-// </a>
 
 const variantIcon = {
   success: CheckCircleIcon,

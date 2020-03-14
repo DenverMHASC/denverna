@@ -125,7 +125,7 @@ class Header extends React.Component {
     } else if (value === 4) {
       history.push('/public-relations')
     } else if (value === 5) {
-      history.push('/corona-virus')
+      history.push('/coronavirus')
     }
 
 
