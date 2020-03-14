@@ -8,7 +8,6 @@ import withWidth from '@material-ui/core/withWidth'
 import moment from 'moment'
 
 import GetSheetDone from 'get-sheet-done'
-
 const EVENT_INFO_DATA_ID = "1OxopXEL1mBgaTNBV5HWVKjhwhQ5dpyi1auIfGFID-IU"
 
 class Events extends React.Component {
