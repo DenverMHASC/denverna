@@ -45,7 +45,7 @@ const App = (props) => {
 
 const styles = {
   appContainer: {
-    padding: '0 15px',
+    padding: '0 5px',
     marginTop: '90px'
   }
 }
