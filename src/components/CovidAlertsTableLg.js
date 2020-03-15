@@ -51,7 +51,6 @@ const alertsTableStyles = {
 }
 
 
-
 const AlertsTable = withStyles(alertsTableStyles)(({ classes, alerts }) => {
   return (
     <React.Fragment>

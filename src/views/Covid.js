@@ -4,7 +4,7 @@ import withWidth from '@material-ui/core/withWidth'
 import GetSheetDone from 'get-sheet-done'
 import OuterContainer from '../components/OuterContainer'
 import moment from 'moment'
-import AlertsTable from '../components/CovidAlertsTableLg'
+import AlertsTableLg from '../components/CovidAlertsTableLg'
 const DATA = '1GB9cm8R5lMVQo2Hq1-mdudEkk2wRjG3nD2EDkTg2QAE'
 
 class Covid extends Component {
@@ -36,14 +36,20 @@ class Covid extends Component {
   }
 
   render() {
+
     return (
       <OuterContainer style={{ flexDirection: 'column' }}>
         <div className="container">
-          <AlertsTable alerts={this.state.alerts} />
+          {renderAlerts(this.props.width, this.state.alerts)}
         </div>
       </OuterContainer >
     )
   }
 }
+
+const renderAlerts = (width, alerts) => (
+  ['xs', 'sm'].includes(width) ? <div>butts</div> : <AlertsTableLg alerts={alerts} />
+)
+
 
 export default withWidth()(Covid)

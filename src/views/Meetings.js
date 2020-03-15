@@ -1,5 +1,4 @@
 import React from 'react'
-
 import withStyles from '@material-ui/core/styles/withStyles'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
@@ -7,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import withWidth from '@material-ui/core/withWidth'
 import PrintOutlined from '@material-ui/icons/PrintOutlined'
-import Typography from '@material-ui/core/Typography';
+import Typography from '@material-ui/core/Typography'
 
 import { capitalize, pick } from 'lodash'
 
