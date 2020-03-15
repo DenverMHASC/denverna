@@ -49,14 +49,34 @@ class Covid extends Component {
           <Card>
             <CardHeader
               title={<Typography style={{ color: '#225c83' }} variant='h5'>Coronavirus Updates</Typography>}
-              subheader={<Typography style={{ color: '#225c83' }}>
-                <a
-                  href="https://www.na.org/admin/include/spaw2/uploads/pdf/Coronavirus_web_message_12Mar.pdf"
-                  target="_blank"
-                >
-                  Please Review the NA World Services Coronavirus Statement
-          </a>
-              </Typography>}
+              subheader={
+                <React.Fragment>
+                  <Typography style={{ color: '#225c83' }}>
+                    <a
+                      href="https://www.na.org/admin/include/spaw2/uploads/pdf/Coronavirus_web_message_12Mar.pdf"
+                      target="_blank"
+                    >
+                      Please Review the NA World Services Coronavirus Statement
+                  </a>
+                  </Typography>
+                  <Typography style={{ color: '#225c83' }}>
+                    <a
+                      href="http://www.nabyphone.com/"
+                      target="_blank"
+                    >
+                      Please Click Here For Phone Meetings
+                  </a>
+                  </Typography>
+                  <Typography style={{ color: '#225c83' }}>
+                    <a
+                      href="https://virtual-na.org/"
+                      target="_blank"
+                    >
+                      Please Click Here For Virtual Meetings
+                  </a>
+                  </Typography>
+                </React.Fragment>
+              }
             />
 
             <CardContent>
