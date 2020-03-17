@@ -75,6 +75,14 @@ class Covid extends Component {
                       Please Click Here For Virtual Meetings
                   </a>
                   </Typography>
+                  <Typography style={{ color: '#225c83' }}>
+                    <a
+                      href="https://drive.google.com/drive/folders/1Nq88qfuaItimgvCJzmE9Vb5Uf_js9oFJ"
+                      target="_blank"
+                    >
+                      Resources for Starting a Virtual or Phone Meeting
+                  </a>
+                  </Typography>
                 </React.Fragment>
               }
             />
