@@ -34,14 +34,14 @@ class CovidBanner extends Component {
 
   handleClick() {
     const { history } = this.props
-    history.push('/coronavirus')
+    history.push('/coronavirus-meetings')
   }
 
   render() {
 
     const message = (
       <Typography onClick={this.handleClick} style={{ color: white, textDecoration: 'underline', cursor: 'pointer' }} variant="h5" component="span">
-        Coronavirus (COVID-19) Information
+        Coronavirus Meeting Updates
       </Typography>
     )
 

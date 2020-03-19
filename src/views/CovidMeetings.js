@@ -5,15 +5,16 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import NativeSelect from '@material-ui/core/NativeSelect'
 import withWidth from '@material-ui/core/withWidth'
-import PrintOutlined from '@material-ui/icons/PrintOutlined'
+import CardHeader from '@material-ui/core/CardHeader'
 import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
 
-import { capitalize, pick } from 'lodash'
+import GetSheetDone from 'get-sheet-done'
+import { capitalize, pick, groupBy, sortBy, mapValues } from 'lodash'
 
-import MeetingListLg from '../components/MeetingListLg'
-import CovidBanner from '../components/CovidBanner'
-import MeetingListSm from '../components/MeetingListSm'
-import MeetingListKey from '../components/MeetingListKey'
+import MeetingListLg from '../components/CovidMeetingListLg'
+import MeetingListSm from '../components/CovidMeetingListSm'
+
 import OuterContainer from '../components/OuterContainer'
 
 
@@ -47,36 +48,37 @@ const styles = {
   }
 }
 
-class Meetings extends React.Component {
+const DATA = '11kdUgcYPSqpfpxlPeKKrvGd0gX6luoPhaA3jpK5fA-o'
+
+class CovidMeetings extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      allMeetings: props.meetings,
+      allMeetings: {},
       meetings: {},
       day: 'any',
-      isLoading: false,
+      isLoading: true,
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleDayChange = this.handleDayChange.bind(this)
     this.renderDropdown = this.renderDropdown.bind(this)
   }
-  componentDidMount() {
-    this.setState({
-      allMeetings: this.props.meetings,
-      meetings: this.props.meetings,
-      isLoading: this.props.isLoading,
+  componentWillMount() {
+    GetSheetDone.labeledCols(DATA).then(sheet => {
+      const allMeetings = groupBy(sheet.data, 'meetingday')
+      const sortedByTime = mapValues(allMeetings, meetings => {
+        return sortBy(meetings, m => m.meetingtime)
+      })
+
+      this.setState({
+        allMeetings: sortedByTime,
+        meetings: sortedByTime,
+        day: 'any',
+        isLoading: false,
+      })
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    // TODO there is a bug in here when you change screen sizes, it resets the meeting list. Not sure if this is worth fixing.
-    this.setState({
-      allMeetings: nextProps.meetings,
-      meetings: nextProps.meetings,
-      isLoading: nextProps.isLoading,
-    })
-  }
-
-  handleChange(e) {
+  handleDayChange(e) {
     if (e.target.value === 'any') {
       this.setState({
         day: 'any',
@@ -96,14 +98,14 @@ class Meetings extends React.Component {
         <FormControl className={classes.formControl} >
           <NativeSelect
             value={day}
-            onChange={this.handleChange}
+            onChange={this.handleDayChange}
             inputProps={{
               name: 'day',
               id: 'day-of-week',
             }}
           >
             <option value="any">Any Day</option>
-            {Object.keys(allMeetings).map((day, idx) => (<option value={day} key={idx}>{capitalize(day)}</option>))}
+            {Object.keys(allMeetings).map((day, idx) => (<option value={day} key={idx}>{day}</option>))}
           </NativeSelect>
         </FormControl >
       )
@@ -111,9 +113,9 @@ class Meetings extends React.Component {
     return (
       <FormControl className={classes.formControl} >
         <Select
-          className={classes.select}
+          classNamxe={classes.select}
           value={day}
-          onChange={this.handleChange}
+          onChange={this.handleDayChange}
           inputProps={{
             name: 'day',
             id: 'day-of-week',
@@ -124,13 +126,12 @@ class Meetings extends React.Component {
           </MenuItem>
           {Object.keys(allMeetings).map((day, idx) => (<MenuItem value={day} key={idx}>{capitalize(day)}</MenuItem>))}
         </Select>
-        <Typography><a target="_new" className={classes.print} href="https://drive.google.com/open?id=1kH9Mb9P02EuhONEBT8s-ikp-UvZsMaUs"><span className={classes.iconLabel}><PrintOutlined /><span>Print</span></span></a></Typography>
       </FormControl>
     )
   }
 
   render() {
-    const { width, formats } = this.props
+    const { width } = this.props
     const { meetings, allMeetings, isLoading } = this.state
 
     if (isLoading) {
@@ -138,17 +139,56 @@ class Meetings extends React.Component {
     }
     return (
       <OuterContainer style={{ flexDirection: 'column' }}>
-        <CovidBanner />
+        <HeaderCard />
         {this.renderDropdown()}
         {renderMeetingList(width, meetings || allMeetings)}
-        <MeetingListKey formats={formats} />
       </OuterContainer>
     )
   }
 }
 
-const renderMeetingList = (width, meetings) => (
-  ['xs', 'sm'].includes(width) ? <MeetingListSm meetings={meetings} /> : <MeetingListLg meetings={meetings} />
+const renderMeetingList = (width, meetings) => {
+  return (
+    ['xs', 'sm'].includes(width) ? <MeetingListSm meetings={meetings} /> : <MeetingListLg meetings={meetings} />
+  )
+}
+
+const HeaderCard = () => (
+  <div style={{ marginBottom: '20px' }}>
+    <Typography style={{ color: '#225c83' }} variant='h5'>Coronavirus Meeting Updates</Typography>
+    <Typography style={{ color: '#225c83' }}>
+      <a
+        href="https://www.na.org/admin/include/spaw2/uploads/pdf/Coronavirus_web_message_12Mar.pdf"
+        target="_blank"
+      >
+        Please Review the NA World Services Coronavirus Statement
+      </a>
+    </Typography>
+    <Typography style={{ color: '#225c83' }}>
+      <a
+        href="https://nacolorado.org/denver/events/WSO-Coronavirus.pdf"
+        target="_blank"
+      >
+        Please Review the NA World Services Coronavirus Update
+      </a>
+    </Typography>
+    <Typography style={{ color: '#225c83' }}>
+      <a
+        href="http://www.nabyphone.com/"
+        target="_blank"
+      >
+        Please Click Here For Phone Meetings
+                  </a>
+    </Typography>
+    <Typography style={{ color: '#225c83' }}>
+      <a
+        href="https://virtual-na.org/"
+        target="_blank"
+      >
+        Please Click Here For Virtual Meetings
+                  </a>
+    </Typography>
+  </div >
 )
 
-export default withStyles(styles)(withWidth()(Meetings))
+export default withStyles(styles)(withWidth()(CovidMeetings))
