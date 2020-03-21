@@ -49,9 +49,14 @@ const MeetingCard = withStyles(MeetingCardStyles)(({ meetingtime, meetingname, c
 const renderDetails = (classes, type, phonenumber, code, link, directions) => {
   switch (type) {
     case 'Zoom':
-      return <Typography className={classes.typography}>Link: <a href={link}>{link}</a> {phonenumber ? <a href={'tel:' + phonenumber}>{phonenumber}</a> + 'Code: ' + { code } : null}</Typography>
+      return (
+        <React.Fragment>
+          <Typography className={classes.typography}>Link: <a href={link}>{link}</a></Typography>
+          {phonenumber ? <Typography className={classes.typography}>Phone Number: <a href={'tel:' + phonenumber + ',,' + code + '#'}>{phonenumber + ',,' + code + '#'}</a></Typography> : null}
+        </React.Fragment>
+      )
     case 'Phone':
-      return <Typography className={classes.typography}>Phone Number: <a href={'tel:' + phonenumber}>{phonenumber}</a> Code: {code}</Typography>
+      return <Typography className={classes.typography}>Phone Number: <a href={'tel:' + phonenumber + ',,' + code + '#'}>{phonenumber + ',,' + code + '#'}</a></Typography>
     case 'Park':
       return null
     default:

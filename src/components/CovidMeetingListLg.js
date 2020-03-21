@@ -99,7 +99,13 @@ const MeetingRow = withStyles(rowStyles)(({ meetingtime, meetingname, type, clos
 const renderDetails = (classes, type, phonenumber, code, link, directions) => {
 	switch (type) {
 		case 'Zoom':
-			return <TableCell className={classes.cell}><a href={link}>{link}</a> {phonenumber ? <a href={'tel:' + phonenumber}>{phonenumber}</a> + 'Code: ' + { code } : null}</TableCell>
+			return (
+				<TableCell className={classes.cell}>
+					<a href={link}>{link}</a>
+					<br></br>
+					{phonenumber ? <span><a href={'tel:' + phonenumber}>{phonenumber}</a> Code: {code} </span> : null}
+				</TableCell>
+			)
 		case 'Phone':
 			return <TableCell className={classes.cell}><a href={'tel:' + phonenumber}>{phonenumber}</a> Code: {code}</TableCell>
 		case 'Park':

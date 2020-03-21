@@ -20,7 +20,7 @@ module.exports = {
   },
   output: {
     publicPath: 'dist/',
-    filename: 'bundlev5.js',
+    filename: 'bundlev6.js',
     path: path.resolve(__dirname, 'dist')
   },
   devServer: {
