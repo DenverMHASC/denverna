@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 
 import OuterContainer from '../components/OuterContainer'
+import A from '../components/A'
 import ContactList from '../components/ContactList'
 import skyline from '../../assets/skyline.jpg'
 
@@ -20,6 +21,13 @@ const Home = (props) => {
       <Typography style={{ margin: '0 auto', textAlign: 'center', width: '100%' }} color='primary' >
         The Mile High Area of Narcotics Anonymous serves Denver, the greater Denver Metro Area, Summit County, and Steamboat Springs.
       </Typography>
+      <Button
+        variant="text"
+        style={{ marginTop: '15px', }}
+        style={{ color: '#1c84be' }}
+      >
+        Make a Donation to the Mile High Area.
+      </Button>
       <div
         style={{ marginTop: '20px', position: 'relative' }}
       >
