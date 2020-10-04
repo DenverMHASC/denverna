@@ -51,6 +51,8 @@ const prices = {
     { name: "IP# 27 For the Parents or Guardians of Young People in NA", itemNumber: "3127", price: 0.33, quantity: 0, subTotal: 0 },
     { name: "IP# 28 Funding NA Service", itemNumber: "3128", price: 0.37, quantity: 0, subTotal: 0 },
     { name: "IP# 29 Introduction to NA Meetings", itemNumber: "3129", price: 0.25, quantity: 0, subTotal: 0 },
+    { name: "IP #30 Mental Health in Recovery", itemNumber: "3130", price: 0.33, quantity: 0, subTotal: 0 },
+
   ],
   serviceProducts: [
     { name: "H&I Handbook w/CD", itemNumber: "2101", price: 10.25, quantity: 0, subTotal: 0 },
@@ -159,27 +161,17 @@ const prices = {
     { name: "Literature rack (wire, 16-pocket)", itemNumber: "9054", price: 27.7, quantity: 0, subTotal: 0 },
     { name: "Literature rack (wire, 20-pocket)", itemNumber: "9055", price: 40.4, quantity: 0, subTotal: 0 },
     { name: "7 Poster Set", itemNumber: "9070", price: 11, quantity: 0, subTotal: 0 },
-    { name: "My Gratitude Speaks", itemNumber: "9071", price: 1.55, quantity: 0, subTotal: 0 },
-    { name: "Serenity Prayer", itemNumber: "9072", price: 1.55, quantity: 0, subTotal: 0 },
-    { name: "Twelve Steps", itemNumber: "9073", price: 3.5, quantity: 0, subTotal: 0 },
-    { name: "Twelve Traditions", itemNumber: "9074", price: 3.5, quantity: 0, subTotal: 0 },
-    { name: "Third Step Prayer", itemNumber: "9075", price: 1.55, quantity: 0, subTotal: 0 },
-    { name: "Just for Today", itemNumber: "9076", price: 1.55, quantity: 0, subTotal: 0 },
-    { name: "Twelve Concepts", itemNumber: "9077", price: 3.5, quantity: 0, subTotal: 0 },
+    { name: "My Gratitude Speaks Poster", itemNumber: "9071", price: 1.55, quantity: 0, subTotal: 0 },
+    { name: "Serenity Prayer Poster", itemNumber: "9072", price: 1.55, quantity: 0, subTotal: 0 },
+    { name: "Twelve Steps Poster", itemNumber: "9073", price: 3.5, quantity: 0, subTotal: 0 },
+    { name: "Twelve Traditions Poster", itemNumber: "9074", price: 3.5, quantity: 0, subTotal: 0 },
+    { name: "Third Step Prayer Poster", itemNumber: "9075", price: 1.55, quantity: 0, subTotal: 0 },
+    { name: "Just for Today Poster", itemNumber: "9076", price: 1.55, quantity: 0, subTotal: 0 },
+    { name: "Twelve Concepts Poster", itemNumber: "9077", price: 3.5, quantity: 0, subTotal: 0 },
     { name: "7th Tradition Box", itemNumber: "9111", price: 3.2, quantity: 0, subTotal: 0 },
-    { name: "Basic Journal", itemNumber: "9400", price: 22.05, quantity: 0, subTotal: 0 },
-    { name: "NA Medallion Journal (Black)", itemNumber: "9401", price: 17.35, quantity: 0, subTotal: 0 },
-    { name: "NA Medallion Journal (Terra Cotta)", itemNumber: "9402", price: 17.35, quantity: 0, subTotal: 0 },
-    { name: "Basic Mug", itemNumber: "9415", price: 6.8, quantity: 0, subTotal: 0 },
   ],
   multimediaProducts: [
-    { name: "Basic Text, audiotape (Book One only)", itemNumber: "8800", price: 16.55, quantity: 0, subTotal: 0 },
-    { name: "Basic Text, audio CD (Book One only)", itemNumber: "8811", price: 10.8, quantity: 0, subTotal: 0 },
     { name: "It Works, audiotape", itemNumber: "8820", price: 19.4, quantity: 0, subTotal: 0 },
-    { name: "The NA Step Working Guides, audio CD set", itemNumber: "8830", price: 28.9, quantity: 0, subTotal: 0 },
-    { name: "It Works CD", itemNumber: "8910", price: 24.5, quantity: 0, subTotal: 0 },
-    { name: "Step Working Guides CD-ROM 8911", itemNumber: "8911", price: 21.8, quantity: 0, subTotal: 0 },
-    { name: "It Works CD & Book Set", itemNumber: "8931", price: 30.6, quantity: 0, subTotal: 0 },
   ]
 }
 
