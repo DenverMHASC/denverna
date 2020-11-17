@@ -169,31 +169,12 @@ class Header extends React.Component {
       <div className={classes.root}>
         <AppBar className={classes.header} position='fixed'>
           <Toolbar className={classes.toolbar}>
-            <IconButton onClick={this.toggleDrawer(true)} className={classes.menuButton} width=".5em" height=".5em">
-              <div className={classes.menuButtonContainer}>
-                <MenuIcon className={classes.menuIcon} />
-                <Typography className={classes.menuIconTypography}>
-                  MENU
-                </Typography>
-              </div>
-            </IconButton>
-            <Drawer open={this.state.open} onClose={this.toggleDrawer(false)}>
-              <div
-                tabIndex={0}
-                role="button"
-                onClick={this.toggleDrawer(false)}
-                onKeyDown={this.toggleDrawer(false)}
-              >
-                {this.renderList()}
-              </div>
-            </Drawer>
-            <Typography variant="h5" className={classes.grow}>
+            <Typography variant="h5" className={classes.grow} style={{ marginLeft: '10px' }}>
               {['sm', 'xs'].includes(width) ? 'NA | Mile High Area' : 'Narcotics Anonymous | Mile High Area'}
             </Typography>
-            {this.renderNavButtons(width, classes)}
           </Toolbar>
           {['sm', 'md', 'lg', 'xl'].includes(width) ?
-            <a className={classes.semiCircle} href="/" rel="home">
+            <a className={classes.semiCircle} rel="home">
               <img className={classes.logo} src={logo}></img>
             </a>
             : null}
