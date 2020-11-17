@@ -19,9 +19,6 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Link from '@material-ui/icons/Link';
-
-
 import OuterContainer from '../components/OuterContainer'
 import prices from '../literaturePrices'
 import Product from '../components/Product'
@@ -76,13 +73,17 @@ class LiteratureOrder extends React.Component {
     return (
       <OuterContainer width={this.props.width}>
         <Grid item xs={12}>
-          <Typography align="center" variant="subtitle1">Literature Order Tool</Typography>
+          <Typography>
+            <a href="https://denverna.com/trusted-servants/">
+              BACK
+            </a>
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography style={{ marginTop: '20px' }} align="center" variant="subtitle1">Literature Order Tool</Typography>
           <Typography style={{ marginBottom: "10px" }} align="center" >
             Select the items you wish to order, fill out your info, then send an email to literature.mhasc@gmail.com
           </Typography>
-          <a target="_new" style={{ textDecoration: 'none' }} href={"https://docs.google.com/forms/d/e/1FAIpQLSdqTIj8Df6Kh-DmOPH9BHqJixcQiQ3HP6--sVr3RYRSBTsQMg/viewform"}>
-            <Typography style={{ color: '#225c83', fontSize: '16px', textAlign: 'center', marginBottom: '10px' }}>Click here to give us feedback </Typography>
-          </a>
         </Grid>
         {prices ? (
           <React.Fragment>

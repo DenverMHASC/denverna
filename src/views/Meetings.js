@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography'
 import { capitalize, pick } from 'lodash'
 
 import MeetingListLg from '../components/MeetingListLg'
-import CovidBanner from '../components/CovidBanner'
 import MeetingListSm from '../components/MeetingListSm'
 import MeetingListKey from '../components/MeetingListKey'
 import OuterContainer from '../components/OuterContainer'
@@ -138,7 +137,6 @@ class Meetings extends React.Component {
     }
     return (
       <OuterContainer style={{ flexDirection: 'column' }}>
-        <CovidBanner />
         {this.renderDropdown()}
         {renderMeetingList(width, meetings || allMeetings)}
         <MeetingListKey formats={formats} />
