@@ -5,7 +5,6 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import withStyles from '@material-ui/core/styles/withStyles'
 
 import Header from './components/Header'
-import CovidBanner from './components/CovidBanner'
 import Meetings from './views/Meetings'
 import CovidMeetings from './views/CovidMeetings'
 import Events from './views/Events'
@@ -26,7 +25,6 @@ const App = (props) => {
         <React.Fragment>
           <Header isLoading={isLoading} />
           <div className={classes.appContainer}>
-            <CovidBanner />
             <Switch>
               <Route exact={true} path='/' component={Home} />
               <Route path='/meetings' render={(props) => <Meetings {...props} meetings={meetings} formats={formats} isLoading={isLoading} />} />
