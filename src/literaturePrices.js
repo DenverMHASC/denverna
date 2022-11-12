@@ -16,6 +16,7 @@ const prices = {
     { name: "Guiding Principles The Twelve Traditions (Hardcover)", itemNumber: "1201", price: 11.65, quantity: 0, subTotal: 0 },
     { name: "Guiding Principles The Twelve Traditions (Soft Cover)", itemNumber: "1202", price: 11.65, quantity: 0, subTotal: 0 },
     { name: "The NA Step Working Guides", itemNumber: "1400", price: 9, quantity: 0, subTotal: 0 },
+    { name: "A Spiritual Principle a Day", itemNumber: "1110", price: 13, quantity: 0, subTotal: 0 }
   ],
   booklets: [
     { name: "Twelve Concepts for NA Service", itemNumber: "1164", price: 2.2, quantity: 0, subTotal: 0 },
