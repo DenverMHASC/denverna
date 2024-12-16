@@ -35,7 +35,7 @@
     "axios": "0.18.0",
     "axios-jsonp-pro": "1.1.4",
     "get-sheet-done": "^0.1.5",
-    "lodash": "4.17.11",
+    "lodash": "4.17.21",
     "moment": "2.22.2",
     "moment-duration-format": "2.2.2",
     "react": "16.5.2",
