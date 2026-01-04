@@ -301,10 +301,9 @@ const OrderSummary = withStyles(cardStyles)((props) => {
               {orderSummaryString}
             </pre>
             <Divider style={{ marginBottom: '10px' }} />
-            <CopyToClipboard text={orderSummaryString}>
-              <Button variant="contained" color="primary">Click here to copy your order</Button>
-            </CopyToClipboard>
-            <Typography style={{ marginTop: '10px' }}>Copy your order and send it in an email to literature.mhasc@gmail.com. Pick it up at the next Mile High Area Meeting! </Typography>
+            <a href={`mailto:literature.mhasc@gmail.com?subject=Lit Order ${groupName}&body=${encodeURIComponent(orderSummaryString)}`}>
+              <Button variant="contained" color="primary">Click here to email your order to Literature Chair</Button>
+            </a>
           </React.Fragment> : emptyState
           }
         </Grid>
