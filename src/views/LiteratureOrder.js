@@ -29,7 +29,11 @@ const ZERO_TO_ONE_HUNDRED = Array.from(Array(100).keys())
 const nativeSelectItems = ZERO_TO_ONE_HUNDRED.map((number) => (<option value={number} key={number}>{number === 0 ? "none" : number}</option>))
 const selectItems = ZERO_TO_ONE_HUNDRED.map((number) => (<MenuItem value={number} key={number}>{number === 0 ? "none" : number}</MenuItem>))
 
+// For items sold in bundles (quantityStep / maxQuantity in literaturePrices.js), e.g. 0, 20, 40 ... 200
+const quantitiesByStep = (step, max) => Array.from(Array(Math.floor(max / step) + 1).keys()).map(number => number * step)
+
 const SECTION_NAMES = [
+  "Meeting Lists",
   "Books",
   "Booklets",
   "Information Pamphlets",
@@ -160,7 +164,8 @@ class LiteratureOrder extends React.Component {
         summary: ''
       })
 
-      if (section.subtotal > 0) {
+      // check summary rather than subtotal so free items (meeting lists) still get a section header
+      if (section.summary !== '') {
         section.summary = `${sectionName} Subtotal: ${formatMoney(section.subtotal)}${section.summary}`
       }
 
@@ -189,8 +194,9 @@ class LiteratureOrder extends React.Component {
     })
   }
 
-  renderDropdown(quantity, itemNumber, sectionName) {
+  renderDropdown(quantity, itemNumber, sectionName, quantityStep, maxQuantity) {
     const { width } = this.props
+    const stepQuantities = quantityStep ? quantitiesByStep(quantityStep, maxQuantity) : null
 
     if (width === 'xs') {
       return (
@@ -204,7 +210,7 @@ class LiteratureOrder extends React.Component {
               id: 'quantity',
             }}
           >
-            {nativeSelectItems}
+            {stepQuantities ? stepQuantities.map((number) => (<option value={number} key={number}>{number === 0 ? "none" : number}</option>)) : nativeSelectItems}
           </NativeSelect>
         </FormControl >
       )
@@ -219,7 +225,7 @@ class LiteratureOrder extends React.Component {
             id: 'quantity',
           }}
         >
-          {selectItems}
+          {stepQuantities ? stepQuantities.map((number) => (<MenuItem value={number} key={number}>{number === 0 ? "none" : number}</MenuItem>)) : selectItems}
         </Select>
       </FormControl>
     )
@@ -243,7 +249,7 @@ class LiteratureOrder extends React.Component {
         <ExpansionPanelDetails>
           <Grid container>
             {products.map((product) => {
-              const { price, quantity, itemNumber, name } = product
+              const { price, quantity, itemNumber, name, quantityStep, maxQuantity } = product
               return (
                 <Grid key={itemNumber} item xs={12} md={6}>
                   <Product
@@ -253,6 +259,8 @@ class LiteratureOrder extends React.Component {
                     name={name}
                     itemNumber={itemNumber}
                     sectionName={sectionName}
+                    quantityStep={quantityStep}
+                    maxQuantity={maxQuantity}
                   />
                 </Grid>
               )

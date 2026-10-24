@@ -29,7 +29,7 @@ class Product extends React.PureComponent {
   }
 
   render() {
-    const { quantity, itemNumber, name, price, classes, renderDropdown, sectionName, width } = this.props
+    const { quantity, itemNumber, name, price, classes, renderDropdown, sectionName, quantityStep, maxQuantity, width } = this.props
 
     return (
       <div className={classes.container}>
@@ -39,7 +39,7 @@ class Product extends React.PureComponent {
               <Typography><strong>{name}</strong></Typography>
             </Grid>
             <Grid item xs={6}>
-              {renderDropdown(quantity, itemNumber, sectionName)}
+              {renderDropdown(quantity, itemNumber, sectionName, quantityStep, maxQuantity)}
             </Grid>
             <Grid item xs={6}>
               <Typography>Total: {formatMoney(price * quantity)}</Typography>

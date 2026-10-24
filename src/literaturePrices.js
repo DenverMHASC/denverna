@@ -1,4 +1,10 @@
 const prices = {
+  // Meeting lists: free for home groups.
+  // quantityStep = how many come in a bundle (the dropdown counts up by this number)
+  // maxQuantity = the most a group can order at once
+  meetingLists: [
+    { name: "Meeting Lists (free for your home group, in bundles of 20)", itemNumber: "ML", price: 0, quantity: 0, subTotal: 0, quantityStep: 20, maxQuantity: 200 },
+  ],
   books: [
     { name: "6th Edition Basic Text (Hardcover)", itemNumber: "1101", price: 15.65, quantity: 0, subTotal: 0 },
     { name: "6th Edition Basic Text (Softcover)", itemNumber: "1102", price: 15.65, quantity: 0, subTotal: 0 },
